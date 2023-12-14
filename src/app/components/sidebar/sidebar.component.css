@@ -1,0 +1,17 @@
+aside{
+    width: 250px;
+    height: calc(100vh - 95px);
+    background-color: #4F4F4F;
+}
+
+ul{
+    padding: 0px;
+    list-style: none;
+}
+
+li{
+    font-family: 'Afacad', sans-serif;
+    color: white;
+    font-size: 22px;
+    height: 40px;
+}
