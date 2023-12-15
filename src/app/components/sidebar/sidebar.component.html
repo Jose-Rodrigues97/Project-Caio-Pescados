@@ -1,7 +1,7 @@
 <aside>
     <ul>
         <ng-container *ngFor="let menu of menus">
-            <li>
+            <li id={{menu.id}} (click)="onChangeActive(menu.id)" class={{menu.class}}>
                 <a style="height: 100%; width: 100%;" routerLink={{menu.link}} routerLinkActive="selected" href="#">
                     <fa-icon [icon]=menu.icon></fa-icon>{{menu.nome}}
                 </a>
