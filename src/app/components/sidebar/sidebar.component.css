@@ -1,17 +1,48 @@
-aside{
+aside {
     width: 250px;
     height: calc(100vh - 95px);
     background-color: #4F4F4F;
 }
 
-ul{
+ul {
     padding: 0px;
     list-style: none;
 }
 
-li{
+li {
+    height: 50px;
+    position: relative;
+}
+
+li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-family: 'Afacad', sans-serif;
+    font-size: 20px;
     color: white;
-    font-size: 22px;
-    height: 40px;
+    text-decoration: none;
+    padding: 5px;
+    padding-left: 10px;
+    border-left: solid 5px transparent;
+}
+
+li::after {
+    content: '';
+    bottom: 0px;
+    width: calc(100% + 5px);
+    border-bottom: solid 1px black;
+    position: absolute;
+    padding: 0px;
+    left: -5px;
+}
+
+li:hover {
+    background-color: #696969;
+}
+
+.active {
+    background-color: #A9A9A9;
+    border-left: solid 5px;
+    border-color: #1E90FF;
 }

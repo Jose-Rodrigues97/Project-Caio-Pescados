@@ -6,17 +6,37 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ContentAreaComponent } from './components/content-area/content-area.component';
+import { AboutComponent } from './components/about/about.component';
+import { CollaboratorsComponent } from './components/collaborators/collaborators.component';
+import { CustomersComponent } from './components/customers/customers.component';
+import { PurchaseComponent } from './components/purchase/purchase.component';
+import { SaleComponent } from './components/sale/sale.component';
+import { ProductsComponent } from './components/products/products.component';
+import { SuppliersComponent } from './components/suppliers/suppliers.component';
+import { StockComponent } from './components/stock/stock.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    SidebarComponent
+    SidebarComponent,
+    ContentAreaComponent,
+    AboutComponent,
+    CollaboratorsComponent,
+    CustomersComponent,
+    PurchaseComponent,
+    SaleComponent,
+    ProductsComponent,
+    SuppliersComponent,
+    StockComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
