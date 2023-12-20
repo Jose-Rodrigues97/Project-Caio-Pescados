@@ -16,6 +16,10 @@ import { SaleComponent } from './components/sale/sale.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { StockComponent } from './components/stock/stock.component';
+import { CompaniesComponent } from './components/companies/companies.component';
+import { ConfigurationComponent } from './components/configuration/configuration.component';
+import { MetricsComponent } from './components/metrics/metrics.component';
+import { CardCompanyComponent } from './components/card-company/card-company.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { StockComponent } from './components/stock/stock.component';
     SaleComponent,
     ProductsComponent,
     SuppliersComponent,
-    StockComponent
+    StockComponent,
+    CompaniesComponent,
+    ConfigurationComponent,
+    MetricsComponent,
+    CardCompanyComponent
   ],
   imports: [
     BrowserModule,

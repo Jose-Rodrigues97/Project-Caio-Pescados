@@ -9,6 +9,9 @@ import { SaleComponent } from './components/sale/sale.component';
 import { StockComponent } from './components/stock/stock.component';
 import { SuppliersComponent } from './components/suppliers/suppliers.component';
 import { ProductsComponent } from './components/products/products.component';
+import { CompaniesComponent } from './components/companies/companies.component';
+import { ConfigurationComponent } from './components/configuration/configuration.component';
+import { MetricsComponent } from './components/metrics/metrics.component';
 
 const routes: Routes = [
   {
@@ -16,8 +19,8 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: AboutComponent },
+      { path: '', redirectTo: 'companies', pathMatch: 'full' },
+      { path: 'home', component: CompaniesComponent },
       { path: 'about', component: AboutComponent },
       { path: 'collaborators', component: CollaboratorsComponent },
       { path: 'customers', component: CustomersComponent },
@@ -25,7 +28,10 @@ const routes: Routes = [
       { path: 'sale', component: SaleComponent },
       { path: 'stock', component: StockComponent },
       { path: 'suppliers', component: SuppliersComponent },
-      { path: 'products', component: ProductsComponent },
+      { path: 'products', component: ProductsComponent }, 
+      { path: 'companies', component: CompaniesComponent },
+      { path: 'configuration', component: ConfigurationComponent },
+      { path: 'metrics', component: MetricsComponent },
       // { path: '**', component: PageNotFoundComponentComponent }
     ],
     // canActivate: [AuthGuard]

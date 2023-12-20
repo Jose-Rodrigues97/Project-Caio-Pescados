@@ -4,7 +4,7 @@
 
 header {
     background-color: white;
-    width: 100vw;
+    width: 100%;
     box-shadow: 1px 1px 5px 1px;
     display: flex;
     align-items: center;
@@ -63,4 +63,21 @@ p {
 
 label {
     font-size: 30px;
+}
+
+@media (max-width: 1250px) {
+
+    nav,
+    img {
+        height: 85px;
+    }
+
+    img {
+        width: 210px;
+    }
+
+    p {
+        font-size: 42px;
+        line-height: 35px
+    }
 }

@@ -7,11 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class ContentAreaComponent {
-
-  ngOnInit(): void {
-    if (window.innerWidth > document.body.clientWidth) {
-      document.getElementsByTagName('section')[0].style.width = 'calc(100vw - 250px - 15px)';
-    }
-  }
 }
 

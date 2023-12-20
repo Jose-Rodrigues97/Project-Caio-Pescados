@@ -1,18 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-    margin: 0px;
+* {
+  margin: 0px;
 }
-
-::-webkit-scrollbar {
-    width: 15px;
-}
-
-::-webkit-scrollbar-track {
-    background: #696969;        /* color of the tracking area */
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #000000;
-    border-radius: 20px;
-    border: 2.5px solid white; 
-  }

@@ -1,0 +1,9 @@
+.heigth {
+    top: 95px
+}
+
+@media (max-width: 1250px) {
+    .heigth {
+        top: 85px
+    }
+}

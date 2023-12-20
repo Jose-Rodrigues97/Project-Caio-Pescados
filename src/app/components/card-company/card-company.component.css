@@ -1,0 +1,43 @@
+.card-company {
+    height: 90px;
+    width: 100%;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 12% 38% 30% 20%;
+    border: solid 0.1px;
+    align-items: center;
+    font-size: 17px;
+    margin-bottom: 10px;
+    font-family: 'Afacad', sans-serif;
+    background-color: white;
+    border-right: solid 5px black;
+}
+
+.card-company:hover {
+    background-color: #E0FFFF;
+    border-right: solid 5px #1E90FF;
+}
+
+span {
+    display: block;
+}
+
+img {
+    width: 78px;
+    height: 78px;
+    object-fit: cover;
+    object-position: center;
+    border: solid 1px;
+}
+
+@media (max-width: 1250px) {
+    img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .card-company {
+        height: 80px;
+        font-size: 15px;
+    }
+}

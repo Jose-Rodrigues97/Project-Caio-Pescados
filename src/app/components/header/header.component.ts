@@ -12,8 +12,5 @@ export class HeaderComponent {
   faCogs = faCogs;
 
   ngOnInit(): void {
-    if (window.innerWidth > document.body.clientWidth) {
-      document.getElementsByTagName('header')[0].style.width = 'calc(100vw - 15px)';
-    }
   }
 }

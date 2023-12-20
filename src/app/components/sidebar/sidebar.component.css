@@ -46,3 +46,18 @@ li:hover {
     border-left: solid 5px;
     border-color: #1E90FF;
 }
+
+@media (max-width: 1250px) {
+    li {
+        height: 45px;
+    }
+
+    aside {
+        overflow-y: scroll;
+        height: calc(100vh - 85px);
+    }
+
+    aside::-webkit-scrollbar {
+        width: 0px;
+    }
+}
