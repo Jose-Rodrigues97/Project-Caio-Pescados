@@ -20,6 +20,8 @@ import { CompaniesComponent } from './components/companies/companies.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { MetricsComponent } from './components/metrics/metrics.component';
 import { CardCompanyComponent } from './components/card-company/card-company.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,10 @@ import { CardCompanyComponent } from './components/card-company/card-company.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

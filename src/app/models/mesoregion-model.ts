@@ -1,6 +1,6 @@
 import { UFModel } from "./uf-model"
 
-export interface IntermediateRegionModel {
+export interface MesoregionModel {
     id: number;
     nome: string;
     UF: UFModel;

@@ -1,8 +1,8 @@
-import { RegiaoModel } from "./region-model"
+import { RegionModel } from "./region-model"
 
 export interface UFModel {
     id: number;
     sigla: string;
     nome: string;
-    regiao: RegiaoModel
+    regiao: RegionModel;
 }

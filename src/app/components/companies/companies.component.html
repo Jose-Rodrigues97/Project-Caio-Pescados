@@ -8,18 +8,18 @@
         <input class="form-control" type="text" placeholder="Pesquisar nome ou CNPJ" style="width: 100%;">
         <div style="margin-top: 10px;">
             <label for="inputState" class="form-label" style="font-size: 15px; margin-bottom: 0px;">Estado</label>
-            <select id="inputState" class="form-select" formControlName="estado" required>
-                <!-- <ng-container *ngFor="let city of cities">
-                <option [ngValue]="city.nome">{{city.nome}}</option>
-              </ng-container> -->
+            <select [(ngModel)]="UFSelected" (ngModelChange)="changeUF()" id="inputState" class="form-select" required>
+                <ng-container *ngFor="let estate of estates">
+                    <option [ngValue]="estate.id">{{estate.nome}}</option>
+                </ng-container>
             </select>
         </div>
         <div style="margin-top: 10px;">
             <label for="inputCity" class="form-label" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
-            <select id="inputCity" class="form-select" formControlName="cidade" required>
-                <!-- <ng-container *ngFor="let city of cities">
-                <option [ngValue]="city.nome">{{city.nome}}</option>
-              </ng-container> -->
+            <select [(ngModel)]="CitySelected" id="inputCity" class="form-select" required>
+                <ng-container *ngFor="let city of cities">
+                    <option [ngValue]="city.nome">{{city.nome}}</option>
+                </ng-container>
             </select>
         </div>
         <div style="display: flex; justify-content: space-evenly; margin-top: 10px;">

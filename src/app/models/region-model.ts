@@ -1,5 +1,5 @@
-export interface RegiaoModel {
+export interface RegionModel {
     id: number;
     sigla: string;
-    nome: string
+    nome: string;
 }
