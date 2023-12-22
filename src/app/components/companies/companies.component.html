@@ -5,26 +5,32 @@
             [state]="company.state" [city]="company.city" [image]="company.image"></app-card-company>
     </ng-container>
     <div class="search">
-        <input class="form-control" type="text" placeholder="Pesquisar nome ou CNPJ" style="width: 100%;">
-        <div style="margin-top: 10px;">
-            <label for="inputState" class="form-label" style="font-size: 15px; margin-bottom: 0px;">Estado</label>
-            <select [(ngModel)]="UFSelected" (ngModelChange)="changeUF()" id="inputState" class="form-select" required>
-                <ng-container *ngFor="let estate of estates">
-                    <option [ngValue]="estate.id">{{estate.nome}}</option>
-                </ng-container>
-            </select>
-        </div>
-        <div style="margin-top: 10px;">
-            <label for="inputCity" class="form-label" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
-            <select [(ngModel)]="CitySelected" id="inputCity" class="form-select" required>
-                <ng-container *ngFor="let city of cities">
-                    <option [ngValue]="city.nome">{{city.nome}}</option>
-                </ng-container>
-            </select>
-        </div>
-        <div style="display: flex; justify-content: space-evenly; margin-top: 10px;">
-            <button type="button" class="btn" style="background-color: #1E90FF; color: white;">Limpar</button>
-            <button type="button" class="btn" style="background-color: #1E90FF; color: white;">Buscar</button>
-        </div>
+        <form [formGroup]="formGroup">
+            <input class="form-control" type="text" placeholder="Pesquisar nome ou CNPJ" style="width: 100%;"
+                formControlName="text">
+            <div style="margin-top: 10px;">
+                <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Estado</label>
+                <select (ngModelChange)="changeUF()" id="inputState" class="form-select"
+                    required formControlName="estate">
+                    <ng-container *ngFor="let estate of estates">
+                        <option [ngValue]="estate.id">{{estate.nome}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div style="margin-top: 10px;">
+                <label for="inputCity" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
+                <select id="inputCity" class="form-select" required formControlName="city">
+                    <ng-container *ngFor="let city of cities">
+                        <option [ngValue]="city.nome">{{city.nome}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div style="display: flex; justify-content: space-evenly; margin-top: 10px;">
+                <button type="button" class="btn" style="background-color: #1E90FF; color: white;"
+                    (click)="onClean()">Limpar</button>
+                <button type="button" class="btn" style="background-color: #1E90FF; color: white;"
+                    (click)="onSubmit()">Buscar</button>
+            </div>
+        </form>
     </div>
 </div>

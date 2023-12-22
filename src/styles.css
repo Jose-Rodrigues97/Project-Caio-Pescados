@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 * {
   margin: 0px;
+  font-family: 'Afacad', sans-serif;
+}
+
+.custom-tooltip {
+  --bs-tooltip-bg: rgb(161, 237, 240);
+  --bs-tooltip-color: black;
 }

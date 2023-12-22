@@ -22,6 +22,7 @@ import { MetricsComponent } from './components/metrics/metrics.component';
 import { CardCompanyComponent } from './components/card-company/card-company.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardProductComponent } from './components/card-product/card-product.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CompaniesComponent,
     ConfigurationComponent,
     MetricsComponent,
-    CardCompanyComponent
+    CardCompanyComponent,
+    CardProductComponent
   ],
   imports: [
     BrowserModule,
