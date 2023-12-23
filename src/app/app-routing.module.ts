@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+import { ThemeComponent } from './modules/theme/theme.component';
 import { AboutComponent } from './modules/about/about.component';
 import { CollaboratorsComponent } from './modules/configuration/collaborators/collaborators.component';
 import { CustomersComponent } from './modules/customers/customers.component';
@@ -17,7 +17,7 @@ const routes: Routes = [
   {
 
     path: '',
-    component: HomeComponent,
+    component: ThemeComponent,
     children: [
       { path: '', redirectTo: 'companies', pathMatch: 'full' },
       { path: 'home', component: CompaniesComponent },

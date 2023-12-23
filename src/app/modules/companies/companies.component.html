@@ -20,7 +20,7 @@
             <div style="margin-top: 10px;">
                 <label for="inputCity" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
                 <select id="inputCity" class="form-select" required formControlName="city">
-                    <ng-container *ngFor="let city of cities">
+                    <ng-container *ngFor="let city of cities$ | async">
                         <option [ngValue]="city.nome">{{city.nome}}</option>
                     </ng-container>
                 </select>

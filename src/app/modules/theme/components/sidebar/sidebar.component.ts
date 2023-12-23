@@ -39,9 +39,7 @@ export class SidebarComponent {
   ) { }
 
   ngOnInit() {
-    window.onload = function () {
-      document.getElementsByClassName("selected")[0].parentElement?.classList.add('active'); 
-    }
+
   }
   onReady() {
 

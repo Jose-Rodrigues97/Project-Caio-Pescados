@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CityModel } from 'src/app/modules/companies/models/city-model';
-import { EstateModel } from 'src/app/modules/companies/models/estate-model';
-import { CityService } from 'src/app/modules/companies/services/city/city.service';
-import { EstateService } from 'src/app/modules/companies/services/estate/estate.service';
+import { Observable } from 'rxjs';
+import { CityModel } from 'src/app/models/city-model';
+import { EstateModel } from 'src/app/models/estate-model';
+import { CityService } from 'src/app/services/city/city.service';
+import { EstateService } from 'src/app/services/estate/estate.service';
 
 @Component({
   selector: 'app-companies',
@@ -12,7 +13,7 @@ import { EstateService } from 'src/app/modules/companies/services/estate/estate.
 })
 export class CompaniesComponent {
   estates = {} as EstateModel[];
-  cities = {} as CityModel[];
+  cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;
 
   companies = [
@@ -41,11 +42,12 @@ export class CompaniesComponent {
   }
 
   onSubmit(): void {
-    
+
   }
 
   onClean() {
     this.formGroup.reset();
+    this.cities$ = new Observable<[]>();
   }
 
   getEstates() {
@@ -55,13 +57,12 @@ export class CompaniesComponent {
   }
 
   getCities() {
-    this.citiesService.getCitiesByUF(this.formGroup.value.estate).subscribe((cities: CityModel[]) => {
-      this.cities = cities;
-    });
-  }
+    this.cities$ = this.citiesService.getCitiesByUF(this.formGroup.value.estate);
+  };
+
 
   changeUF() {
-    this.formGroup.value.city = "";
     this.getCities();
+    this.formGroup.value.city = "";
   }
 }
