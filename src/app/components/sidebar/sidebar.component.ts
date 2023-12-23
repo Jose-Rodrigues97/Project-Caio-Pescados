@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { faHome, faStore, faUserPlus, faUsers, faChartBar, faShoppingCart, faCity, faMoneyBillWave, faDolly, faAddressCard, faCogs } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -20,7 +21,7 @@ export class SidebarComponent {
   faMoneyBillWave = faMoneyBillWave;
 
   menus: any[] = [
-    { id: 1, class: "active", icon: faHome, nome: "Empresas", link: "/companies", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { id: 1, class: "", icon: faHome, nome: "Empresas", link: "/companies", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
     { id: 2, class: "", icon: faUserPlus, nome: "Colaboradores", link: "/collaborators", visibleProfiles: ["Time", "Atleta"] },
     { id: 3, class: "", icon: faUsers, nome: "Clientes", link: "/customers", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
     { id: 4, class: "", icon: faShoppingCart, nome: "Compras", link: "/purchase", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
@@ -33,8 +34,21 @@ export class SidebarComponent {
     { id: 11, class: "", icon: faCogs, nome: "Configurações", link: "/configuration", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
   ]
 
+  constructor(
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+    window.onload = function () {
+      document.getElementsByClassName("selected")[0].parentElement?.classList.add('active'); 
+    }
+  }
+  onReady() {
+
+  }
+
   onChangeActive(event: any) {
-    document.getElementsByClassName('active')[0].classList.remove('active');
+    document.getElementsByClassName('active')[0]?.classList.remove('active');
     document.getElementById(event)?.classList.add('active');
   }
 }

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
-import { CollaboratorsComponent } from './components/collaborators/collaborators.component';
-import { CustomersComponent } from './components/customers/customers.component';
-import { PurchaseComponent } from './components/purchase/purchase.component';
-import { SaleComponent } from './components/sale/sale.component';
-import { StockComponent } from './components/stock/stock.component';
-import { SuppliersComponent } from './components/suppliers/suppliers.component';
-import { ProductsComponent } from './components/products/products.component';
-import { CompaniesComponent } from './components/companies/companies.component';
-import { ConfigurationComponent } from './components/configuration/configuration.component';
-import { MetricsComponent } from './components/metrics/metrics.component';
+import { AboutComponent } from './modules/about/about.component';
+import { CollaboratorsComponent } from './modules/configuration/collaborators/collaborators.component';
+import { CustomersComponent } from './modules/customers/customers.component';
+import { PurchaseComponent } from './modules/purchase/purchase.component';
+import { SaleComponent } from './modules/sale/sale.component';
+import { StockComponent } from './modules/stock/stock.component';
+import { SuppliersComponent } from './modules/suppliers/suppliers.component';
+import { ConfigurationComponent } from './modules/configuration/configuration.component';
+import { MetricsComponent } from './modules/metrics/metrics.component';
+import { CompaniesComponent } from './modules/companies/companies.component';
+import { ProductsComponent } from './modules/products/products.component';
 
 const routes: Routes = [
   {

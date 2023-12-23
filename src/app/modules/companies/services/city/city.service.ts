@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, retry, throwError } from 'rxjs';
-import { CityModel } from 'src/app/models/city-model';
+import { CityModel } from 'src/app/modules/companies/models/city-model';
 
 @Injectable({
   providedIn: 'root'

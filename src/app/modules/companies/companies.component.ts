@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CityModel } from 'src/app/models/city-model';
-import { EstateModel } from 'src/app/models/estate-model';
-import { CityService } from 'src/app/services/city/city.service';
-import { EstatesService } from 'src/app/services/estate/estate.service';
+import { CityModel } from 'src/app/modules/companies/models/city-model';
+import { EstateModel } from 'src/app/modules/companies/models/estate-model';
+import { CityService } from 'src/app/modules/companies/services/city/city.service';
+import { EstateService } from 'src/app/modules/companies/services/estate/estate.service';
 
 @Component({
   selector: 'app-companies',
@@ -26,7 +26,7 @@ export class CompaniesComponent {
     { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
   ]
 
-  constructor(private estatesService: EstatesService,
+  constructor(private estateService: EstateService,
     private citiesService: CityService,
     private formBuilder: FormBuilder) {
   }
@@ -49,7 +49,7 @@ export class CompaniesComponent {
   }
 
   getEstates() {
-    this.estatesService.getUFs().subscribe((estates: EstateModel[]) => {
+    this.estateService.getUFs().subscribe((estates: EstateModel[]) => {
       this.estates = estates;
     });
   }
