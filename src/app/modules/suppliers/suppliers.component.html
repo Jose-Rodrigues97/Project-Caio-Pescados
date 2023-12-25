@@ -1,1 +1,4 @@
-<p>suppliers works!</p>
+<ng-container *ngFor="let supplier of suppliers">
+    <app-card-supplier [name]="supplier.name" [CNPJ]="supplier.CNPJ" [telephone]="supplier.telephone" [email]="supplier.email"
+        [image]="supplier.image"></app-card-supplier>
+</ng-container>
