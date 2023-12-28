@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-layout-page',
-  templateUrl: './layout-page.component.html',
-  styleUrls: ['./layout-page.component.css']
+  selector: 'app-title-page',
+  templateUrl: './title-page.component.html',
+  styleUrls: ['./title-page.component.css']
 })
 
-export class LayoutPageComponent {
+export class TitlePageComponent {
   faShare = faShare;
   @Input() pageName!: string;
   @Input() buttonName!: string;

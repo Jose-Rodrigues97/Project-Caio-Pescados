@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutPageComponent } from './layout-page.component';
+import { LayoutPageComponent } from './title-page.component';
 
 describe('LayoutPageComponent', () => {
   let component: LayoutPageComponent;

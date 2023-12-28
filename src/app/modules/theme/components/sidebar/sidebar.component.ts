@@ -21,17 +21,18 @@ export class SidebarComponent {
   faMoneyBillWave = faMoneyBillWave;
 
   menus: any[] = [
-    { id: 1, class: "", icon: faHome, nome: "Empresas", link: "/companies", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { id: 2, class: "", icon: faUserPlus, nome: "Colaboradores", link: "/collaborators", visibleProfiles: ["Time", "Atleta"] },
-    { id: 3, class: "", icon: faUsers, nome: "Clientes", link: "/customers", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { id: 4, class: "", icon: faShoppingCart, nome: "Compras", link: "/purchase", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { id: 5, class: "", icon: faMoneyBillWave, nome: "Vendas", link: "/sale", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { id: 6, class: "", icon: faStore, nome: "Produtos", link: "/products", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { id: 7, class: "", icon: faCity, nome: "Fornecedores", link: "/suppliers", visibleProfiles: ["Time", "Atleta"] },
-    { id: 8, class: "", icon: faChartBar, nome: "Métricas", link: "/metrics", visibleProfiles: ["Estabelecimento"] },
-    { id: 9, class: "", icon: faDolly, nome: "Estoque", link: "/stock", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { id: 10, class: "", icon: faAddressCard, nome: "Sobre", link: "/about", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { id: 11, class: "", icon: faCogs, nome: "Configurações", link: "/configuration", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { submenus: [], id: 1, class: "", icon: faHome, name: "Empresas", link: "/companies", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { submenus: [], id: 2, class: "", icon: faUserPlus, name: "Colaboradores", link: "/collaborators", visibleProfiles: ["Time", "Atleta"] },
+    { submenus: [], id: 3, class: "", icon: faUsers, name: "Clientes", link: "/customers", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { submenus: [], id: 4, class: "", icon: faShoppingCart, name: "Compras", link: "/purchase", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { submenus: [], id: 5, class: "", icon: faMoneyBillWave, name: "Vendas", link: "/sale", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { submenus: [], id: 6, class: "", icon: faStore, name: "Produtos", link: "/products", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { submenus: [], id: 7, class: "", icon: faCity, name: "Fornecedores", link: "/suppliers", visibleProfiles: ["Time", "Atleta"] },
+    { submenus: [], id: 8, class: "", icon: faChartBar, name: "Métricas", link: "/metrics", visibleProfiles: ["Estabelecimento"] },
+    { submenus: [], id: 9, class: "", icon: faDolly, name: "Estoque", link: "/stock", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { submenus: [], id: 10, class: "", icon: faAddressCard, name: "Sobre", link: "/about", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { submenus: [], id: 11, class: "", icon: faCogs, name: "Configurações", link: "/configuration", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    { submenus: [{ submenus: [], id: 12, class: "submenu", icon: faCogs, name: "Transportadora", link: "/shippingCompany", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] }], id: 12, class: "", icon: faCogs, name: "Logística", link: "/logistics", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
   ]
 
   constructor(
@@ -40,15 +41,17 @@ export class SidebarComponent {
 
   ngOnInit() {
     window.onload = function () {
-      document.getElementsByClassName("selected")[0].parentElement?.classList.add('active');
+      let father = document.getElementsByClassName("selected")[0].parentElement;
+      father?.parentElement?.classList.add('active');
     }
   }
+  
   onReady() {
 
   }
 
-  onChangeActive(event: any) {
+  onChangeActive(menu: string, event: any) {
     document.getElementsByClassName('active')[0]?.classList.remove('active');
-    document.getElementById(event)?.classList.add('active');
+    document.getElementById(menu)?.classList.add('active');
   }
 }

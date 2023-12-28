@@ -15,12 +15,12 @@ import { StockModule } from './modules/stock/stock.module';
 import { SuppliersModule } from './modules/suppliers/suppliers.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { ThemeModule } from './modules/theme/theme.module';
-import { LayoutPageComponent } from './modules/theme/components/layout-page/layout-page.component';
-
+import { CollaboratorsComponent } from './modules/collaborators/collaborators.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CollaboratorsComponent
   ],
   imports: [
     BrowserModule,

@@ -6,3 +6,7 @@ section{
     margin-bottom: 13px;
     height: 60px;
 }
+
+.title{
+    text-transform: capitalize;
+}

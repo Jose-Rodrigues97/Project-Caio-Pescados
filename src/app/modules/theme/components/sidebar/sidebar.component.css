@@ -1,12 +1,13 @@
 aside {
     width: 250px;
-    height: calc(100vh - 95px);
+    height: 100%;
     background-color: #4F4F4F;
 }
 
 ul {
     padding: 0px;
     list-style: none;
+    height: 100%;
 }
 
 li {
@@ -14,7 +15,7 @@ li {
     position: relative;
 }
 
-li a {
+li a, span{
     display: flex;
     align-items: center;
     gap: 10px;
@@ -25,6 +26,8 @@ li a {
     padding: 5px;
     padding-left: 10px;
     border-left: solid 5px transparent;
+    cursor: pointer;
+    height: 50px;
 }
 
 li::after {
@@ -47,17 +50,16 @@ li:hover {
     border-color: #1E90FF;
 }
 
+.submenu{
+    background-color: gray;
+}
+
+.hidden-submenu{
+    display: none;
+}
+
 @media (max-width: 1250px) {
     li {
         height: 45px;
-    }
-
-    aside {
-        overflow-y: scroll;
-        height: calc(100vh - 85px);
-    }
-
-    aside::-webkit-scrollbar {
-        width: 0px;
     }
 }

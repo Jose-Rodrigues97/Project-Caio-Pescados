@@ -1,10 +1,34 @@
 <aside>
     <ul>
         <ng-container *ngFor="let menu of menus">
-            <li id={{menu.id}} (click)="onChangeActive(menu.id)" class={{menu.class}}>
-                <a style="height: 100%; width: 100%;" routerLink={{menu.link}} routerLinkActive="selected" href="#">
-                    <fa-icon [icon]=menu.icon></fa-icon>{{menu.nome}}
-                </a>
+            <li id={{menu.id}} (click)="onChangeActive(menu.id, $event)" class={{menu.class}}>
+                <div style="height: 100%; width: 100%;" *ngIf="menu.submenus.length == 0; else blockSubMenus">
+                    <a style="height: 100%; width: 100%;" routerLink={{menu.link}} routerLinkActive="selected" href="#">
+                        <fa-icon [icon]=menu.icon></fa-icon>{{menu.name}}
+                    </a>
+                </div>
+                <ng-template #blockSubMenus>
+                    <div *ngIf="menu.class == ''; else blockMenuSelected">
+                        <span (click)="onChangeActive(menu.id, $event)">
+                            <fa-icon [icon]=menu.icon></fa-icon>{{menu.name}}
+                        </span>
+                    </div>
+                    <ng-template #blockMenuSelected>
+                        <span>
+                            <fa-icon [icon]=menu.icon></fa-icon>{{menu.name}}
+                        </span>
+                        <ul class="hidden-submenu">
+                            <ng-container *ngFor="let submenu of menu.submenus">
+                                <li id={{submenu.id}} (click)="onChangeActive(submenu.id, $event)" class="{{submenu.class}}">
+                                    <a style="height: 100%; width: 100%;" routerLink={{submenu.link}}
+                                        routerLinkActive="selected" href="#">
+                                        <fa-icon [icon]=submenu.icon></fa-icon>{{submenu.name}}
+                                    </a>
+                                </li>
+                            </ng-container>
+                        </ul>
+                    </ng-template>
+                </ng-template>
             </li>
         </ng-container>
     </ul>

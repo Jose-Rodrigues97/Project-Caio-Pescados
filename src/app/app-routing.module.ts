@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ThemeComponent } from './modules/theme/theme.component';
 import { AboutComponent } from './modules/about/about.component';
-import { CollaboratorsComponent } from './modules/configuration/components/collaborators/collaborators.component';
+import { CollaboratorsComponent } from './modules/collaborators/collaborators.component';
 import { CustomersComponent } from './modules/customers/customers.component';
 import { PurchaseComponent } from './modules/purchase/purchase.component';
 import { SaleComponent } from './modules/sale/sale.component';
