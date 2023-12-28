@@ -1,10 +1,10 @@
-div {
+.card-product {
     height: 250px;
     background-color: white;
     border-radius: 5px;
     box-sizing: border-box;
-    border: solid 1px black;
-    box-shadow: 1px 1px 5px 1px;
+    border: inset 2px black;
+    box-shadow: 1px 1px 4px 1px;
     flex-basis: 200px;
     display: flex;
     align-items: center;
@@ -12,7 +12,7 @@ div {
     flex-direction: column;
 }
 
-div:hover{
+.card-product:hover {
     border: solid 3px #1E90FF;
 }
 
@@ -22,12 +22,20 @@ img {
     object-fit: cover;
 }
 
-span {
-    font-size: 18px;
-}
-
 p {
     font-size: 15px;
     overflow: hidden;
     text-align: justify;
+    margin: 0px;
+}
+
+.infos-card {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
+    border: inset 2px;
+    border-radius: 5px;
+    background-color: #DCDCDC;
+    padding: 5px;
 }

@@ -1,0 +1,11 @@
+.count-pagination {
+    display: flex;
+    justify-content: space-between;
+    height: 37px;
+    margin: 10px 0px;
+}
+
+.count {
+    border-radius: .375rem;
+    height: 100%;
+}

@@ -1,0 +1,8 @@
+section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px;
+    margin-bottom: 13px;
+    height: 60px;
+}

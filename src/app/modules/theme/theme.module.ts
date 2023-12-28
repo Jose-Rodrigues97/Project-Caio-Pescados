@@ -7,6 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ThemeComponent } from './theme.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LayoutPageComponent } from './components/layout-page/layout-page.component';
 
 
 @NgModule({
@@ -15,12 +16,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     PaginationComponent,
     SidebarComponent,
-    ThemeComponent
+    ThemeComponent,
+    LayoutPageComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FontAwesomeModule
+  ],
+  exports: [
+    PaginationComponent,
+    LayoutPageComponent
   ]
 })
 export class ThemeModule { }

@@ -1,77 +1,26 @@
-<div>
-    <img src="../../../assets/Caio_Pescados-removebg-preview.png" alt="">
-    <b><span>Filé de Tainha</span></b>
-    <p style="cursor: help;" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-        data-bs-title="A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.">A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.</p>
-
-</div>
-<div>
-    <img src="../../../assets/Caio_Pescados-removebg-preview.png" alt="">
-    <b><span>Filé de Tainha</span></b>
-    <p style="cursor: help;" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-        data-bs-title="A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.">A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.</p>
-
-</div>
-<div>
-    <img src="../../../assets/Caio_Pescados-removebg-preview.png" alt="">
-    <b><span>Filé de Tainha</span></b>
-    <p style="cursor: help;" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-        data-bs-title="A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.">A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.</p>
-
-</div>
-<div>
-    <img src="../../../assets/Caio_Pescados-removebg-preview.png" alt="">
-    <b><span>Filé de Tainha</span></b>
-    <p style="cursor: help;" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-        data-bs-title="A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.">A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.</p>
-
-</div>
-<div>
-    <img src="../../../assets/Caio_Pescados-removebg-preview.png" alt="">
-    <b><span>Filé de Tainha</span></b>
-    <p style="cursor: help;" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-        data-bs-title="A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.">A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.</p>
-
-</div>
-<div>
-    <img src="../../../assets/Caio_Pescados-removebg-preview.png" alt="">
-    <b><span>Filé de Tainha</span></b>
-    <p style="cursor: help;" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-        data-bs-title="A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.">A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.</p>
-
-</div>
-<div>
-    <img src="../../../assets/Caio_Pescados-removebg-preview.png" alt="">
-    <b><span>Filé de Tainha</span></b>
-    <p style="cursor: help;" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-        data-bs-title="A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.">A Tainha é um dos peixes mais
-        consumidos no país e possui um sabor especialmente marcante. Destaca-se pelo alto
-        teor de cálcio, crucial aos ossos. A carne é delicada e de coloração acentuada.</p>
-
-</div>
+<a href="" style="text-decoration: none; color: black;">
+    <div class="card-product">
+        <img src="{{image}}" alt="">
+        <b><span>{{name}}</span></b>
+        <div class="infos-card">
+            <div style="text-align: center; display: flex; gap: 5px;">
+                <fa-icon style="font-size: 15px; color: green" [icon]="faMoneyBillWave"></fa-icon>
+                <span>Preço<br>R${{price}}</span>
+            </div>
+            <div style="text-align: center; display: flex; gap: 5px;">
+                <fa-icon style="font-size: 15px; margin: 3px; color: brown" [icon]="faDolly"></fa-icon>
+                <div *ngIf="stock > 50; else blockAverageStock">
+                    Estoque<br><span title="Alto" style="color: green;">{{stock}}KG</span></div>
+                <ng-template #blockAverageStock>
+                    <div *ngIf="stock > 20; else blockLowStock">
+                        Estoque<br><span title="Médio" style="color: orange;">{{stock}}KG</span></div>
+                    <ng-template #blockLowStock>
+                        <div>Estoque<br><span title="Baixo" style="color: red;">{{stock}}KG</span></div>
+                    </ng-template>
+                </ng-template>
+            </div>
+        </div>
+        <p style="cursor: help;" [attr.data-bs-toggle]="id" data-bs-placement="bottom"
+            data-bs-custom-class="custom-tooltip" [attr.data-bs-title]="description">{{description}}</p>
+    </div>
+</a>

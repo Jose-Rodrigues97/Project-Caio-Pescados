@@ -1,0 +1,10 @@
+<section>
+    <h1 class="title">
+        <fa-icon [icon]="faShare" style="font-size: 20px; margin-right: 5px;"></fa-icon> {{pageName}}
+    </h1>
+    <div *ngIf="buttonLink == null; else blockButton">
+    </div>
+    <ng-template #blockButton>
+        <button class="btn btn-primary" style="text-transform: uppercase;" (click)="onNavigate()">{{buttonName}}</button>
+    </ng-template>
+</section>

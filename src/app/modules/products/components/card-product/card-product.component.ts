@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import * as bootstrap from 'bootstrap';
+import { faMoneyBillWave, faDolly } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-card-product',
@@ -7,5 +9,22 @@ import { Component } from '@angular/core';
 })
 
 export class CardProductComponent {
+  @Input() image!: string;
+  @Input() name!: string;
+  @Input() description!: string;
+  @Input() id!: number;
+  @Input() stock!: number;
+  @Input() price!: number;
+  faDolly = faDolly;
+  faMoneyBillWave = faMoneyBillWave;
 
+  ngOnInit() {
+    window.addEventListener("load", function () {
+      let dataBS = `[data-bs-toggle="{{id}}"]`;
+      const tooltipTriggerList = document.querySelectorAll(dataBS);
+      for (let index = 0; index < tooltipTriggerList.length; index++) {
+        new bootstrap.Tooltip(tooltipTriggerList[index]);
+      }
+    });
+  }
 }

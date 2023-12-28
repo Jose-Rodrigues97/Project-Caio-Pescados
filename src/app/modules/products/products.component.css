@@ -1,5 +1,71 @@
-.card-product {
-    display: flex;
-    flex-flow: row wrap;
+.content-cards {
+    display: grid;
+    grid-template-columns: 19% 19% 19% 19% 19%;
+    grid-template-rows: 1fr 1fr;
     gap: 10px;
+    justify-content: center;
+}
+
+.search {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+
+form {
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    width: 80%;
+}
+
+span {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    animation: change-section 2s;
+}
+
+@keyframes change-section {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.stylized-filter {
+    width: 100%;
+    display: grid;
+    grid-template-columns: .5fr 2fr .5fr 2fr;
+    padding: 10px;
+    gap: 10px;
+    align-items: center;
+}
+
+label {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
 }

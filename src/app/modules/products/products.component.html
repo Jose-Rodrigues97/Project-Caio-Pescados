@@ -1,1 +1,65 @@
-<app-card-product class="card-product"></app-card-product>
+<app-layout-page pageName="Loja" buttonName="criar produto" buttonLink="/products"></app-layout-page>
+<div class="search">
+    <span (click)="changeAdvancedFilter()">Filtro Avançado
+        <div *ngIf="isAdvancedFilterOpen; else blockDown">
+            <fa-icon [icon]=faCaretUp></fa-icon>
+        </div>
+        <ng-template #blockDown>
+            <fa-icon [icon]=faCaretDown></fa-icon>
+        </ng-template>
+    </span>
+    <section *ngIf="isAdvancedFilterOpen; else blockHidden">
+        <form [formGroup]="formGroup">
+            <div class="stylized-filter">
+                <label for="name">Nome</label>
+                <input id="name" class="form-control" type="text" placeholder="Pesquise nome" style="width: 100%;"
+                    formControlName="name">
+                <label for="has-stock">Tem Estoque</label>
+                <input id="has-stock" class="form-check-input" type="checkbox" formControlName="hasStock">
+                <label for="price">Preço</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input id="price" class="form-control" type="number" style="width: 50%;" formControlName="price">
+                    <input class="form-check-input" type="radio" formControlName="typePrice" value="bigger"
+                        id="radio-price-bigger">
+                    <label for="radio-price-bigger">
+                        Maior
+                    </label>
+                    <input class="form-check-input" type="radio" formControlName="typePrice" value="smaller"
+                        id="radio-price-smaller">
+                    <label for="radio-price-smaller">
+                        Menor
+                    </label>
+                </div>
+                <label for="stock">Estoque</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input id="stock" class="form-control" type="number" style="width: 50%;" formControlName="stock">
+                    <input class="form-check-input" type="radio" formControlName="typeStock" value="bigger"
+                        id="radio-stock-bigger">
+                    <label for="radio-stock-bigger">
+                        Maior
+                    </label>
+                    <input class="form-check-input" type="radio" formControlName="typeStock" value="smaller"
+                        id="radio-stock-smaller">
+                    <label for="radio-stock-smaller">
+                        Menor
+                    </label>
+                </div>
+            </div>
+            <div class="btns">
+                <button type="button" class="btn btn-secondary" (click)="onClean()">Limpar</button>
+                <button type="button" class="btn btn-primary" (click)="onSubmit()">Buscar</button>
+            </div>
+        </form>
+    </section>
+    <ng-template #blockHidden>
+    </ng-template>
+</div>
+<div class="content-cards">
+    <ng-container *ngFor="let product of products">
+        <app-card-product [id]="product.id" [name]="product.name" [description]="product.description"
+            [image]="product.image" [stock]="product.stock" [price]="product.price"></app-card-product>
+    </ng-container>
+</div>
+<div style="padding: 0px 5px;">
+    <app-pagination></app-pagination>
+</div>

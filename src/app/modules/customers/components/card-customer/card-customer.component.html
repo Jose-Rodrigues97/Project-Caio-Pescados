@@ -4,10 +4,10 @@
         <span style="text-transform: uppercase;">{{name}}</span>
         <span>{{taxNumber}}</span>
         <div *ngIf="isHeadquarters; else blockSubsidiary">
-            <span>Matriz</span>
+            <span>Pessoa Física</span>
         </div>
         <ng-template #blockSubsidiary>
-            <span>Filial</span>
+            <span>Pessoa Jurídica</span>
         </ng-template>
     </div>
     <div>
