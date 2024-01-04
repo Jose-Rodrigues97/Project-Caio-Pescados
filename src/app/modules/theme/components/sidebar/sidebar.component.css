@@ -1,38 +1,41 @@
 aside {
-    width: 250px;
+    width: 267px;
     height: 100%;
     background-color: #4F4F4F;
+    overflow-y: scroll;
 }
 
 ul {
     padding: 0px;
+    margin: 0px;
     list-style: none;
     height: 100%;
 }
 
 li {
-    height: 50px;
+    line-height: 40px;
     position: relative;
 }
 
-li a, span{
+li a,
+span {
     display: flex;
     align-items: center;
     gap: 10px;
     font-family: 'Afacad', sans-serif;
     font-size: 20px;
-    color: white;
+    color: white!important;
     text-decoration: none;
     padding: 5px;
     padding-left: 10px;
     border-left: solid 5px transparent;
     cursor: pointer;
-    height: 50px;
+    height: auto;
 }
 
-li::after {
+li::before {
     content: '';
-    bottom: 0px;
+    top: 0px;
     width: calc(100% + 5px);
     border-bottom: solid 1px black;
     position: absolute;
@@ -50,16 +53,16 @@ li:hover {
     border-color: #1E90FF;
 }
 
-.submenu{
+.submenu {
     background-color: gray;
 }
 
-.hidden-submenu{
+.hidden-submenu {
     display: none;
 }
 
 @media (max-width: 1250px) {
     li {
-        height: 45px;
+        line-height: 45px;
     }
 }

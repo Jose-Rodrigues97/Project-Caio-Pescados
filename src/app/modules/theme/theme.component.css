@@ -1,14 +1,14 @@
 .header {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
 }
 
 .sidebar {
     position: fixed;
-    overflow-y: scroll;
     top: 95px;
     height: calc(100vh - 95px);
+    width: 250px;
 }
 
 .content-area {

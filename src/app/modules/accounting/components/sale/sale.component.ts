@@ -8,11 +8,11 @@ import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
 
 @Component({
-  selector: 'app-collaborators',
-  templateUrl: './collaborators.component.html',
-  styleUrls: ['./collaborators.component.css']
+  selector: 'app-sale',
+  templateUrl: './sale.component.html',
+  styleUrls: ['./sale.component.css']
 })
-export class CollaboratorsComponent {
+export class SaleComponent {
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;
@@ -59,7 +59,6 @@ export class CollaboratorsComponent {
   getCities() {
     this.cities$ = this.citiesService.getCitiesByUF(this.formGroup.value.estate);
   };
-
 
   changeUF() {
     this.getCities();

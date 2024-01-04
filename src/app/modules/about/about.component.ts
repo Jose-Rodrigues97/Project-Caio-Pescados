@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
+  ngOnInit(){
 
+  }
+
+  onShowAccordion(event: any) {
+    console.log(event.target.parentElement.nextSibling.classList[2] == 'collapsing')
+    console.log(event.target.parentElement.nextSibling.classList)
+    event.target.parentElement.nextSibling.classList.remove('show')
+  }
 }

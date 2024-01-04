@@ -28,6 +28,7 @@ img {
     object-fit: cover;
     object-position: center;
     border: solid 1px;
+    background-color: white;
 }
 
 @media (max-width: 1250px) {

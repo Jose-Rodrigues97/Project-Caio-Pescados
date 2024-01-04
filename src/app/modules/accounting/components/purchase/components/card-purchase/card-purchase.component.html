@@ -1,0 +1,22 @@
+<div class="card-company">
+    <img src="{{image}}" alt="">
+    <div>
+        <span style="text-transform: uppercase;">{{name}}</span>
+        <span>{{taxNumber}}</span>
+        <div *ngIf="isHeadquarters; else blockSubsidiary">
+            <span>Matriz</span>
+        </div>
+        <ng-template #blockSubsidiary>
+            <span>Filial</span>
+        </ng-template>
+    </div>
+    <div>
+        <span style="text-transform: uppercase;">{{state}}</span>
+        <span style="text-transform: uppercase;">{{city}}</span>
+        <span>{{address}}</span>
+    </div>
+    <div>
+        <span>{{phone}}</span>
+        <span>{{email}}</span>
+    </div>
+</div>

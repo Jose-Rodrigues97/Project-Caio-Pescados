@@ -8,19 +8,17 @@ import { ProductsModule } from './modules/products/products.module';
 import { AboutModule } from './modules/about/about.module';
 import { ConfigurationModule } from './modules/configuration/configuration.module';
 import { CustomersModule } from './modules/customers/customers.module';
-import { MetricsModule } from './modules/metrics/metrics.module';
-import { PurchaseModule } from './modules/purchase/purchase.module';
-import { SaleModule } from './modules/sale/sale.module';
-import { StockModule } from './modules/stock/stock.module';
 import { SuppliersModule } from './modules/suppliers/suppliers.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { ThemeModule } from './modules/theme/theme.module';
 import { CollaboratorsComponent } from './modules/collaborators/collaborators.component';
+import { LogisticModule } from './modules/logistic/logistic.module';
+import { AccountingModule } from './modules/accounting/accounting.module';
+import { CollaboratorsModule } from './modules/collaborators/collaborators.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CollaboratorsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -30,14 +28,13 @@ import { CollaboratorsComponent } from './modules/collaborators/collaborators.co
     AboutModule,
     ConfigurationModule,
     CustomersModule,
-    MetricsModule,
-    PurchaseModule,
-    SaleModule,
-    StockModule,
     SuppliersModule,
     AuthenticationModule,
-    ThemeModule
-  ],
+    ThemeModule,
+    LogisticModule,
+    AccountingModule,
+    CollaboratorsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,15 +1,15 @@
 .content-cards {
     display: grid;
-    grid-template-columns: 19% 19% 19% 19% 19%;
+    grid-template-columns: 19.4% 19.4% 19.4% 19.4% 19.4%;
     grid-template-rows: 1fr 1fr;
-    gap: 10px;
+    gap: 30px 10px;
     justify-content: center;
 }
 
 .search {
     justify-content: center;
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     align-items: center;
     flex-direction: column;
 }

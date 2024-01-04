@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ThemeModule } from '../theme/theme.module';
+import { ConfigurationComponent } from './configuration.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConfigurationComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    ThemeModule
   ]
 })
 export class ConfigurationModule { }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { CityModel } from 'src/app/models/city-model';
 import { EstateModel } from 'src/app/models/estate-model';
@@ -8,15 +7,15 @@ import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
 
 @Component({
-  selector: 'app-collaborators',
-  templateUrl: './collaborators.component.html',
-  styleUrls: ['./collaborators.component.css']
+  selector: 'app-stock',
+  templateUrl: './stock.component.html',
+  styleUrls: ['./stock.component.css']
 })
-export class CollaboratorsComponent {
+export class StockComponent {
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;
-  faShare = faShare;
+
   companies = [
     { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
     { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
@@ -27,6 +26,7 @@ export class CollaboratorsComponent {
     { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
     { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
   ]
+
   constructor(private estateService: EstateService,
     private citiesService: CityService,
     private formBuilder: FormBuilder) {

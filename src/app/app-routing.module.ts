@@ -4,14 +4,15 @@ import { ThemeComponent } from './modules/theme/theme.component';
 import { AboutComponent } from './modules/about/about.component';
 import { CollaboratorsComponent } from './modules/collaborators/collaborators.component';
 import { CustomersComponent } from './modules/customers/customers.component';
-import { PurchaseComponent } from './modules/purchase/purchase.component';
-import { SaleComponent } from './modules/sale/sale.component';
-import { StockComponent } from './modules/stock/stock.component';
+import { PurchaseComponent } from './modules/accounting/components/purchase/purchase.component';
+import { SaleComponent } from './modules/accounting/components/sale/sale.component';
+import { StockComponent } from './modules/logistic/components/stock/stock.component';
 import { SuppliersComponent } from './modules/suppliers/suppliers.component';
 import { ConfigurationComponent } from './modules/configuration/configuration.component';
-import { MetricsComponent } from './modules/metrics/metrics.component';
+import { MetricsComponent } from './modules/accounting/components/metrics/metrics.component';
 import { CompaniesComponent } from './modules/companies/companies.component';
 import { ProductsComponent } from './modules/products/products.component';
+import { ShippingCompanyComponent } from './modules/logistic/components/shipping-company/shipping-company.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'companies', component: CompaniesComponent },
       { path: 'configuration', component: ConfigurationComponent },
       { path: 'metrics', component: MetricsComponent },
+      { path: 'shippingCompany', component: ShippingCompanyComponent },
       // { path: '**', component: PageNotFoundComponentComponent }
     ],
     // canActivate: [AuthGuard]

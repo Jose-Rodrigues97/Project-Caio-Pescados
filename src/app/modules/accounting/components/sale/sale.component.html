@@ -1,11 +1,11 @@
-<app-title-page pageName="Colaboradores" buttonName="criar colaborador" buttonLink="/products"></app-title-page>
+<app-title-page pageName="Ordem de Venda" buttonName="criar pedido" buttonLink="/products"></app-title-page>
 <div>
     <div style="width: 70%;">
         <ng-container *ngFor="let company of companies">
-            <app-card-collaborator style="width: 70%;" [name]="company.name" [isHeadquarters]="company.isHeadquarters"
+            <app-card-sale style="width: 70%;" [name]="company.name" [isHeadquarters]="company.isHeadquarters"
                 [taxNumber]="company.taxNumber" [address]="company.address" [phone]="company.phone"
                 [email]="company.email" [state]="company.state" [city]="company.city"
-                [image]="company.image"></app-card-collaborator>
+                [image]="company.image"></app-card-sale>
         </ng-container>
         <app-pagination></app-pagination>
     </div>
