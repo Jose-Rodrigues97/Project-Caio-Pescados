@@ -4,7 +4,9 @@
         <img src="../../assets/Caio_Pescados-removebg-preview.png" alt="">
         <div class="info-user">
             <div>
-                <fa-icon [icon]="faCogs" style="font-size: 30px;"></fa-icon>
+                <a routerLink='/configuration' routerLinkActive="selected" (click)="onChangeActive()" href="#">
+                    <fa-icon [icon]="faCogs" style="font-size: 30px;"></fa-icon>
+                </a>
             </div>
             <div style="border-left: 0px;">
                 <fa-icon [icon]="faPowerOff" style="font-size: 30px;"></fa-icon>

@@ -65,6 +65,11 @@ label {
     font-size: 30px;
 }
 
+a {
+    color: white;
+    
+}
+
 @media (max-width: 1250px) {
 
     nav,

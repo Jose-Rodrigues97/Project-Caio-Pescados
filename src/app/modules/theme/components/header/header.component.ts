@@ -13,4 +13,13 @@ export class HeaderComponent {
 
   ngOnInit(): void {
   }
+
+  onChangeActive() {
+    let desactiveMenu = document.getElementsByClassName('active');
+    for (let index = 0; index < desactiveMenu.length; index++) {
+      desactiveMenu[index].classList.remove('active')
+    }
+    document.getElementById('10')?.classList.add('active');
+  }
+
 }
