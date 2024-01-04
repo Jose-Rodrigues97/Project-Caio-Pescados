@@ -1,4 +1,39 @@
-<ng-container *ngFor="let supplier of suppliers">
-    <app-card-supplier [name]="supplier.name" [CNPJ]="supplier.CNPJ" [telephone]="supplier.telephone" [email]="supplier.email"
-        [image]="supplier.image"></app-card-supplier>
-</ng-container>
+<app-title-page pageName="Clientes" buttonName="criar cliente" buttonLink="/products"></app-title-page>
+<div>
+    <div style="width: 70%;">
+        <ng-container *ngFor="let supplier of suppliers">
+            <app-card-supplier style="width: 70%;" [name]="supplier.name"
+                [CNPJ]="supplier.CNPJ" [telephone]="supplier.telephone"
+                [email]="supplier.email" [state]="supplier.state" [city]="supplier.city"
+                [image]="supplier.image"></app-card-supplier>
+        </ng-container>
+        <app-pagination></app-pagination>
+    </div>
+    <div class="search">
+        <form [formGroup]="formGroup">
+            <input class="form-control" type="text" placeholder="Pesquise nome, CPF ou CNPJ" style="width: 100%;"
+                formControlName="text">
+            <div style="margin-top: 10px;">
+                <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Estado</label>
+                <select (ngModelChange)="changeUF()" id="inputState" class="form-select" required
+                    formControlName="estate">
+                    <ng-container *ngFor="let estate of estates">
+                        <option [ngValue]="estate.id">{{estate.nome}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div style="margin-top: 10px;">
+                <label for="inputCity" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
+                <select id="inputCity" class="form-select" required formControlName="city">
+                    <ng-container *ngFor="let city of cities$ | async">
+                        <option [ngValue]="city.nome">{{city.nome}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                <button type="button" class="btn btn-secondary" (click)="onClean()">Limpar</button>
+                <button type="button" class="btn btn-primary" (click)="onSubmit()">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>

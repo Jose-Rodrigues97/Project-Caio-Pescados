@@ -11,4 +11,6 @@ export class CardSupplierComponent {
   @Input() telephone!: number;
   @Input() email!: string;
   @Input() image!: string;
+  @Input() city!: string;
+  @Input() state!: string;
 }
