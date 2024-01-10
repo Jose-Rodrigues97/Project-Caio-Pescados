@@ -16,12 +16,10 @@ import { ShippingCompanyComponent } from './modules/logistic/components/shipping
 
 const routes: Routes = [
   {
-
     path: '',
     component: ThemeComponent,
     children: [
       { path: '', redirectTo: 'companies', pathMatch: 'full' },
-      { path: 'home', component: CompaniesComponent },
       { path: 'about', component: AboutComponent },
       { path: 'collaborators', component: CollaboratorsComponent },
       { path: 'customers', component: CustomersComponent },
@@ -38,16 +36,6 @@ const routes: Routes = [
     ],
     // canActivate: [AuthGuard]
   }
-  // },
-  // {
-  //   path: '',
-  //   component: AuthenticationComponentComponent,
-  //   children: [
-  //     { path: '', redirectTo: 'login', pathMatch: 'full' },
-  //     { path: 'login', component: LoginComponentComponent },
-  //     { path: 'cadastro', component: RegisterComponentComponent }
-  //   ],
-  // }
 ];
 
 @NgModule({
