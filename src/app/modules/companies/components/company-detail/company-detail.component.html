@@ -1,0 +1,145 @@
+<app-title-page pageName="Detalhes da Empresa" buttonName="SALVAR" buttonLink="/companyDetail"></app-title-page>
+<section class="main-content">
+    <form [formGroup]="formGroup">
+        <div class="group-content">
+            <span class="group-title">Dados Cadastrais</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="name" style="font-size: 15px; margin-bottom: 0px;">Nome</label>
+                    <input id="name" class="form-control" type="text" style="width: 100%;" formControlName="name">
+                </div>
+                <div class="group-input">
+                    <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
+                    <input id="tax-number" class="form-control" type="text" style="width: 100%;"
+                        formControlName="taxNumber">
+                </div>
+                <div class="group-input">
+                    <label for="corporate-reason" style="font-size: 15px; margin-bottom: 0px;">Razão Social</label>
+                    <input id="corporate-reason" class="form-control" type="text" style="width: 100%;"
+                        formControlName="corporateReason">
+                </div>
+                <div class="group-input">
+                    <label for="cnae" style="font-size: 15px; margin-bottom: 0px;">CNAE</label>
+                    <input id="cnae" class="form-control" type="text" style="width: 100%;" formControlName="cnae">
+                </div>
+                <div class="group-input">
+                    <label for="state-registration" style="font-size: 15px; margin-bottom: 0px;">Inscrição
+                        Estadual</label>
+                    <input id="state-registration" class="form-control" type="text" style="width: 100%;"
+                        formControlName="stateRegistration">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Dados de Contato</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="home-phone" style="font-size: 15px; margin-bottom: 0px;">Telefone Residencial</label>
+                    <input id="home-phone" class="form-control" type="text" style="width: 100%;"
+                        formControlName="homePhone">
+                </div>
+                <div class="group-input">
+                    <label for="landline" style="font-size: 15px; margin-bottom: 0px;">Telefone Fixo</label>
+                    <input id="landline" class="form-control" type="text" style="width: 100%;"
+                        formControlName="landline">
+                </div>
+                <div class="group-input">
+                    <label for="email" style="font-size: 15px; margin-bottom: 0px;">E-mail</label>
+                    <input id="email" class="form-control" type="text" style="width: 100%;" formControlName="email">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Dados Complementares</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Imagem</label>
+                    <app-upload></app-upload>
+                </div>
+                <div class="group-input">
+                    <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Total de
+                        Colaboradores</label>
+                    <input id="Total-collaborators" class="form-control" type="text" style="width: 100%;"
+                        formControlName="TotalCollaborators">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Horário de Funcionamento</span>
+            <div class="group-info">
+                <div class="group-input-opening-hours">
+                    <div class="opening-time">
+                        <label for="Sunday" style="font-size: 15px; margin-bottom: 0px;">Domingo</label>
+                        <input id="Sunday" class="form-check-input" type="checkbox" formControlName="Sunday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="TotalCollaborators"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="TotalCollaborators">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="Monday" style="font-size: 15px; margin-bottom: 0px;">Segunda-Feira</label>
+                        <input id="Monday" class="form-check-input" type="checkbox" formControlName="Monday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="TotalCollaborators"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="TotalCollaborators">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="Tuesday" style="font-size: 15px; margin-bottom: 0px;">Terça-Feira</label>
+                        <input id="Tuesday" class="form-check-input" type="checkbox" formControlName="Tuesday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="TotalCollaborators"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="TotalCollaborators">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="Wednesday" style="font-size: 15px; margin-bottom: 0px;">Quarta-Feira</label>
+                        <input id="Wednesday" class="form-check-input" type="checkbox" formControlName="Wednesday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="TotalCollaborators"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="TotalCollaborators">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="Thursday" style="font-size: 15px; margin-bottom: 0px;">Quinta-Feira</label>
+                        <input id="Thursday" class="form-check-input" type="checkbox" formControlName="Thursday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="TotalCollaborators"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="TotalCollaborators">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="Friday" style="font-size: 15px; margin-bottom: 0px;">Sexta-Feira</label>
+                        <input id="Friday" class="form-check-input" type="checkbox" formControlName="Friday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="TotalCollaborators"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="TotalCollaborators">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="Saturday" style="font-size: 15px; margin-bottom: 0px;">Sábado</label>
+                        <input id="Saturday" class="form-check-input" type="checkbox" formControlName="Saturday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="TotalCollaborators"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="TotalCollaborators">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
