@@ -8,6 +8,7 @@ import { ThemeComponent } from './theme.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TitlePageComponent } from './components/title-page/title-page.component';
+import { UploadComponent } from './components/upload/upload.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TitlePageComponent } from './components/title-page/title-page.component
     PaginationComponent,
     SidebarComponent,
     ThemeComponent,
-    TitlePageComponent
+    TitlePageComponent,
+    UploadComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { TitlePageComponent } from './components/title-page/title-page.component
   ],
   exports: [
     PaginationComponent,
-    TitlePageComponent
+    TitlePageComponent,
+    UploadComponent
   ]
 })
 export class ThemeModule { }
