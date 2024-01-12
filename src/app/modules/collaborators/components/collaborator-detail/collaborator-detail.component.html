@@ -1,0 +1,184 @@
+<app-title-page pageName="Detalhes do Colaborador" [buttons]=buttons></app-title-page>
+<section class="main-content">
+    <form [formGroup]="formGroup">
+        <div class="group-content">
+            <span class="group-title">Dados Cadastrais</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="name" style="font-size: 15px; margin-bottom: 0px;">Nome</label>
+                    <input id="name" class="form-control" type="text" style="width: 100%;" formControlName="name">
+                </div>
+                <div class="group-input">
+                    <label for="surname" style="font-size: 15px; margin-bottom: 0px;">Sobrenome</label>
+                    <input id="surname" class="form-control" type="text" style="width: 100%;"
+                        formControlName="surname">
+                </div>
+                <div class="group-input">
+                    <label for="rg" style="font-size: 15px; margin-bottom: 0px;">RG</label>
+                    <input id="rg" class="form-control" type="text" style="width: 100%;"
+                        formControlName="rg">
+                </div>
+                <div class="group-input">
+                    <label for="cpf" style="font-size: 15px; margin-bottom: 0px;">CPF</label>
+                    <input id="cpf" class="form-control" type="text" style="width: 100%;" formControlName="cpf">
+                </div>
+                <div class="group-input">
+                    <label for="date-birth" style="font-size: 15px; margin-bottom: 0px;">Data de Nascimento</label>
+                    <input id="date-birth" class="form-control" type="date" style="width: 100%;"
+                        formControlName="dateBirth">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Endereço</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="street" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
+                    <input id="street" class="form-control" type="text" style="width: 100%;" formControlName="street">
+                </div>
+                <div class="group-input">
+                    <label for="city" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
+                    <input id="city" class="form-control" type="text" style="width: 100%;" formControlName="city">
+                </div>
+                <div class="group-input">
+                    <label for="estate" style="font-size: 15px; margin-bottom: 0px;">Estado</label>
+                    <input id="estate" class="form-control" type="text" style="width: 100%;" formControlName="estate">
+                </div>
+                <div class="group-input">
+                    <label for="country" style="font-size: 15px; margin-bottom: 0px;">País</label>
+                    <input id="country" class="form-control" type="text" style="width: 100%;" formControlName="country">
+                </div>
+                <div class="group-input">
+                    <label for="zip-code" style="font-size: 15px; margin-bottom: 0px;">CEP</label>
+                    <input id="zip-code" class="form-control" type="text" style="width: 100%;"
+                        formControlName="zipCode">
+                </div>
+                <div class="group-input">
+                    <label for="complemento" style="font-size: 15px; margin-bottom: 0px;">Complemento</label>
+                    <input id="complemento" class="form-control" type="text" style="width: 100%;"
+                        formControlName="complement">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Contato</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="home-phone" style="font-size: 15px; margin-bottom: 0px;">Telefone Residencial</label>
+                    <input id="home-phone" class="form-control" type="text" style="width: 100%;"
+                        formControlName="homePhone">
+                </div>
+                <div class="group-input">
+                    <label for="cell-phone" style="font-size: 15px; margin-bottom: 0px;">Telefone Celular</label>
+                    <input id="cell-phone" class="form-control" type="text" style="width: 100%;"
+                        formControlName="cellPhone">
+                </div>
+                <div class="group-input">
+                    <label for="email" style="font-size: 15px; margin-bottom: 0px;">E-mail</label>
+                    <input id="email" class="form-control" type="text" style="width: 100%;" formControlName="email">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Dados Complementares</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Imagem</label>
+                    <app-upload></app-upload>
+                </div>
+                <div class="group-input">
+                    <label for="office" style="font-size: 15px; margin-bottom: 0px;">Cargo</label>
+                    <input id="office" class="form-control" type="text" style="width: 100%;"
+                        formControlName="office">
+                </div>
+                <div class="group-input">
+                    <label for="salary" style="font-size: 15px; margin-bottom: 0px;">Salário</label>
+                    <input id="salary" class="form-control" type="number" style="width: 100%;"
+                        formControlName="salary">
+                </div>
+                <div class="group-input">
+                    <label for="turn" style="font-size: 15px; margin-bottom: 0px;">Turno</label>
+                    <input id="turn" class="form-control" type="text" style="width: 100%;"
+                        formControlName="turn">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Expediente</span>
+            <div class="group-info">
+                <div class="group-input-opening-hours">
+                    <div class="opening-time">
+                        <label for="sunday" style="font-size: 15px; margin-bottom: 0px;">Domingo</label>
+                        <input id="sunday" class="form-check-input" type="checkbox" formControlName="sunday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="sundayStart"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="sundayEnd">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="monday" style="font-size: 15px; margin-bottom: 0px;">Segunda-Feira</label>
+                        <input id="monday" class="form-check-input" type="checkbox" formControlName="monday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="mondayStart"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="mondayEnd">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="tuesday" style="font-size: 15px; margin-bottom: 0px;">Terça-Feira</label>
+                        <input id="tuesday" class="form-check-input" type="checkbox" formControlName="tuesday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="tuesdayStart"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="tuesdayEnd">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="wednesday" style="font-size: 15px; margin-bottom: 0px;">Quarta-Feira</label>
+                        <input id="wednesday" class="form-check-input" type="checkbox" formControlName="wednesday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="wednesdayStart"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="wednesdayEnd">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="thursday" style="font-size: 15px; margin-bottom: 0px;">Quinta-Feira</label>
+                        <input id="thursday" class="form-check-input" type="checkbox" formControlName="thursday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="thursdayStart"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="thursdayEnd">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="friday" style="font-size: 15px; margin-bottom: 0px;">Sexta-Feira</label>
+                        <input id="friday" class="form-check-input" type="checkbox" formControlName="friday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="fridayStart"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="fridayEnd">
+                        </div>
+                    </div>
+                    <div class="opening-time">
+                        <label for="saturday" style="font-size: 15px; margin-bottom: 0px;">Sábado</label>
+                        <input id="saturday" class="form-check-input" type="checkbox" formControlName="saturday">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
+                                formControlName="saturdayStart"> às <input id="Total-collaborators"
+                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                                formControlName="saturdayEnd">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
