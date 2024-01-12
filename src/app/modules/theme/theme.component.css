@@ -18,7 +18,7 @@
     top: 95px
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1400px) {
     .sidebar,
     .content-area {
         top: 85px

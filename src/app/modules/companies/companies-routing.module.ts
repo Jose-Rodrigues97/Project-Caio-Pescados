@@ -12,8 +12,7 @@ const companiesRoutes: Routes = [
       { path: '', redirectTo: 'companies', pathMatch: 'full' },
       { path: 'companies', component: CompaniesComponent },
       { path: 'companyDetail/:id', component: CompanyDetailComponent },
-  
-      { path: '**', component: CompaniesComponent }
+      // { path: '**', component: CompaniesComponent }
     ]
   }
 ];

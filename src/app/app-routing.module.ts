@@ -13,6 +13,7 @@ import { MetricsComponent } from './modules/accounting/components/metrics/metric
 import { CompaniesComponent } from './modules/companies/companies.component';
 import { ProductsComponent } from './modules/products/products.component';
 import { ShippingCompanyComponent } from './modules/logistic/components/shipping-company/shipping-company.component';
+import { PageNotFoundComponent } from './modules/theme/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,7 @@ const routes: Routes = [
       { path: 'configuration', component: ConfigurationComponent },
       { path: 'metrics', component: MetricsComponent },
       { path: 'shippingCompany', component: ShippingCompanyComponent },
-      // { path: '**', component: PageNotFoundComponentComponent }
+      // { path: '**', component: PageNotFoundComponent }
     ],
     // canActivate: [AuthGuard]
   }

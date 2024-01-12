@@ -9,6 +9,17 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CompanyDetailComponent {
   @Input() id!: number;
   formGroup!: FormGroup;
+  buttons = [
+    {
+      name: 'VOLTAR',
+      link: '/companies',
+      class: 'btn-secondary'
+    },
+    {
+      name: 'SALVAR',
+      link: '/companyDetail/',
+      class: 'btn-primary'
+    }]
 
   constructor(private formBuilder: FormBuilder) {
   }
@@ -20,17 +31,37 @@ export class CompanyDetailComponent {
       corporateReason: '',
       cnae: '',
       stateRegistration: '',
+      street: '',
+      city: '',
+      estate: '',
+      country: '',
+      zipCode: '',
+      complement: '',
       homePhone: '',
-      landline: '',
+      cellPhone: '',
       email: '',
       TotalCollaborators: '',
-      Sunday: '',
-      Monday: '',
-      Tuesday: '',
-      Wednesday: '',
-      Thursday: '',
-      Friday: '',
-      Saturday: '',
+      sunday: '',
+      monday: '',
+      tuesday: '',
+      wednesday: '',
+      thursday: '',
+      friday: '',
+      saturday: '',
+      sundayStart: '',
+      mondayStart: '',
+      tuesdayStart: '',
+      wednesdayStart: '',
+      thursdayStart: '',
+      fridayStart: '',
+      saturdayStart: '',
+      sundayEnd: '',
+      mondayEnd: '',
+      tuesdayEnd: '',
+      wednesdayEnd: '',
+      thursdayEnd: '',
+      fridayEnd: '',
+      saturdayEnd: '',
     })
   }
 }

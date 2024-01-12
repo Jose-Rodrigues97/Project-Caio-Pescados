@@ -24,7 +24,7 @@ span {
     gap: 10px;
     font-family: 'Afacad', sans-serif;
     font-size: 20px;
-    color: white!important;
+    color: white !important;
     text-decoration: none;
     padding: 5px;
     padding-left: 10px;
@@ -59,6 +59,24 @@ li:hover {
 
 .hidden-submenu {
     display: none;
+}
+
+aside::-webkit-scrollbar {
+    width: 5px;
+    /* width of the entire scrollbar */
+}
+
+aside::-webkit-scrollbar-track {
+    background: rgb(150, 150, 150);
+    /* color of the tracking area */
+}
+
+aside::-webkit-scrollbar-thumb {
+    background-color: black;
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+   
 }
 
 @media (max-width: 1250px) {

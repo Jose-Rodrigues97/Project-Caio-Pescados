@@ -1,4 +1,4 @@
-.card-company {
+.card-collaborator {
     height: 90px;
     width: 100%;
     padding: 5px;
@@ -20,6 +20,11 @@
 
 span {
     display: block;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
 
 img {

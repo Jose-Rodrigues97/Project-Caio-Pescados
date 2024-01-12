@@ -6,13 +6,17 @@ import { ThemeModule } from '../theme/theme.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardCollaboratorComponent } from './components/card-collaborator/card-collaborator.component';
 import { CollaboratorsComponent } from './collaborators.component';
+import { CollaboratorDetailComponent } from './components/collaborator-detail/collaborator-detail.component';
+import { RouterModule } from '@angular/router';
+import { CollaboratorsRoutingModule } from './collaborators-routing.module';
 
 
 
 @NgModule({
   declarations: [
     CollaboratorsComponent,
-    CardCollaboratorComponent
+    CardCollaboratorComponent,
+    CollaboratorDetailComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +24,9 @@ import { CollaboratorsComponent } from './collaborators.component';
     FormsModule,
     ReactiveFormsModule,
     ThemeModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule,
+    CollaboratorsRoutingModule
   ]
 })
 export class CollaboratorsModule { }

@@ -8,7 +8,7 @@ import { ThemeModule } from '../theme/theme.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CompanyDetailComponent } from './components/company-detail/company-detail.component';
 import { RouterModule } from '@angular/router';
-import { CompaniesRoutingModule } from './companies.routing.module';
+import { CompaniesRoutingModule } from './companies-routing.module';
 
 @NgModule({
   declarations: [

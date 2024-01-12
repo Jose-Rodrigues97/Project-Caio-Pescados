@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 
+import { Button } from '../../models/button';
+
 @Component({
   selector: 'app-title-page',
   templateUrl: './title-page.component.html',
@@ -11,14 +13,13 @@ import { faShare } from '@fortawesome/free-solid-svg-icons';
 export class TitlePageComponent {
   faShare = faShare;
   @Input() pageName!: string;
-  @Input() buttonName!: string;
-  @Input() buttonLink!: string;
+  @Input() buttons!: Button[];
 
   constructor(private router: Router) {
 
   }
 
-  onNavigate() {
-    this.router.navigateByUrl(this.buttonLink)
+  onNavigate(link: string) {
+    this.router.navigateByUrl(link);
   }
 }

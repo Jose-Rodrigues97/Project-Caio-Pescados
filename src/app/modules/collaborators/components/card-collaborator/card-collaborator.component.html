@@ -1,7 +1,7 @@
-<div class="card-company">
+<div class="card-collaborator">
     <img src="{{image}}" alt="">
     <div>
-        <span style="text-transform: uppercase;">{{name}}</span>
+        <a [routerLink]="['/collaboratorDetail', id]" style="text-transform: uppercase;">{{name}}</a>
         <span>{{taxNumber}}</span>
         <div *ngIf="isHeadquarters; else blockSubsidiary">
             <span>Matriz</span>

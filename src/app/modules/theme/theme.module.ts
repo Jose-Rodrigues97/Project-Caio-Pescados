@@ -9,6 +9,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TitlePageComponent } from './components/title-page/title-page.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { InternalErrorComponent } from './components/internal-error/internal-error.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { UploadComponent } from './components/upload/upload.component';
     SidebarComponent,
     ThemeComponent,
     TitlePageComponent,
-    UploadComponent
+    UploadComponent,
+    PageNotFoundComponent,
+    InternalErrorComponent
   ],
   imports: [
     CommonModule,

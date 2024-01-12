@@ -15,4 +15,5 @@ export class CardCollaboratorComponent {
   @Input() state!: string;
   @Input() city!: string;
   @Input() image!: string;
+  @Input() id!: number;
 }

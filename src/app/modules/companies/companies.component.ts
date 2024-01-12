@@ -13,6 +13,12 @@ import { faShare } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./companies.component.css']
 })
 export class CompaniesComponent {
+  buttons = [
+    {
+      name: 'CRIAR EMPRESA',
+      link: '/companyDetail/',
+      class: 'btn-primary'
+    }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;

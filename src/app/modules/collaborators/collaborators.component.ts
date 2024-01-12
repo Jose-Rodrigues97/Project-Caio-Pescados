@@ -13,6 +13,12 @@ import { EstateService } from 'src/app/services/estate/estate.service';
   styleUrls: ['./collaborators.component.css']
 })
 export class CollaboratorsComponent {
+  buttons = [
+    {
+      name: 'criar colaborador',
+      link: '/collaboratorDetail/',
+      class: 'btn-primary'
+    }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;
