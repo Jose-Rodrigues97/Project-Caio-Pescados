@@ -13,6 +13,12 @@ import { EstateService } from 'src/app/services/estate/estate.service';
   styleUrls: ['./suppliers.component.css']
 })
 export class SuppliersComponent {
+  buttons = [
+    {
+      name: 'CRIAR FORNECEDOR',
+      link: '/supplierDetail/',
+      class: 'btn-primary'
+    }]
     estates = {} as EstateModel[];
     cities$!: Observable<CityModel[]>;
     formGroup!: FormGroup;
