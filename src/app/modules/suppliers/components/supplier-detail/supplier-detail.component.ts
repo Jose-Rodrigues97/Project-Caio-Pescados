@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-supplier-detail',
@@ -7,6 +7,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./supplier-detail.component.css']
 })
 export class SupplierDetailComponent {
+  @Input() id!: number;
+  formGroup!: FormGroup;
   buttons = [
   {
     name: 'VOLTAR',
@@ -17,11 +19,27 @@ export class SupplierDetailComponent {
     name: 'SALVAR',
     link: '/supplierDetail/',
     class: 'btn-primary'
-  }]
-  @Input() id!: number;
-  @Input() name!: string;
-  @Input() CNPJ!: string;
-  @Input() telephone!: number;
-  @Input() email!: string;
-  @Input() image!: string;
+  }] 
+
+  constructor(private formBuilder: FormBuilder) {
+  }
+
+  ngOnInit() {
+    this.formGroup = this.formBuilder.group({
+      name: '',
+      cnpj: '',
+      stateRegistration:'',
+      branch: '',
+      street: '',
+      numberStreet: '',
+      city: '',
+      estate: '',
+      country: '',
+      zipCode: '',
+      complement: '',
+      nameUser: '',
+      telephone: '',
+      email: ''
+    })
+  }
 }
