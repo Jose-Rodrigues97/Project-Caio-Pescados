@@ -1,0 +1,110 @@
+<app-title-page pageName="Detalhes do Cliente" [buttons]=buttons></app-title-page>
+<section class="main-content">
+    <form [formGroup]="formGroup">
+        <div class="group-content">
+            <span class="group-title">Dados Cadastrais</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="name" style="font-size: 15px; margin-bottom: 0px;">Nome</label>
+                    <input id="name" class="form-control" type="text" style="width: 100%;" formControlName="name">
+                </div>
+                <div class="group-input">
+                    <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
+                    <input id="tax-number" class="form-control" type="text" style="width: 100%;"
+                        formControlName="taxNumber">
+                </div>
+                <div class="group-input">
+                    <label for="corporate-reason" style="font-size: 15px; margin-bottom: 0px;">Razão Social</label>
+                    <input id="corporate-reason" class="form-control" type="text" style="width: 100%;"
+                        formControlName="corporateReason">
+                </div>
+                <div class="group-input">
+                    <label for="cnae" style="font-size: 15px; margin-bottom: 0px;">CNAE</label>
+                    <input id="cnae" class="form-control" type="text" style="width: 100%;" formControlName="cnae">
+                </div>
+                <div class="group-input">
+                    <label for="state-registration" style="font-size: 15px; margin-bottom: 0px;">Inscrição
+                        Estadual</label>
+                    <input id="state-registration" class="form-control" type="text" style="width: 100%;"
+                        formControlName="stateRegistration">
+                </div>
+                <div class="group-input">
+                    <label for="creation-date" style="font-size: 15px; margin-bottom: 0px;">Data de Fundação</label>
+                    <input id="creation-date" class="form-control" type="date" style="width: 100%;"
+                        formControlName="creationDate">
+                </div>
+                <div class="group-input">
+                    <label for="situation-revenue" style="font-size: 15px; margin-bottom: 0px;">Status na
+                        Receita</label>
+                    <input id="situation-revenue" class="form-control" type="text" style="width: 100%;"
+                        formControlName="situationRevenue">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Endereço</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="street" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
+                    <input id="street" class="form-control" type="text" style="width: 100%;" formControlName="street">
+                </div>
+                <div class="group-input">
+                    <label for="city" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
+                    <input id="city" class="form-control" type="text" style="width: 100%;" formControlName="city">
+                </div>
+                <div class="group-input">
+                    <label for="estate" style="font-size: 15px; margin-bottom: 0px;">Estado</label>
+                    <input id="estate" class="form-control" type="text" style="width: 100%;" formControlName="estate">
+                </div>
+                <div class="group-input">
+                    <label for="country" style="font-size: 15px; margin-bottom: 0px;">País</label>
+                    <input id="country" class="form-control" type="text" style="width: 100%;" formControlName="country">
+                </div>
+                <div class="group-input">
+                    <label for="zip-code" style="font-size: 15px; margin-bottom: 0px;">CEP</label>
+                    <input id="zip-code" class="form-control" type="text" style="width: 100%;"
+                        formControlName="zipCode">
+                </div>
+                <div class="group-input">
+                    <label for="complemento" style="font-size: 15px; margin-bottom: 0px;">Complemento</label>
+                    <input id="complemento" class="form-control" type="text" style="width: 100%;"
+                        formControlName="complement">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Contato</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="home-phone" style="font-size: 15px; margin-bottom: 0px;">Telefone Residencial</label>
+                    <input id="home-phone" class="form-control" type="text" style="width: 100%;"
+                        formControlName="homePhone">
+                </div>
+                <div class="group-input">
+                    <label for="cell-phone" style="font-size: 15px; margin-bottom: 0px;">Telefone Celular</label>
+                    <input id="cell-phone" class="form-control" type="text" style="width: 100%;"
+                        formControlName="cellPhone">
+                </div>
+                <div class="group-input">
+                    <label for="email" style="font-size: 15px; margin-bottom: 0px;">E-mail</label>
+                    <input id="email" class="form-control" type="text" style="width: 100%;" formControlName="email">
+                </div>
+            </div>
+        </div>
+        <div class="group-content">
+            <span class="group-title">Dados Complementares</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Imagem</label>
+                    <app-upload></app-upload>
+                </div>
+                <div class="group-input">
+                    <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Total de
+                        Colaboradores</label>
+                    <input id="Total-collaborators" class="form-control" type="text" style="width: 100%;"
+                        formControlName="TotalCollaborators" readonly>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
