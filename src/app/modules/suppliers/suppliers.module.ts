@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardSupplierComponent } from './components/card-supplier/card-supplier.component';
 import { SuppliersComponent } from './suppliers.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ThemeModule } from '../theme/theme.module';
+import { ThemesModule } from '../themes/themes.module';
 import { SupplierDetailComponent } from './components/supplier-detail/supplier-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -24,7 +24,7 @@ import { CompaniesRoutingModule } from './suppliers-routing.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ThemeModule,
+    ThemesModule,
     FontAwesomeModule,
     RouterModule,
     CompaniesRoutingModule

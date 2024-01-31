@@ -1,4 +1,4 @@
-.card-company {
+.card-customer {
     height: 90px;
     width: 100%;
     padding: 5px;
@@ -13,7 +13,7 @@
     border-right: solid 5px black;
 }
 
-.card-company:hover {
+.card-customer:hover {
     background-color: #E0FFFF;
     border-right: solid 5px #1E90FF;
 }
@@ -29,6 +29,11 @@ img {
     object-position: center;
     border: solid 1px;
     background-color: white;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
 
 @media (max-width: 1250px) {

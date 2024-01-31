@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ThemeComponent } from './modules/theme/theme.component';
+import { ThemesComponent } from './modules/themes/themes.component';
 import { AboutComponent } from './modules/about/about.component';
 import { CollaboratorsComponent } from './modules/collaborators/collaborators.component';
 import { CustomersComponent } from './modules/customers/customers.component';
@@ -13,12 +13,12 @@ import { MetricsComponent } from './modules/accounting/components/metrics/metric
 import { CompaniesComponent } from './modules/companies/companies.component';
 import { ProductsComponent } from './modules/products/products.component';
 import { ShippingCompanyComponent } from './modules/logistic/components/shipping-company/shipping-company.component';
-import { PageNotFoundComponent } from './modules/theme/components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './modules/themes/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ThemeComponent,
+    component: ThemesComponent,
     children: [
       { path: '', redirectTo: 'companies', pathMatch: 'full' },
       { path: 'about', component: AboutComponent },
@@ -33,7 +33,7 @@ const routes: Routes = [
       { path: 'configuration', component: ConfigurationComponent },
       { path: 'metrics', component: MetricsComponent },
       { path: 'shippingCompany', component: ShippingCompanyComponent },
-      // { path: '**', component: PageNotFoundComponent }
+      //  { path: '**', component: PageNotFoundComponent }
     ],
     // canActivate: [AuthGuard]
   }

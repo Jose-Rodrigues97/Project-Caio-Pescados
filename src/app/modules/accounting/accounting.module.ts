@@ -5,7 +5,7 @@ import { PurchaseComponent } from './components/purchase/purchase.component';
 import { SaleComponent } from './components/sale/sale.component';
 import { CardPurchaseComponent } from './components/purchase/components/card-purchase/card-purchase.component';
 import { CardSaleComponent } from './components/sale/components/card-sale/card-sale.component';
-import { ThemeModule } from '../theme/theme.module';
+import { ThemesModule } from '../themes/themes.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -21,7 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     CommonModule,
-    ThemeModule,
+    ThemesModule,
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule

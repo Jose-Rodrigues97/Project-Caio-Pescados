@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./card-customer.component.css']
 })
 export class CardCustomerComponent {
+  @Input() id!: number;
   @Input() name!: string;
   @Input() isHeadquarters!: boolean;
   @Input() taxNumber!: number;

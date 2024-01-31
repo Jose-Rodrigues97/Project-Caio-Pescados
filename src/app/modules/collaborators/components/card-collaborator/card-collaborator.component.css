@@ -13,7 +13,7 @@
     border-right: solid 5px black;
 }
 
-.card-company:hover {
+.card-collaborator:hover {
     background-color: #E0FFFF;
     border-right: solid 5px #1E90FF;
 }

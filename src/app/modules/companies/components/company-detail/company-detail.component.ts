@@ -31,6 +31,8 @@ export class CompanyDetailComponent {
       corporateReason: '',
       cnae: '',
       stateRegistration: '',
+      creationDate: '',
+      situationRevenue: '',
       street: '',
       city: '',
       estate: '',
@@ -63,5 +65,9 @@ export class CompanyDetailComponent {
       fridayEnd: '',
       saturdayEnd: '',
     })
+  }
+
+  ngOnSubmit(){
+
   }
 }
