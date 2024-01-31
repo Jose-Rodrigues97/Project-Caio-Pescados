@@ -1,0 +1,64 @@
+.card-configuration {
+    height: 90px;
+    width: 60%;
+    padding: 5px;
+    border: solid 0.1px;
+    align-items: center;
+    font-size: 17px;
+    margin-bottom: 10px;
+    font-family: 'Afacad', sans-serif;
+    background-color: white;
+    border-right: solid 5px black;
+}
+
+.card-configuration:hover {
+    background-color: #E0FFFF;
+    border-right: solid 5px #1E90FF;
+}
+
+span {
+    display: block;
+}
+
+.title {
+    text-transform: uppercase;
+    align-self: end;
+    line-height: 20px;
+    font-size: 20px;
+}
+
+.description {
+    align-self: baseline;
+    line-height: 20px;
+    font-size: 17px;
+    color: gray;
+}
+
+a {
+    display: grid;
+    grid-template-columns: 12% 88%;
+    text-decoration: none;
+    color: black;
+    width: 100%;
+}
+
+img {
+    width: 78px;
+    height: 78px;
+    object-fit: cover;
+    object-position: center;
+    border: solid 1px;
+    background-color: white;
+}
+
+@media (max-width: 1250px) {
+    img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .card-company {
+        height: 80px;
+        font-size: 15px;
+    }
+}

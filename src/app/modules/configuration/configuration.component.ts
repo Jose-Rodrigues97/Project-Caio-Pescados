@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./configuration.component.css']
 })
 export class ConfigurationComponent {
-
+  menus = [
+    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", title: "Perfil", description: "teste", link: "profile" },
+    { id: 2, image: "../../assets/Caio_Pescados-removebg-preview.png", title: "Permissões", description: "teste", link: "permissions" },
+    { id: 3, image: "../../assets/Caio_Pescados-removebg-preview.png", title: "Tema", description: "teste", link: "theme" }
+  ]
 }
