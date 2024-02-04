@@ -1,5 +1,7 @@
 <div>
-    <div class="upload">Selecione ou Arraste um arquivo para anexar...<fa-icon style="font-size: 30px;"
+    <div id = "inputArchive" class="upload"> Selecione ou Arraste um arquivo para anexar...
+      <fa-icon style="font-size: 30px;"
         [icon]='faCloudUploadAlt'></fa-icon></div>
-    <input type="file">
+    <input type="file" (change)="onChange($event)">
 </div>
+<div><button class="btn btn-primary" (change)="onUpload($event)">Enviar</button></div>
