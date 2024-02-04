@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutComponent } from './about.component';
-import { ThemeModule } from '../theme/theme.module';
-
-
+import { ThemesModule } from '../themes/themes.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +9,7 @@ import { ThemeModule } from '../theme/theme.module';
   ],
   imports: [
     CommonModule,
-    ThemeModule
+    ThemesModule
   ]
 })
 export class AboutModule { }

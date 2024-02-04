@@ -1,17 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeModule } from '../theme/theme.module';
+import { ThemesModule } from '../themes/themes.module';
 import { ConfigurationComponent } from './configuration.component';
+import { CardConfigurationComponent } from './components/card-configuration/card-configuration.component';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+import { ConfigurationRoutingModule } from './configuration-routing.module';
+import { PermissionsComponent } from './components/permissions/permissions.component';
+import { ThemeComponent } from './components/theme/theme.component';
 
 
 
 @NgModule({
   declarations: [
-    ConfigurationComponent
+    ConfigurationComponent,
+    CardConfigurationComponent,
+    PermissionsComponent,
+    ThemeComponent
   ],
   imports: [
     CommonModule,
-    ThemeModule
+    HttpClientModule,
+    ThemesModule,
+    FontAwesomeModule, 
+    RouterModule,
+    ConfigurationRoutingModule
   ]
 })
 export class ConfigurationModule { }

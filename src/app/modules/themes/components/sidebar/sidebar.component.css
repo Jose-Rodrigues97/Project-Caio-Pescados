@@ -17,8 +17,7 @@ li {
     position: relative;
 }
 
-li a,
-span {
+li a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -43,7 +42,7 @@ li::before {
     left: -5px;
 }
 
-li:hover {
+a:hover {
     background-color: #696969;
 }
 
@@ -58,6 +57,10 @@ li:hover {
 }
 
 .hidden-submenu {
+    display: none;
+}
+
+.hidden-arrow-menus{
     display: none;
 }
 

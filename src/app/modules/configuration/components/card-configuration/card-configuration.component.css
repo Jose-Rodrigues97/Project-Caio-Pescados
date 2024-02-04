@@ -1,9 +1,7 @@
-.card-collaborator {
+.card-configuration {
     height: 90px;
-    width: 100%;
+    width: 60%;
     padding: 5px;
-    display: grid;
-    grid-template-columns: 12% 38% 30% 20%;
     border: solid 0.1px;
     align-items: center;
     font-size: 17px;
@@ -13,7 +11,7 @@
     border-right: solid 5px black;
 }
 
-.card-collaborator:hover {
+.card-configuration:hover {
     background-color: #E0FFFF;
     border-right: solid 5px #1E90FF;
 }
@@ -22,9 +20,26 @@ span {
     display: block;
 }
 
-a{
+.title {
+    text-transform: uppercase;
+    align-self: end;
+    line-height: 20px;
+    font-size: 20px;
+}
+
+.description {
+    align-self: baseline;
+    line-height: 20px;
+    font-size: 17px;
+    color: gray;
+}
+
+a {
+    display: grid;
+    grid-template-columns: 12% 88%;
     text-decoration: none;
     color: black;
+    width: 100%;
 }
 
 img {

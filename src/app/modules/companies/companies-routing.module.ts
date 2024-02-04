@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CompanyDetailComponent } from './components/company-detail/company-detail.component';
-import { ThemeComponent } from '../theme/theme.component';
+import { ThemesComponent } from '../themes/themes.component';
 import { CompaniesComponent } from './companies.component';
 
 const companiesRoutes: Routes = [
   {
     path: '',
-    component: ThemeComponent,
+    component: ThemesComponent,
     children: [
       { path: '', redirectTo: 'companies', pathMatch: 'full' },
       { path: 'companies', component: CompaniesComponent },

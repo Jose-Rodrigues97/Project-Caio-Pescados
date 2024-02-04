@@ -10,15 +10,16 @@ import { ConfigurationModule } from './modules/configuration/configuration.modul
 import { CustomersModule } from './modules/customers/customers.module';
 import { SuppliersModule } from './modules/suppliers/suppliers.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
-import { ThemeModule } from './modules/theme/theme.module';
-import { CollaboratorsComponent } from './modules/collaborators/collaborators.component';
+import { ThemesModule } from './modules/themes/themes.module';
 import { LogisticModule } from './modules/logistic/logistic.module';
 import { AccountingModule } from './modules/accounting/accounting.module';
 import { CollaboratorsModule } from './modules/collaborators/collaborators.module';
+import { ProfileComponent } from './modules/configuration/components/profile/profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +31,7 @@ import { CollaboratorsModule } from './modules/collaborators/collaborators.modul
     CustomersModule,
     SuppliersModule,
     AuthenticationModule,
-    ThemeModule,
+    ThemesModule,
     LogisticModule,
     AccountingModule,
     CollaboratorsModule

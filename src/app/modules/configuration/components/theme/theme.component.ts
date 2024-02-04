@@ -5,7 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './theme.component.html',
   styleUrls: ['./theme.component.css']
 })
-
 export class ThemeComponent {
-
+  buttons = [
+    {
+      name: 'Voltar',
+      link: '/configuration',
+      class: 'btn-secondary'
+    }
+  ]
 }

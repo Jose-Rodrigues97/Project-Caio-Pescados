@@ -2,22 +2,25 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-company-detail',
-  templateUrl: './company-detail.component.html',
-  styleUrls: ['./company-detail.component.css']
+  selector: 'app-customer-detail',
+  templateUrl: './customer-detail.component.html',
+  styleUrls: ['./customer-detail.component.css']
 })
-export class CompanyDetailComponent {
+export class CustomerDetailComponent {
+
+
+
   @Input() id!: number;
   formGroup!: FormGroup;
   buttons = [
     {
       name: 'VOLTAR',
-      link: '/companies',
+      link: '/customers',
       class: 'btn-secondary'
     },
     {
       name: 'SALVAR',
-      link: '/companyDetail/',
+      link: '/customerDetail/',
       class: 'btn-primary'
     }]
 
@@ -67,7 +70,7 @@ export class CompanyDetailComponent {
     })
   }
 
-  ngOnSubmit(){
+  ngOnSubmit() {
 
   }
 }

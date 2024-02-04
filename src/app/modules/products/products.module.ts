@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './products.component';
 import { CardProductComponent } from 'src/app/modules/products/components/card-product/card-product.component';
-import { ThemeModule } from '../theme/theme.module';
+import { ThemesModule } from '../themes/themes.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ThemeModule,
+    ThemesModule,
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule

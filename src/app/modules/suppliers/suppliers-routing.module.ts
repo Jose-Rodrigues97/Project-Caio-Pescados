@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SupplierDetailComponent } from './components/supplier-detail/supplier-detail.component';
-import { ThemeComponent } from '../theme/theme.component';
+import { ThemesComponent } from '../themes/themes.component';
 import { SuppliersComponent } from './suppliers.component';
 
 const suppliersRoutes: Routes = [
   {
     path: '',
-    component: ThemeComponent,
+    component: ThemesComponent,
     children: [
       { path: '', redirectTo: 'suppliers', pathMatch: 'full' },
       { path: 'suppliers', component: SuppliersComponent },

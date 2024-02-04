@@ -1,13 +1,13 @@
-<div class="card-company">
+<div class="card-customer">
     <img src="{{image}}" alt="">
     <div>
-        <span style="text-transform: uppercase;">{{name}}</span>
+        <a [routerLink]="['/customerDetail', id]" style="text-transform: uppercase;">{{name}}</a>
         <span>{{taxNumber}}</span>
         <div *ngIf="isHeadquarters; else blockSubsidiary">
-            <span>Pessoa Física</span>
+            <span>Matriz</span>
         </div>
         <ng-template #blockSubsidiary>
-            <span>Pessoa Jurídica</span>
+            <span>Filial</span>
         </ng-template>
     </div>
     <div>
