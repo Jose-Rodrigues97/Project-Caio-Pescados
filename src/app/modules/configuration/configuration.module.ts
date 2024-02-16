@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfigurationRoutingModule } from './configuration-routing.module';
 import { PermissionsComponent } from './components/permissions/permissions.component';
 import { ThemeComponent } from './components/theme/theme.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -17,13 +18,14 @@ import { ThemeComponent } from './components/theme/theme.component';
     ConfigurationComponent,
     CardConfigurationComponent,
     PermissionsComponent,
-    ThemeComponent
+    ThemeComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     ThemesModule,
-    FontAwesomeModule, 
+    FontAwesomeModule,
     RouterModule,
     ConfigurationRoutingModule
   ]

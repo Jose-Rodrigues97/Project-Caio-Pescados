@@ -1,8 +1,8 @@
-<app-title-page pageName="Ordem de Venda" buttonName="criar pedido" buttonLink="/products"></app-title-page>
+<app-title-page pageName="Ordem de Venda" [buttons]=buttons></app-title-page>
 <div>
     <div style="width: 70%;">
         <ng-container *ngFor="let company of companies">
-            <app-card-sale style="width: 70%;" [name]="company.name" [isHeadquarters]="company.isHeadquarters"
+            <app-card-sale style="width: 70%;" [id]="company.id" [name]="company.name" [isHeadquarters]="company.isHeadquarters"
                 [taxNumber]="company.taxNumber" [address]="company.address" [phone]="company.phone"
                 [email]="company.email" [state]="company.state" [city]="company.city"
                 [image]="company.image"></app-card-sale>

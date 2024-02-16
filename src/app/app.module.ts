@@ -14,12 +14,10 @@ import { ThemesModule } from './modules/themes/themes.module';
 import { LogisticModule } from './modules/logistic/logistic.module';
 import { AccountingModule } from './modules/accounting/accounting.module';
 import { CollaboratorsModule } from './modules/collaborators/collaborators.module';
-import { ProfileComponent } from './modules/configuration/components/profile/profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProfileComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

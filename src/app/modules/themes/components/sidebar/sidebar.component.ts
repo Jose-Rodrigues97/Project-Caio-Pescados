@@ -64,6 +64,13 @@ export class SidebarComponent {
     let desactiveMenu = document.getElementsByClassName('active');
 
     if (activeMenu?.children[0].childElementCount! > 1) {
+      let removeSubMenu = document.getElementsByClassName('submenu');
+      if(removeSubMenu[0] != null || removeSubMenu[0] != undefined){
+        removeSubMenu[0]?.children[0].children[0].children[1].classList.add('hidden-arrow-menus');
+        removeSubMenu[0]?.children[0].children[1].classList.add('hidden-submenu');
+        
+        removeSubMenu[0]?.classList.remove('submenu');
+      }
       activeMenu?.children[0].children[1].classList.remove('hidden-submenu');
       activeMenu?.classList.add('submenu');
       activeMenu?.children[0].children[0].children[1].classList.remove('hidden-arrow-menus');
@@ -88,8 +95,6 @@ export class SidebarComponent {
 
         }
       }
-      console.log(this.previousMenuId)
-      console.log(menu)
       activeMenu?.classList.add('active');
     }
     this.previousMenuId = menu;

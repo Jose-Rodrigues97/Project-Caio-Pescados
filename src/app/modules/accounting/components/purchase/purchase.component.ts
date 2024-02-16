@@ -13,6 +13,12 @@ import { EstateService } from 'src/app/services/estate/estate.service';
   styleUrls: ['./purchase.component.css']
 })
 export class PurchaseComponent {
+  buttons = [
+    {
+      name: 'CRIAR PEDIDO DE COMPRA',
+      link: '/purchaseDetail/',
+      class: 'btn-primary'
+    }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;

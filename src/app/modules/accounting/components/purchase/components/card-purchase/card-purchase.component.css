@@ -18,6 +18,11 @@
     border-right: solid 5px #1E90FF;
 }
 
+a{
+    text-decoration: none;
+    color: black;
+}
+
 span {
     display: block;
 }
