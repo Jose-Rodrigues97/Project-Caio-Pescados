@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,12 +14,17 @@ export class TitlePageComponent {
   faShare = faShare;
   @Input() pageName!: string;
   @Input() buttons!: Button[];
+  @Output() clickButton: EventEmitter<Boolean> = new EventEmitter();
 
   constructor(private router: Router) {
 
   }
 
-  onNavigate(link: string) {
+  onClickButton(link: string) {
+    if (link == '') {
+      this.clickButton.emit(true);
+      return;
+    }
     this.router.navigateByUrl(link);
   }
 }
