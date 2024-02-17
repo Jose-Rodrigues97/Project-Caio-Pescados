@@ -43,3 +43,9 @@
     align-items: center;
     width: 100%;
 }
+
+.validation-error{
+    color: red;
+    font-size: 14px;
+  }
+  

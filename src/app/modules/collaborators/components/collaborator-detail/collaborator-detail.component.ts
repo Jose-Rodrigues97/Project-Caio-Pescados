@@ -65,4 +65,12 @@ export class CollaboratorDetailComponent {
       saturdayEnd: '',
     })
   }
+
+  onClickButton(){
+    this.saveCompetition(this.formGroup.value);
+  }
+
+  saveCompetition(formGroup: FormGroup) {
+   
+  };
 }

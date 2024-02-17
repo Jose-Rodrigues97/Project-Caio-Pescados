@@ -14,6 +14,7 @@ import { ThemesModule } from './modules/themes/themes.module';
 import { LogisticModule } from './modules/logistic/logistic.module';
 import { AccountingModule } from './modules/accounting/accounting.module';
 import { CollaboratorsModule } from './modules/collaborators/collaborators.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CollaboratorsModule } from './modules/collaborators/collaborators.modul
     ThemesModule,
     LogisticModule,
     AccountingModule,
-    CollaboratorsModule
+    CollaboratorsModule,
+    ModalModule.forRoot()
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -74,8 +74,12 @@ export class PurchaseDetailComponent {
     })
   }
 
-  ngOnSubmit() {
-
+  onClickButton(){
+    this.saveCompetition(this.formGroup.value);
   }
+
+  saveCompetition(formGroup: FormGroup) {
+   
+  };
 }
 

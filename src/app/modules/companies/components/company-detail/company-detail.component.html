@@ -1,12 +1,17 @@
-<app-title-page pageName="Detalhes da Empresa" [buttons]=buttons></app-title-page>
+<app-title-page pageName="Detalhes da Empresa" (clickButton)="onClickButton()" [buttons]=buttons></app-title-page>
 <section class="main-content">
-    <form [formGroup]="formGroup">
+    <form [formGroup]="formGroup" (ngSubmit)="submit(formGroup)" #formDir="ngForm">
         <div class="group-content">
             <span class="group-title">Dados Cadastrais</span>
             <div class="group-info">
                 <div class="group-input">
                     <label for="name" style="font-size: 15px; margin-bottom: 0px;">Nome</label>
                     <input id="name" class="form-control" type="text" style="width: 100%;" formControlName="name">
+                    <div *ngIf="name.invalid && formDir.submitted" class="validation-error">
+                        <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
+                        <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 5 caracteres.
+                        </p>
+                    </div>
                 </div>
                 <div class="group-input">
                     <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
@@ -34,7 +39,8 @@
                         formControlName="creationDate">
                 </div>
                 <div class="group-input">
-                    <label for="situation-revenue" style="font-size: 15px; margin-bottom: 0px;">Status na Receita</label>
+                    <label for="situation-revenue" style="font-size: 15px; margin-bottom: 0px;">Status na
+                        Receita</label>
                     <input id="situation-revenue" class="form-control" type="text" style="width: 100%;"
                         formControlName="situationRevenue">
                 </div>
@@ -101,7 +107,7 @@
                     <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Total de
                         Colaboradores</label>
                     <input id="Total-collaborators" class="form-control" type="text" style="width: 100%;"
-                        formControlName="TotalCollaborators" readonly>
+                        formControlName="totalCollaborators" readonly>
                 </div>
             </div>
         </div>
@@ -111,71 +117,78 @@
                 <div class="group-input-opening-hours">
                     <div class="opening-time">
                         <label for="sunday" style="font-size: 15px; margin-bottom: 0px;">Domingo</label>
-                        <input id="sunday" class="form-check-input" type="checkbox" formControlName="sunday">
+                        <input id="sunday" class="form-check-input" type="checkbox" formControlName="sunday"
+                            (change)="onChangeWorkingDay($event)">
                         <div style="display: flex; align-items: center; gap: 5px">
-                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="sundayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                            Das
+                            <input class="form-control" type="time" style="width: 25%;" formControlName="sundayStart">
+                            às <input class="form-control" type="time" style="width: 100%;" style="width: 25%;"
                                 formControlName="sundayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
                         <label for="monday" style="font-size: 15px; margin-bottom: 0px;">Segunda-Feira</label>
-                        <input id="monday" class="form-check-input" type="checkbox" formControlName="monday">
+                        <input id="monday" class="form-check-input" type="checkbox" formControlName="monday"
+                            (change)="onChangeWorkingDay($event)">
                         <div style="display: flex; align-items: center; gap: 5px">
-                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="mondayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                            Das
+                            <input class="form-control" type="time" style="width: 25%;" formControlName="mondayStart">
+                            às <input class="form-control" type="time" style="width: 100%;" style="width: 25%;"
                                 formControlName="mondayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
                         <label for="tuesday" style="font-size: 15px; margin-bottom: 0px;">Terça-Feira</label>
-                        <input id="tuesday" class="form-check-input" type="checkbox" formControlName="tuesday">
+                        <input id="tuesday" class="form-check-input" type="checkbox" formControlName="tuesday"
+                            (change)="onChangeWorkingDay($event)">
                         <div style="display: flex; align-items: center; gap: 5px">
-                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="tuesdayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                            Das
+                            <input class="form-control" type="time" style="width: 25%;" formControlName="tuesdayStart">
+                            às <input class="form-control" type="time" style="width: 100%;" style="width: 25%;"
                                 formControlName="tuesdayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
                         <label for="wednesday" style="font-size: 15px; margin-bottom: 0px;">Quarta-Feira</label>
-                        <input id="wednesday" class="form-check-input" type="checkbox" formControlName="wednesday">
+                        <input id="wednesday" class="form-check-input" type="checkbox" formControlName="wednesday"
+                            (change)="onChangeWorkingDay($event)">
                         <div style="display: flex; align-items: center; gap: 5px">
-                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="wednesdayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                            Das
+                            <input class="form-control" type="time" style="width: 25%;" formControlName="wednesdayStart">
+                            às <input class="form-control" type="time" style="width: 100%;" style="width: 25%;"
                                 formControlName="wednesdayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
                         <label for="thursday" style="font-size: 15px; margin-bottom: 0px;">Quinta-Feira</label>
-                        <input id="thursday" class="form-check-input" type="checkbox" formControlName="thursday">
+                        <input id="thursday" class="form-check-input" type="checkbox" formControlName="thursday"
+                            (change)="onChangeWorkingDay($event)">
                         <div style="display: flex; align-items: center; gap: 5px">
-                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="thursdayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                            Das
+                            <input class="form-control" type="time" style="width: 25%;" formControlName="thursdayStart">
+                            às <input class="form-control" type="time" style="width: 100%;" style="width: 25%;"
                                 formControlName="thursdayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
                         <label for="friday" style="font-size: 15px; margin-bottom: 0px;">Sexta-Feira</label>
-                        <input id="friday" class="form-check-input" type="checkbox" formControlName="friday">
+                        <input id="friday" class="form-check-input" type="checkbox" formControlName="friday"
+                            (change)="onChangeWorkingDay($event)">
                         <div style="display: flex; align-items: center; gap: 5px">
-                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="fridayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                            Das
+                            <input class="form-control" type="time" style="width: 25%;" formControlName="fridayStart">
+                            às <input class="form-control" type="time" style="width: 100%;" style="width: 25%;"
                                 formControlName="fridayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
                         <label for="saturday" style="font-size: 15px; margin-bottom: 0px;">Sábado</label>
-                        <input id="saturday" class="form-check-input" type="checkbox" formControlName="saturday">
+                        <input id="saturday" class="form-check-input" type="checkbox" formControlName="saturday"
+                            (change)="onChangeWorkingDay($event)">
                         <div style="display: flex; align-items: center; gap: 5px">
-                            Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="saturdayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
+                            Das
+                            <input class="form-control" type="time" style="width: 25%;" formControlName="saturdayStart">
+                            às <input class="form-control" type="time" style="width: 100%;" style="width: 25%;"
                                 formControlName="saturdayEnd">
                         </div>
                     </div>

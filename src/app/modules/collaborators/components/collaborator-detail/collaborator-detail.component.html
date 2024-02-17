@@ -1,4 +1,4 @@
-<app-title-page pageName="Detalhes do Colaborador" [buttons]=buttons></app-title-page>
+<app-title-page pageName="Detalhes do Colaborador" (clickButton)="onClickButton()" [buttons]=buttons></app-title-page>
 <section class="main-content">
     <form [formGroup]="formGroup">
         <div class="group-content">

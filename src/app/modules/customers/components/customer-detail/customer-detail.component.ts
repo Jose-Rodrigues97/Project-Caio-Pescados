@@ -8,8 +8,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CustomerDetailComponent {
 
-
-
   @Input() id!: number;
   formGroup!: FormGroup;
   buttons = [
@@ -70,7 +68,11 @@ export class CustomerDetailComponent {
     })
   }
 
-  ngOnSubmit() {
-
+  onClickButton(){
+    this.saveCompetition(this.formGroup.value);
   }
+
+  saveCompetition(formGroup: FormGroup) {
+   
+  };
 }
