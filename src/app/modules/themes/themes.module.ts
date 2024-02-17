@@ -11,6 +11,7 @@ import { TitlePageComponent } from './components/title-page/title-page.component
 import { UploadComponent } from './components/upload/upload.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { InternalErrorComponent } from './components/internal-error/internal-error.component';
+import { AlertModalComponent } from './components/alert-modal-component/alert-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { InternalErrorComponent } from './components/internal-error/internal-err
     TitlePageComponent,
     UploadComponent,
     PageNotFoundComponent,
-    InternalErrorComponent
+    InternalErrorComponent,
+    AlertModalComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { InternalErrorComponent } from './components/internal-error/internal-err
   exports: [
     PaginationComponent,
     TitlePageComponent,
-    UploadComponent
+    UploadComponent,
+    AlertModalComponent
   ]
 })
 
