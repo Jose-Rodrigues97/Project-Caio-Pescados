@@ -15,5 +15,5 @@ export class CardCompanyComponent {
   @Input() state!: string;
   @Input() city!: string;
   @Input() image!: string;
-  @Input() id!: number;
+  @Input() companyId!: number;
 }

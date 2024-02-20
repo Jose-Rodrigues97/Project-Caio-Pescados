@@ -31,7 +31,8 @@ export class CompanyService {
       )
   }
 
-  saveCompany(competition: CompanyModel): Observable<CompanyModel> {
+  createCompany(competition: CompanyModel): Observable<CompanyModel> {
+    console.log('createCompany')
     return this.httpClient.post<CompanyModel>(this.URL, JSON.stringify(competition), this.httpOptions)
       .pipe(
         catchError(this.handleError)
@@ -39,7 +40,7 @@ export class CompanyService {
   }
 
   updateCompany(competitionId: number, competition: CompanyModel): Observable<CompanyModel> {
-    console.log(competition)
+    console.log('updateCompany')
     return this.httpClient.put<CompanyModel>(this.URL + '/' + competitionId, JSON.stringify(competition), this.httpOptions)
       .pipe(
         catchError(this.handleError)

@@ -11,7 +11,7 @@ export class CollaboratorDetailComponent {
   formGroup!: FormGroup;
   buttons = [{
     name: 'VOLTAR',
-    link: '/collaborators',
+    link: '/collaborator/collaboratorsList',
     class: 'btn-secondary'
   },
   {

@@ -13,7 +13,7 @@ export class CustomerDetailComponent {
   buttons = [
     {
       name: 'VOLTAR',
-      link: '/customers',
+      link: 'customer/customersList',
       class: 'btn-secondary'
     },
     {

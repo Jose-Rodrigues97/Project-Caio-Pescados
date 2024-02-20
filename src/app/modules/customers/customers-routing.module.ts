@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ThemesComponent } from '../themes/themes.component';
 import { CustomersComponent } from './customers.component';
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
+import { ListCustomersComponent } from './components/list-customers/list-customers.component';
+import { PageNotFoundComponent } from '../themes/components/page-not-found/page-not-found.component';
 
 const customersRoutes: Routes = [
   {
-    path: '',
-    component: ThemesComponent,
+    path: 'customer',
+    component: CustomersComponent,
     children: [
-      { path: '', redirectTo: 'companies', pathMatch: 'full' },
-      { path: 'companies', component: CustomersComponent },
+      { path: '', redirectTo: 'customersList', pathMatch: 'full' },
+      { path: 'customersList', component: ListCustomersComponent },
       { path: 'customerDetail/:id', component: CustomerDetailComponent },
-      // { path: '**', component: CompaniesComponent }
+      { path: '**', component: PageNotFoundComponent }
     ]
   }
 ];

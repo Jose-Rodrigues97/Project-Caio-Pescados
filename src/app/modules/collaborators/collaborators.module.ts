@@ -9,6 +9,7 @@ import { CollaboratorsComponent } from './collaborators.component';
 import { CollaboratorDetailComponent } from './components/collaborator-detail/collaborator-detail.component';
 import { RouterModule } from '@angular/router';
 import { CollaboratorsRoutingModule } from './collaborators-routing.module';
+import { ListCollaboratorsComponent } from './components/list-collaborators/list-collaborators.component';
 
 
 
@@ -16,7 +17,8 @@ import { CollaboratorsRoutingModule } from './collaborators-routing.module';
   declarations: [
     CollaboratorsComponent,
     CardCollaboratorComponent,
-    CollaboratorDetailComponent
+    CollaboratorDetailComponent,
+    ListCollaboratorsComponent
   ],
   imports: [
     CommonModule,

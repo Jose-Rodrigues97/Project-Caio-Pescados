@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ThemesComponent } from '../themes/themes.component';
 import { CollaboratorsComponent } from './collaborators.component';
 import { CollaboratorDetailComponent } from './components/collaborator-detail/collaborator-detail.component';
+import { ListCollaboratorsComponent } from './components/list-collaborators/list-collaborators.component';
+import { PageNotFoundComponent } from '../themes/components/page-not-found/page-not-found.component';
 
 const collaboratorsRoutes: Routes = [
   {
-    path: '',
-    component: ThemesComponent,
+    path: 'collaborator',
+    component: CollaboratorsComponent,
     children: [
-      { path: '', redirectTo: 'collaborators', pathMatch: 'full' },
-      { path: 'collaborators', component: CollaboratorsComponent },
+      { path: '', redirectTo: 'collaboratorsList', pathMatch: 'full' },
+      { path: 'collaboratorsList', component: ListCollaboratorsComponent },
       { path: 'collaboratorDetail/:id', component: CollaboratorDetailComponent },
-      // { path: '**', component: CollaboratorsComponent }
+      { path: '**', component: PageNotFoundComponent }
     ]
   }
 ];

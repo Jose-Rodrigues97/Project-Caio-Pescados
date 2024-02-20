@@ -1,7 +1,7 @@
 <div class="card-customer">
     <img src="{{image}}" alt="">
     <div>
-        <a [routerLink]="['/customerDetail', id]" style="text-transform: uppercase;">{{name}}</a>
+        <a [routerLink]="['/customer/customerDetail', id]" style="text-transform: uppercase;">{{name}}</a>
         <span>{{taxNumber}}</span>
         <div *ngIf="isHeadquarters; else blockSubsidiary">
             <span>Matriz</span>

@@ -9,6 +9,7 @@ import { CustomersRoutingModule } from './customers-routing.module';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { ListCustomersComponent } from './components/list-customers/list-customers.component';
 
 
 
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     declarations: [
         CardCustomerComponent,
         CustomersComponent,
-        CustomerDetailComponent
+        CustomerDetailComponent,
+        ListCustomersComponent
     ],
     imports: [
         CommonModule,

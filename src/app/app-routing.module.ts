@@ -14,28 +14,37 @@ import { CompaniesComponent } from './modules/companies/companies.component';
 import { ProductsComponent } from './modules/products/products.component';
 import { ShippingCompanyComponent } from './modules/logistic/components/shipping-company/shipping-company.component';
 import { PageNotFoundComponent } from './modules/themes/components/page-not-found/page-not-found.component';
+import { AuthenticationComponent } from './modules/authentication/authentication.component';
+import { ListCompaniesComponent } from './modules/companies/components/list-companies/list-companies.component';
+import { ListCollaboratorsComponent } from './modules/collaborators/components/list-collaborators/list-collaborators.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ThemesComponent,
+    path: 'company',
+    component: CompaniesComponent,
     children: [
-      { path: '', redirectTo: 'companies', pathMatch: 'full' },
-      { path: 'about', component: AboutComponent },
-      { path: 'collaborators', component: CollaboratorsComponent },
-      { path: 'customers', component: CustomersComponent },
-      { path: 'purchase', component: PurchaseComponent },
-      { path: 'sale', component: SaleComponent },
-      { path: 'stock', component: StockComponent },
-      { path: 'suppliers', component: SuppliersComponent },
-      { path: 'products', component: ProductsComponent }, 
-      { path: 'companies', component: CompaniesComponent },
-      { path: 'configuration', component: ConfigurationComponent },
-      { path: 'metrics', component: MetricsComponent },
-      { path: 'shippingCompany', component: ShippingCompanyComponent },
+      //{ path: 'companiesList', component: ListCompaniesComponent },
+      // { path: 'about', component: AboutComponent },
+      // { path: 'customers', component: CustomersComponent },
+      // { path: 'purchase', component: PurchaseComponent },
+      // { path: 'sale', component: SaleComponent },
+      // { path: 'stock', component: StockComponent },
+      // { path: 'suppliers', component: SuppliersComponent },
+      // { path: 'products', component: ProductsComponent }, 
+      // { path: 'configuration', component: ConfigurationComponent },
+      // { path: 'metrics', component: MetricsComponent },
+      // { path: 'shippingCompany', component: ShippingCompanyComponent },
       //  { path: '**', component: PageNotFoundComponent }
     ],
     // canActivate: [AuthGuard]
+  },
+  {
+    path: 'collaborator',
+    component: CollaboratorsComponent,
+  },
+  {
+    path: 'customer',
+    component: CustomersComponent,
   }
 ];
 

@@ -8,7 +8,7 @@ export interface PaginationModel {
     totalElements: number;
     size: number;
     number: number;
-    sort: SortModel
+    sort: SortModel;
     first: boolean;
     numberOfElements: number;
     empty: boolean

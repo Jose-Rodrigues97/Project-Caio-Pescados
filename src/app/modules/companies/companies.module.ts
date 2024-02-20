@@ -9,12 +9,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CompanyDetailComponent } from './components/company-detail/company-detail.component';
 import { RouterModule } from '@angular/router';
 import { CompaniesRoutingModule } from './companies-routing.module';
+import { ListCompaniesComponent } from './components/list-companies/list-companies.component';
 
 @NgModule({
   declarations: [
     CompaniesComponent,
     CardCompanyComponent,
-    CompanyDetailComponent
+    CompanyDetailComponent,
+    ListCompaniesComponent
   ],
   imports: [
     CommonModule,

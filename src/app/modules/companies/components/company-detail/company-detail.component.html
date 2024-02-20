@@ -1,6 +1,6 @@
 <app-title-page pageName="Detalhes da Empresa" (clickButton)="onClickButton()" [buttons]=buttons></app-title-page>
 <section class="main-content">
-    <form [formGroup]="formGroup" (ngSubmit)="submit(formGroup)" #formDir="ngForm">
+    <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
         <div class="group-content">
             <span class="group-title">Dados Cadastrais</span>
             <div class="group-info">
@@ -9,7 +9,7 @@
                     <input id="name" class="form-control" type="text" style="width: 100%;" formControlName="name">
                     <div *ngIf="name.invalid && formDir.submitted" class="validation-error">
                         <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
-                        <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 5 caracteres.
+                        <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 2 caracteres.
                         </p>
                     </div>
                 </div>

@@ -32,6 +32,7 @@ import { AlertModalComponent } from './components/alert-modal-component/alert-mo
     FontAwesomeModule
   ],
   exports: [
+    ThemesComponent,
     PaginationComponent,
     TitlePageComponent,
     UploadComponent,

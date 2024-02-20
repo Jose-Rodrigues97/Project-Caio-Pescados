@@ -1,0 +1,16 @@
+.search {
+    position: fixed;
+    width: 22%;
+    height: auto;
+    background-color: white;
+    padding: 10px;
+    top: 188px;
+    right: 20px;
+    border: solid 1px;
+}
+
+@media (max-width: 1250px) {
+    .search {
+        top: 105px;
+    }
+}

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CompanyService } from '../../services/company.service';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ActivatedRoute, PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 
 @Component({
   selector: 'app-company-detail',
@@ -10,13 +11,13 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./company-detail.component.css']
 })
 export class CompanyDetailComponent {
-  @Input() id!: number;
+  @Input() companyId: number = 0;
   bsModalRef?: BsModalRef;
   formGroup!: FormGroup;
   buttons = [
     {
       name: 'VOLTAR',
-      link: '/companies',
+      link: '/company/companiesList',
       class: 'btn-secondary'
     },
     {
@@ -27,13 +28,17 @@ export class CompanyDetailComponent {
 
   constructor(private formBuilder: FormBuilder,
     private companyService: CompanyService,
-    private modalService: BsModalService) {
+    private modalService: BsModalService,
+    private router: Router) {
   }
 
   ngOnInit() {
+    const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
+    this.companyId = Number(s.path);
+
     this.formGroup = this.formBuilder.group({
-      id: '',
-      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      id: this.companyId,
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       taxNumber: new FormControl('', [Validators.required, Validators.minLength(13)]),
       corporateReason: '',
       cnae: '',
@@ -97,7 +102,9 @@ export class CompanyDetailComponent {
           this.formGroup.get('sundayEnd')?.enable();
         } else {
           this.formGroup.get('sundayStart')?.disable();
+          this.formGroup.get('sundayStart')?.setValue({ value: '' });
           this.formGroup.get('sundayEnd')!.disable();
+          this.formGroup.get('sundayEnd')?.setValue({ value: '' });
         }
         break;
       case 'monday':
@@ -106,7 +113,9 @@ export class CompanyDetailComponent {
           this.formGroup.get('mondayEnd')?.enable();
         } else {
           this.formGroup.get('mondayStart')?.disable();
+          this.formGroup.get('mondayStart')?.setValue({ value: '' });
           this.formGroup.get('mondayEnd')!.disable();
+          this.formGroup.get('mondayEnd')?.setValue({ value: '' });
         }
         break;
       case 'tuesday':
@@ -115,7 +124,9 @@ export class CompanyDetailComponent {
           this.formGroup.get('tuesdayEnd')?.enable();
         } else {
           this.formGroup.get('tuesdayStart')?.disable();
+          this.formGroup.get('tuesdayStart')?.setValue({ value: '' });
           this.formGroup.get('tuesdayEnd')!.disable();
+          this.formGroup.get('tuesdayEnd')?.setValue({ value: '' });
         }
         break;
       case 'wednesday':
@@ -124,7 +135,9 @@ export class CompanyDetailComponent {
           this.formGroup.get('wednesdayEnd')?.enable();
         } else {
           this.formGroup.get('wednesdayStart')?.disable();
+          this.formGroup.get('wednesdayStart')?.setValue({ value: '' });
           this.formGroup.get('wednesdayEnd')!.disable();
+          this.formGroup.get('wednesdayEnd')?.setValue({ value: '' });
         }
         break;
       case 'thursday':
@@ -133,7 +146,9 @@ export class CompanyDetailComponent {
           this.formGroup.get('thursdayEnd')?.enable();
         } else {
           this.formGroup.get('thursdayStart')?.disable();
+          this.formGroup.get('thursdayStart')?.setValue({ value: '' });
           this.formGroup.get('thursdayEnd')!.disable();
+          this.formGroup.get('thursdayEnd')?.setValue({ value: '' });
         }
         break;
       case 'friday':
@@ -142,7 +157,9 @@ export class CompanyDetailComponent {
           this.formGroup.get('fridayEnd')?.enable();
         } else {
           this.formGroup.get('fridayStart')?.disable();
+          this.formGroup.get('fridayStart')?.setValue({ value: '' });
           this.formGroup.get('fridayEnd')!.disable();
+          this.formGroup.get('fridayEnd')?.setValue({ value: '' });
         }
         break;
       case 'saturday':
@@ -151,31 +168,31 @@ export class CompanyDetailComponent {
           this.formGroup.get('saturdayEnd')?.enable();
         } else {
           this.formGroup.get('saturdayStart')?.disable();
+          this.formGroup.get('saturdayStart')?.setValue({ value: '' });
           this.formGroup.get('saturdayEnd')!.disable();
+          this.formGroup.get('saturdayEnd')?.setValue({ value: '' });
         }
         break;
-
       default:
         break;
     }
   }
 
   onClickButton() {
-    console.log(this.formGroup.value);
-    this.submit(this.formGroup.value);
+    this.ngOnSubmit();
   }
 
-  submit(formGroup: FormGroup) {
+  ngOnSubmit() {
     try {
-      if (formGroup.valid) {
-        if (this.id == 0) {
-          this.companyService.updateCompany(this.id, this.formGroup.value).subscribe(() => {
-            this.handleModal('success', 'Empresa salva com sucesso.');
+      if (this.formGroup.valid) {
+        if (this.companyId == 0) {
+          this.companyService.createCompany(this.formGroup.value).subscribe(() => {
+            this.handleModal('success', 'Empresa criada com sucesso.');
           });
         }
         else {
-          this.companyService.saveCompany(this.formGroup.value).subscribe(() => {
-            this.handleModal('success', 'Empresa criada com sucesso.');
+          this.companyService.updateCompany(this.companyId, this.formGroup.value).subscribe(() => {
+            this.handleModal('success', 'Empresa atualizada com sucesso.');
           });
         }
       } else {
