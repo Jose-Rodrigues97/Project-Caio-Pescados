@@ -2,13 +2,12 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment-prod';
-import { CompaniesModel } from '../models/company-model/companies-model.module';
-import { CompanyModel } from '../models/company-model/company-model.module';
+import { SupplierModel } from '../models/supplier-model/supplier-model.module';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyService {
+export class SupplierService {
 
   private readonly URL = `${environment.URL}competicao`;
 
@@ -18,37 +17,36 @@ export class CompanyService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  getCompanies(): Observable<CompaniesModel> {
-    return this.httpClient.get<CompaniesModel>(this.URL)
+  getSupplier(): Observable<SupplierModel> {
+    return this.httpClient.get<SupplierModel>(this.URL)
       .pipe(
         catchError(this.handleError))
   }
 
-  getCompanyById(id: number): Observable<CompanyModel> {
-    return this.httpClient.get<CompanyModel>(this.URL + '/' + id)
+  getSupplierById(id: number): Observable<SupplierModel> {
+    return this.httpClient.get<SupplierModel>(this.URL + '/' + id)
       .pipe(
         catchError(this.handleError)
       )
   }
 
-  createCompany(company: CompanyModel): Observable<CompanyModel> {
-    console.log('createCompany')
-    return this.httpClient.post<CompanyModel>(this.URL, JSON.stringify(company), this.httpOptions)
+  createSupplier(supplier: SupplierModel): Observable<SupplierModel> {
+    return this.httpClient.post<SupplierModel>(this.URL, JSON.stringify(supplier), this.httpOptions)
       .pipe(
         catchError(this.handleError)
       )
   }
 
-  updateCompany(companyId: number, company: CompanyModel): Observable<CompanyModel> {
+  updateSupplier(supplierId: number, supplier: SupplierModel): Observable<SupplierModel> {
     console.log('updateCompany')
-    return this.httpClient.put<CompanyModel>(this.URL + '/' + companyId, JSON.stringify(company), this.httpOptions)
+    return this.httpClient.put<SupplierModel>(this.URL + '/' + supplierId, JSON.stringify(supplier), this.httpOptions)
       .pipe(
         catchError(this.handleError)
       )
   }
 
-  deleteCompany(companyId: number) {
-    return this.httpClient.delete<any>(this.URL + '/' + companyId, this.httpOptions)
+  deleteSupplier(supplierId: number) {
+    return this.httpClient.delete<any>(this.URL + '/' + supplierId, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       )
@@ -66,4 +64,5 @@ export class CompanyService {
     console.log(errorMessage);
     return throwError(errorMessage);
   };
+
 }

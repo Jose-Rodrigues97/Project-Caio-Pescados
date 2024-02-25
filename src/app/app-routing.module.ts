@@ -30,7 +30,7 @@ const routes: Routes = [
       // { path: 'sale', component: SaleComponent },
       // { path: 'stock', component: StockComponent },
       // { path: 'suppliers', component: SuppliersComponent },
-      // { path: 'products', component: ProductsComponent }, 
+      // { path: 'products', component: ProductsComponent },
       // { path: 'configuration', component: ConfigurationComponent },
       // { path: 'metrics', component: MetricsComponent },
       // { path: 'shippingCompany', component: ShippingCompanyComponent },
@@ -45,6 +45,13 @@ const routes: Routes = [
   {
     path: 'customer',
     component: CustomersComponent,
+  },
+  {
+    path: 'suppliers',
+    component: SuppliersComponent,
+    children:[
+
+    ]
   }
 ];
 

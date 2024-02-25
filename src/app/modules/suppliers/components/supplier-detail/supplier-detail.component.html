@@ -1,6 +1,6 @@
-<app-title-page pageName="Detalhes do Fornecedor" [buttons]=buttons></app-title-page>
+<app-title-page pageName="Detalhes do Fornecedor" (clickButton)="onClickButton()" [buttons]=buttons></app-title-page>
 <section class="main-content">
-  <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit($event)" #formDir="ngForm">
+  <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
     <div class="group-content">
       <span class="group-title">Dados Cadastrais</span>
       <div class="group-info">
@@ -10,8 +10,7 @@
             formControlName="name" required>
           <div *ngIf="name.invalid && formDir.submitted" class="validation-error">
             <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
-            <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 5 caracteres.
-            </p>
+            <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 5 caracteres.</p>
           </div>
         </div>
         <div class="group-input">
@@ -100,6 +99,5 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary" (change)="ngOnSubmit($event)">Aki teste pro submit</button>
   </form>
 </section>

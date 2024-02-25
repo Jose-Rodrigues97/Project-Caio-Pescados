@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, RequiredValidator } from '@angular/forms';
+import { SupplierService } from '../../services/supplier.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
+import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 
 @Component({
   selector: 'app-supplier-detail',
@@ -7,28 +11,38 @@ import { FormBuilder, FormGroup, FormControl, Validators, RequiredValidator } fr
   styleUrls: ['./supplier-detail.component.css']
 })
 export class SupplierDetailComponent {
-  @Input() id!: number;
+  @Input() supplierId!: number;
+  bsModalRef?: BsModalRef;
   formGroup!: FormGroup;
   buttons = [
-  {
-    name: 'VOLTAR',
-    link: '/suppliers',
-    class: 'btn-secondary'
-  },
-  {
-    name: 'SALVAR',
-    link: '/supplierDetail/',
-    class: 'btn-primary'
-  }]
+    {
+      name: 'VOLTAR',
+      link: 'suppliers/suppliersList',
+      class: 'btn-secondary'
+    },
+    {
+      name: 'SALVAR',
+      link: '',
+      class: 'btn-primary'
+    }]
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private supplierService: SupplierService,
+    private modalService: BsModalService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
+
+    const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
+    this.supplierId = Number(s.path);
+
     this.formGroup = this.formBuilder.group({
       name: '',
       cnpj: '',
-      stateRegistration:'',
+      stateRegistration: '',
       branch: '',
       street: '',
       numberStreet: '',
@@ -47,53 +61,81 @@ export class SupplierDetailComponent {
     this.formGroup.controls["email"].addValidators([Validators.required]);
 
   }
-  get name(){
+  get name() {
     return this.formGroup.get("name")!;
   }
-  get cnpj(){
+  get cnpj() {
     return this.formGroup.get("cnpj")!;
   }
-  get stateRegistration(){
+  get stateRegistration() {
     return this.formGroup.get("stateRegistration")!;
   }
-  get branch(){
+  get branch() {
     return this.formGroup.get("branch")!;
   }
-  get street(){
+  get street() {
     return this.formGroup.get("street")!;
   }
-  get numberStreet(){
+  get numberStreet() {
     return this.formGroup.get("numberStreet")!;
   }
-  get city(){
+  get city() {
     return this.formGroup.get("city")!;
   }
-  get estate(){
+  get estate() {
     return this.formGroup.get("estate")!;
   }
-  get country(){
+  get country() {
     return this.formGroup.get("country")!;
   }
-  get zipCode(){
+  get zipCode() {
     return this.formGroup.get("zipCode")!;
   }
-  get complement(){
+  get complement() {
     return this.formGroup.get("complement")!;
   }
-  get nameUser(){
+  get nameUser() {
     return this.formGroup.get("nameUser")!;
   }
-  get telephone(){
+  get telephone() {
     return this.formGroup.get("telephone")!;
   }
-  get email(){
+  get email() {
     return this.formGroup.get("email")!;
   }
 
-  ngOnSubmit(event:any){
-    if(this.formGroup.invalid){
-      return;
-    }
-    console.log("submit");
+  ngOnSubmit() {
+    this.submit(this.formGroup.value);
   }
+
+  onClickButton() {
+    this.ngOnSubmit();
+  }
+  submit(formGroup: FormGroup) {
+    try {
+      if (formGroup.valid) {
+        if (this.supplierId == 0) {
+          this.supplierService.updateSupplier(this.supplierId, this.formGroup.value).subscribe(() => {
+            this.handleModal('success', 'Fornecedor salvo com sucesso.');
+          });
+        }
+        else {
+          this.supplierService.createSupplier(this.formGroup.value).subscribe(() => {
+            this.handleModal('success', 'Fornecedor criado com sucesso.');
+          });
+        }
+      } else {
+        this.handleModal('warning', 'Formulário não preenchido corretamente.');
+      }
+    } catch (error) {
+      this.handleModal('danger', String(error));
+    }
+  }
+
+  handleModal(type: string, message: string) {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = type;
+    this.bsModalRef.content.message = message;
+  }
+
 }

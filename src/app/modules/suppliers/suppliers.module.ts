@@ -3,20 +3,20 @@ import { CommonModule } from '@angular/common';
 import { CardSupplierComponent } from './components/card-supplier/card-supplier.component';
 import { SuppliersComponent } from './suppliers.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ThemesModule } from '../themes/themes.module';
 import { SupplierDetailComponent } from './components/supplier-detail/supplier-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
-import { CompaniesRoutingModule } from './suppliers-routing.module';
-
-
+import { SuppliersRoutingModule } from './suppliers-routing.module';
+import { ListSuppliersComponent } from './components/supplier-list/suppliers-list.component';
+import { ThemesModule } from '../themes/themes.module';
 
 
 @NgModule({
   declarations: [
     CardSupplierComponent,
     SuppliersComponent,
+    ListSuppliersComponent,
     SupplierDetailComponent
   ],
   imports: [
@@ -27,7 +27,7 @@ import { CompaniesRoutingModule } from './suppliers-routing.module';
     ThemesModule,
     FontAwesomeModule,
     RouterModule,
-    CompaniesRoutingModule
+    SuppliersRoutingModule
   ]
 })
 export class SuppliersModule { }

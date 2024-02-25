@@ -1,7 +1,7 @@
 <div class="card-supplier">
     <div><img src="{{image}}" alt=""></div>
     <div>
-        <span style="text-transform: uppercase; font-weight: bold;">{{name}}</span>
+      <a [routerLink]="['/suppliers/supplierDetail', supplierId]" style="text-transform: uppercase;">{{name}}</a>
         <span>{{CNPJ}}</span>
     </div>
     <div>
