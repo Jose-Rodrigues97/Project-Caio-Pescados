@@ -13,21 +13,6 @@ const routes: Routes = [
   {
     path: '',
     component: CompaniesComponent,
-    children: [
-      //{ path: 'companiesList', component: ListCompaniesComponent },
-      // { path: 'about', component: AboutComponent },
-      // { path: 'customers', component: CustomersComponent },
-      // { path: 'purchase', component: PurchaseComponent },
-      // { path: 'sale', component: SaleComponent },
-      // { path: 'stock', component: StockComponent },
-      // { path: 'suppliers', component: SuppliersComponent },
-      // { path: 'products', component: ProductsComponent }, 
-      // { path: 'configuration', component: ConfigurationComponent },
-      // { path: 'metrics', component: MetricsComponent },
-      // { path: 'shippingCompany', component: ShippingCompanyComponent },
-      //  { path: '**', component: PageNotFoundComponent }
-    ],
-    // canActivate: [AuthGuard]
   },
   {
     path: 'collaborator',
@@ -37,6 +22,12 @@ const routes: Routes = [
   {
     path: 'customer',
     component: CustomersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'supplier',
+    component: CustomersComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
