@@ -31,6 +31,11 @@ img {
   background-color: white;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
 @media (max-width: 1250px) {
   img {
       width: 60px;

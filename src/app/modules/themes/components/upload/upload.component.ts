@@ -20,7 +20,4 @@ export class UploadComponent {
     }
 
   }
-  onUpload(event:any){
-    
-  }
 }

@@ -13,4 +13,5 @@ export class CardSupplierComponent {
   @Input() image!: string;
   @Input() city!: string;
   @Input() state!: string;
+  @Input() supplierId!: number;
 }
