@@ -5,14 +5,23 @@ import { CustomersComponent } from './modules/customers/customers.component';
 import { CompaniesComponent } from './modules/companies/companies.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationComponent } from './modules/authentication/authentication.component';
-import { CreateAccountComponent } from './modules/authentication/components/create-account/create-account.component';
 import { LoginComponent } from './modules/authentication/components/login/login.component';
+import { CreateAccountComponent } from './modules/authentication/components/create-account/create-account.component';
 
 const routes: Routes = [
-
+  {
+    path: '',
+    component: AuthenticationComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'createAccount', component: CreateAccountComponent }
+    ]
+  },
   {
     path: '',
     component: CompaniesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'collaborator',
