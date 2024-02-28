@@ -1,22 +1,23 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment-prod';
-import { CompaniesModel } from '../models/company-model/companies-model.module';
-import { CompanyModel } from '../models/company-model/company-model.module';
+import { environment } from 'src/environments/environment';
+import { CompaniesModel } from '../models/company-model/companies-model';
+import { CompanyModel } from '../models/company-model/company-model';
+import { Companyv2Model } from '../models/company-model/companyv2-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  private readonly URL = `${environment.URL}competicao`;
+  private readonly URL = `${environment.URL}company`;
+  httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + window.localStorage.getItem('Token')!,
+  })
 
   constructor(private httpClient: HttpClient) { }
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  }
 
   getCompanies(): Observable<CompaniesModel> {
     return this.httpClient.get<CompaniesModel>(this.URL)
@@ -31,24 +32,22 @@ export class CompanyService {
       )
   }
 
-  createCompany(competition: CompanyModel): Observable<CompanyModel> {
-    console.log('createCompany')
-    return this.httpClient.post<CompanyModel>(this.URL, JSON.stringify(competition), this.httpOptions)
+  createCompany(company: Companyv2Model): Observable<Companyv2Model> {
+    return this.httpClient.post<Companyv2Model>(this.URL, JSON.stringify(company), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       )
   }
 
-  updateCompany(competitionId: number, competition: CompanyModel): Observable<CompanyModel> {
-    console.log('updateCompany')
-    return this.httpClient.put<CompanyModel>(this.URL + '/' + competitionId, JSON.stringify(competition), this.httpOptions)
+  updateCompany(companyId: number, company: CompanyModel): Observable<CompanyModel> {
+    return this.httpClient.put<CompanyModel>(this.URL + '/' + companyId, JSON.stringify(company), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       )
   }
 
   deleteCompany(companyId: number) {
-    return this.httpClient.delete<any>(this.URL + '/' + companyId, this.httpOptions)
+    return this.httpClient.delete<any>(this.URL + '/' + companyId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       )

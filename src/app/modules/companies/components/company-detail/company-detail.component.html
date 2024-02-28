@@ -93,6 +93,10 @@
                 <div class="group-input">
                     <label for="email" style="font-size: 15px; margin-bottom: 0px;">E-mail</label>
                     <input id="email" class="form-control" type="text" style="width: 100%;" formControlName="email">
+                    <div *ngIf="email.invalid && formDir.submitted" class="validation-error">
+                        <p *ngIf="email.errors?.['required']">E-mail obrigatório.</p>
+                        <p *ngIf="email.errors?.['email']">E-mail inválido.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -154,7 +158,8 @@
                             (change)="onChangeWorkingDay($event)">
                         <div style="display: flex; align-items: center; gap: 5px">
                             Das
-                            <input class="form-control" type="time" style="width: 25%;" formControlName="wednesdayStart">
+                            <input class="form-control" type="time" style="width: 25%;"
+                                formControlName="wednesdayStart">
                             às <input class="form-control" type="time" style="width: 100%;" style="width: 25%;"
                                 formControlName="wednesdayEnd">
                         </div>

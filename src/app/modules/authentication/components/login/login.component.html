@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="background">
+    </div>
+    <div class="ctn-form">
+        <form style="width: 100%;" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
+            <div class="mb-3">
+                <label for="login" class="form-label">Login</label>
+                <input type="login" class="form-control" id="login" formControlName="login">
+                <div *ngIf="login.invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="login.errors?.['required']">Login obrigatório.</p>
+                    <p *ngIf="login.errors?.['minLength']">Login deve conter pelo menos 4 caracteres.</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+                <div *ngIf="password.invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="password.errors?.['required']">Senha obrigatória.</p>
+                </div>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="check">
+                <label class="form-check-label" for="exampleCheck1">Confirmar</label>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>

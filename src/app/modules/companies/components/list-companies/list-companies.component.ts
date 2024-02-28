@@ -6,6 +6,7 @@ import { EstateModel } from 'src/app/models/estate-model';
 import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-list-companies',
@@ -13,10 +14,10 @@ import { faShare } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./list-companies.component.css']
 })
 export class ListCompaniesComponent {
-
+  faPlus = faPlusCircle;
   buttons = [
     {
-      name: 'CRIAR EMPRESA',
+      name: 'NOVA EMPRESA',
       link: 'company/companyDetail/',
       class: 'btn-primary'
     }]

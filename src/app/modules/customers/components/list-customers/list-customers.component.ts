@@ -5,6 +5,7 @@ import { CityModel } from 'src/app/models/city-model';
 import { EstateModel } from 'src/app/models/estate-model';
 import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-list-customers',
@@ -12,6 +13,7 @@ import { EstateService } from 'src/app/services/estate/estate.service';
   styleUrls: ['./list-customers.component.css']
 })
 export class ListCustomersComponent {
+  faPlus = faPlusCircle;
   buttons = [
     {
       name: 'CRIAR CLIENTE',

@@ -3,7 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CompanyService } from '../../services/company.service';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ActivatedRoute, PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
+import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
+import { CompanyModel } from '../../models/company-model/company-model';
+import { Companyv2Model } from '../../models/company-model/companyv2-model';
 
 @Component({
   selector: 'app-company-detail',
@@ -30,12 +32,8 @@ export class CompanyDetailComponent {
     private companyService: CompanyService,
     private modalService: BsModalService,
     private router: Router) {
-  }
-
-  ngOnInit() {
     const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
     this.companyId = Number(s.path);
-
     this.formGroup = this.formBuilder.group({
       id: this.companyId,
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -53,7 +51,7 @@ export class CompanyDetailComponent {
       complement: '',
       homePhone: '',
       cellPhone: '',
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       totalCollaborators: '',
       sunday: false,
       monday: false,
@@ -77,6 +75,12 @@ export class CompanyDetailComponent {
       fridayEnd: { value: '', disabled: true },
       saturdayEnd: { value: '', disabled: true },
     });
+  }
+
+  ngOnInit() {
+    if (this.formGroup.get('id')?.value !== 0) {
+      this.getCompanyById(this.formGroup.get('id')?.value);
+    }
   }
 
   get name() {
@@ -184,23 +188,32 @@ export class CompanyDetailComponent {
 
   ngOnSubmit() {
     try {
-      if (this.formGroup.valid) {
-        if (this.companyId == 0) {
-          this.companyService.createCompany(this.formGroup.value).subscribe(() => {
-            this.handleModal('success', 'Empresa criada com sucesso.');
-          });
-        }
-        else {
-          this.companyService.updateCompany(this.companyId, this.formGroup.value).subscribe(() => {
-            this.handleModal('success', 'Empresa atualizada com sucesso.');
-          });
-        }
-      } else {
-        this.handleModal('warning', 'Formulário não preenchido corretamente.');
+      if (this.companyId == 0) {
+        let companyv2Model = <Companyv2Model>{};
+        companyv2Model.corporateName = this.formGroup.get('name')?.value;
+        companyv2Model.email = this.formGroup.get('email')?.value;
+        companyv2Model.taxNumber = this.formGroup.get('taxNumber')?.value;
+        this.companyService.createCompany(companyv2Model).subscribe(() => {
+          this.handleModal('success', 'Empresa criada com sucesso.');
+        });
+      }
+      else {
+        this.companyService.updateCompany(this.companyId, this.formGroup.value).subscribe(() => {
+          this.handleModal('success', 'Empresa atualizada com sucesso.');
+        });
       }
     } catch (error) {
       this.handleModal('danger', String(error));
     }
+  }
+
+  getCompanyById(id: number) {
+    this.companyService.getCompanyById(id).subscribe((company: CompanyModel) => {
+      this.formGroup = this.formBuilder.group({
+        name: [company.name],
+
+      })
+    });
   }
 
   handleModal(type: string, message: string) {

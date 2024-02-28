@@ -1,10 +1,10 @@
-<app-title-page pageName="Colaboradores" [buttons]=buttons></app-title-page>
+<app-title-page pageName="Colaboradores" [buttons]=buttons [iconButton]=faPlus></app-title-page>
 <div>
     <div style="width: 70%;">
         <ng-container *ngFor="let company of companies">
-            <app-card-collaborator style="width: 70%;" [id]="company.id" [name]="company.name" [isHeadquarters]="company.isHeadquarters"
-                [taxNumber]="company.taxNumber" [address]="company.address" [phone]="company.phone"
-                [email]="company.email" [state]="company.state" [city]="company.city"
+            <app-card-collaborator style="width: 70%;" [id]="company.id" [name]="company.name"
+                [isHeadquarters]="company.isHeadquarters" [taxNumber]="company.taxNumber" [address]="company.address"
+                [phone]="company.phone" [email]="company.email" [state]="company.state" [city]="company.city"
                 [image]="company.image"></app-card-collaborator>
         </ng-container>
         <app-pagination></app-pagination>

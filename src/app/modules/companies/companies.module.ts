@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompaniesComponent } from '../../modules/companies/companies.component';
 import { CardCompanyComponent } from './components/card-company/card-company.component';
@@ -10,6 +10,7 @@ import { CompanyDetailComponent } from './components/company-detail/company-deta
 import { RouterModule } from '@angular/router';
 import { CompaniesRoutingModule } from './companies-routing.module';
 import { ListCompaniesComponent } from './components/list-companies/list-companies.component';
+import { CompanyService } from './services/company.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,10 @@ import { ListCompaniesComponent } from './components/list-companies/list-compani
     FormsModule,
     ReactiveFormsModule,
     ThemesModule,
-    FontAwesomeModule, 
+    FontAwesomeModule,
     RouterModule,
     CompaniesRoutingModule
-  ]
+  ],
+  providers: []
 })
 export class CompaniesModule { }

@@ -6,6 +6,7 @@ import { CityModel } from 'src/app/models/city-model';
 import { EstateModel } from 'src/app/models/estate-model';
 import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-list-collaborators',
@@ -13,9 +14,10 @@ import { EstateService } from 'src/app/services/estate/estate.service';
   styleUrls: ['./list-collaborators.component.css']
 })
 export class ListCollaboratorsComponent {
+  faPlus = faPlusCircle;
   buttons = [
     {
-      name: 'criar colaborador',
+      name: 'novo colaborador',
       link: 'collaborator/collaboratorDetail/',
       class: 'btn-primary'
     }]

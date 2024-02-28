@@ -18,24 +18,25 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AuthenticationModule,
     CompaniesModule,
     ProductsModule,
     AboutModule,
     ConfigurationModule,
     CustomersModule,
     SuppliersModule,
-    AuthenticationModule,
     ThemesModule,
     LogisticModule,
     AccountingModule,
     CollaboratorsModule,
     ModalModule.forRoot()
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

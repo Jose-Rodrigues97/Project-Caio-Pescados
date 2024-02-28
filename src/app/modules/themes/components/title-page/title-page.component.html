@@ -7,8 +7,15 @@
             <div *ngIf="button.link == null; else blockButton">
             </div>
             <ng-template #blockButton>
-                <button class="btn {{button.class}}" style="text-transform: uppercase;"
-                    (click)="onClickButton(button.link)">{{button.name}}</button>
+                <button class="btn {{button.class}}" style="text-transform: uppercase;
+                align-items: center;
+                display: flex;
+                gap: 5px;" (click)="onClickButton(button.link)">
+                    <div *ngIf="iconButton != null;">
+                        <fa-icon [icon]='iconButton' style="display: flex;"></fa-icon>
+                    </div>
+                    {{button.name}}
+                </button>
             </ng-template>
         </ng-container>
     </div>
