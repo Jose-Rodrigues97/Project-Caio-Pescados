@@ -1,4 +1,7 @@
 import { Component, Input, Output } from '@angular/core';
+import { PaginationModel } from '../../models/pagination-model';
+import { PageableModel } from '../../models/pageable-model';
+import { SortModel } from '../../models/sort-model';
 
 @Component({
   selector: 'app-pagination',
@@ -6,10 +9,17 @@ import { Component, Input, Output } from '@angular/core';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent {
-  @Input() count!: number;
-  @Input() limit!: number;
-  @Input() total!: number;
-  @Output() page!: number;
-  activePrevious!: boolean;
-  activeNext!: boolean;
+  @Input() empty!: boolean;
+  @Input() first!: boolean;
+  @Input() last!: boolean;
+  @Input() number!: number;
+  @Input() numberOfElements!: number;
+  @Input() pageable!: PageableModel;
+  @Input() size!: number;
+  @Input() sort!: SortModel;
+  @Input() totalElements!: number;
+  @Input() totalPages!: number;
+
+  ngOnInit() {
+  }
 }

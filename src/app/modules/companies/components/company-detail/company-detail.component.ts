@@ -4,8 +4,7 @@ import { CompanyService } from '../../services/company.service';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
-import { CompanyModel } from '../../models/company-model/company-model';
-import { Companyv2Model } from '../../models/company-model/companyv2-model';
+import { CompanyModel } from '../../models/company-model';
 
 @Component({
   selector: 'app-company-detail',
@@ -189,7 +188,7 @@ export class CompanyDetailComponent {
   ngOnSubmit() {
     try {
       if (this.companyId == 0) {
-        let companyv2Model = <Companyv2Model>{};
+        let companyv2Model = <CompanyModel>{};
         companyv2Model.corporateName = this.formGroup.get('name')?.value;
         companyv2Model.email = this.formGroup.get('email')?.value;
         companyv2Model.taxNumber = this.formGroup.get('taxNumber')?.value;
@@ -210,7 +209,7 @@ export class CompanyDetailComponent {
   getCompanyById(id: number) {
     this.companyService.getCompanyById(id).subscribe((company: CompanyModel) => {
       this.formGroup = this.formBuilder.group({
-        name: [company.name],
+        name: [company.corporateName],
 
       })
     });

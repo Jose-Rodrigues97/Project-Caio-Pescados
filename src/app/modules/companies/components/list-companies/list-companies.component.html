@@ -1,14 +1,19 @@
 <app-title-page pageName="Minhas Empresas" [buttons]=buttons [iconButton]=faPlus></app-title-page>
 <div>
-    <div style="width: 70%;">
-        <ng-container *ngFor="let company of companies">
-            <app-card-company style="width: 70%;" [companyId]="company.id" [name]="company.name"
-                [isHeadquarters]="company.isHeadquarters" [taxNumber]="company.taxNumber" [address]="company.address"
-                [phone]="company.phone" [email]="company.email" [state]="company.state" [city]="company.city"
-                [image]="company.image"></app-card-company>
+    <div style="width: 70%;" *ngIf="companies$ | async as companies; else list">
+        <ng-container *ngFor="let company of companies.content">
+            <app-card-company style="width: 70%;" [company]="company"></app-card-company>
         </ng-container>
-        <app-pagination></app-pagination>
+        <app-pagination [last]="companies.last" [size]="companies.size" [sort]="companies.sort"
+            [totalPages]="companies.totalPages" [totalElements]="companies.totalElements"
+            [numberOfElements]="companies.numberOfElements" [number]="companies.number" [empty]="companies.empty"
+            [first]="companies.first" [pageable]="companies.pageable"></app-pagination>
     </div>
+    <ng-template #list>
+        <div style="width:70%; text-align: center;">
+            <app-sppiner style="width: 100vw; height: 100vh;"></app-sppiner>
+        </div>
+    </ng-template>
     <div class="search">
         <form [formGroup]="formGroup">
             <input class="form-control" type="text" placeholder="Pesquise nome ou CNPJ" style="width: 100%;"

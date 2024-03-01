@@ -1,9 +1,9 @@
 <div class="card-company">
-    <img src="{{image}}" alt="">
+    <img src="{{company.image}}" alt="">
     <div>
-        <a [routerLink]="['/company/companyDetail', companyId]" style="text-transform: uppercase;">{{name}}</a>
-        <span>{{taxNumber}}</span>
-        <div *ngIf="isHeadquarters; else blockSubsidiary">
+        <a [routerLink]="['/company/companyDetail', company.companyId]" style="text-transform: uppercase;">{{company.corporateName}}</a>
+        <span>{{company.taxNumber}}</span>
+        <div *ngIf="company.isHeadquarters; else blockSubsidiary">
             <span>Matriz</span>
         </div>
         <ng-template #blockSubsidiary>
@@ -11,12 +11,13 @@
         </ng-template>
     </div>
     <div>
-        <span style="text-transform: uppercase;">{{state}}</span>
-        <span style="text-transform: uppercase;">{{city}}</span>
-        <span>{{address}}</span>
+        <span style="text-transform: uppercase;">{{company.estate}}</span>
+        <span style="text-transform: uppercase;">{{company.city}}</span>
+        <span>{{company.address}}</span>
     </div>
     <div>
-        <span>{{phone}}</span>
-        <span>{{email}}</span>
+        <span>{{company.phone}}</span>
+        <span>{{company.email}}</span>
+        <span>Total de Colaboradores: {{company.totalCollaborators}}</span>
     </div>
 </div>

@@ -1,4 +1,4 @@
-export interface Companyv2Model {
+export interface CompanyModel {
     companyId: number;
     corporateName: string;
     taxNumber: string;

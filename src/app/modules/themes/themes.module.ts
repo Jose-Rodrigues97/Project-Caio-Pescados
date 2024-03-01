@@ -12,6 +12,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { InternalErrorComponent } from './components/internal-error/internal-error.component';
 import { AlertModalComponent } from './components/alert-modal-component/alert-modal.component';
+import { SppinerComponent } from './components/sppiner/sppiner.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AlertModalComponent } from './components/alert-modal-component/alert-mo
     UploadComponent,
     PageNotFoundComponent,
     InternalErrorComponent,
-    AlertModalComponent
+    AlertModalComponent,
+    SppinerComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { AlertModalComponent } from './components/alert-modal-component/alert-mo
     PaginationComponent,
     TitlePageComponent,
     UploadComponent,
-    AlertModalComponent
+    AlertModalComponent,
+    SppinerComponent
   ]
 })
 

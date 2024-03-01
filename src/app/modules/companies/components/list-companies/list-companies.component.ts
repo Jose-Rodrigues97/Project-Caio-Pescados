@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CityModel } from 'src/app/models/city-model';
 import { EstateModel } from 'src/app/models/estate-model';
@@ -7,6 +7,10 @@ import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { CompanyService } from '../../services/company.service';
+import { CompaniesModel } from '../../models/companies-model';
+import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-list-companies',
@@ -25,23 +29,18 @@ export class ListCompaniesComponent {
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;
   faShare = faShare;
-  companies = [
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-  ]
+  companies$!: Observable<CompaniesModel>;
+  bsModalRef?: BsModalRef;
 
-  constructor(private estateService: EstateService,
+  constructor(private companyService: CompanyService,
+    private estateService: EstateService,
     private citiesService: CityService,
+    private modalService: BsModalService,
     private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.getCompanies();
     this.getEstates();
     this.formGroup = this.formBuilder.group({
       text: '',
@@ -50,8 +49,12 @@ export class ListCompaniesComponent {
     })
   }
 
-  onSubmit(): void {
+  onSubmit() {
 
+  }
+
+  getCompanies() {
+    this.companies$ = this.companyService.getCompanies();
   }
 
   onClean() {
@@ -62,7 +65,11 @@ export class ListCompaniesComponent {
   getEstates() {
     this.estateService.getUFs().subscribe((estates: EstateModel[]) => {
       this.estates = estates;
-    });
+    },
+      error => {
+        this.handleModal('danger', error);
+      }
+    );
   }
 
   getCities() {
@@ -73,5 +80,11 @@ export class ListCompaniesComponent {
   changeUF() {
     this.getCities();
     this.formGroup.value.city = "";
+  }
+
+  handleModal(type: string, message: string) {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = type;
+    this.bsModalRef.content.message = message;
   }
 }
