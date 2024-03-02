@@ -11,13 +11,13 @@ import { AlertModalComponent } from 'src/app/modules/themes/components/alert-mod
   styleUrls: ['./supplier-detail.component.css']
 })
 export class SupplierDetailComponent {
-  @Input() supplierId!: number;
+  @Input() supplierId: number = 0;
   bsModalRef?: BsModalRef;
   formGroup!: FormGroup;
   buttons = [
     {
       name: 'VOLTAR',
-      link: 'suppliers/suppliersList',
+      link: 'supplier/supplierList',
       class: 'btn-secondary'
     },
     {
@@ -41,7 +41,7 @@ export class SupplierDetailComponent {
 
     this.formGroup = this.formBuilder.group({
       name: '',
-      cnpj: '',
+      taxNumber: '',
       stateRegistration: '',
       branch: '',
       street: '',
@@ -56,7 +56,7 @@ export class SupplierDetailComponent {
       email: ''
     });
     this.formGroup.controls["name"].addValidators([Validators.required, Validators.minLength(5)]);
-    this.formGroup.controls["cnpj"].addValidators([Validators.required, Validators.minLength(13)]);
+    this.formGroup.controls["taxNumber"].addValidators([Validators.required, Validators.minLength(13)]);
     this.formGroup.controls["telephone"].addValidators([Validators.required]);
     this.formGroup.controls["email"].addValidators([Validators.required]);
 
@@ -64,8 +64,8 @@ export class SupplierDetailComponent {
   get name() {
     return this.formGroup.get("name")!;
   }
-  get cnpj() {
-    return this.formGroup.get("cnpj")!;
+  get taxNumber() {
+    return this.formGroup.get("taxNumber")!;
   }
   get stateRegistration() {
     return this.formGroup.get("stateRegistration")!;
@@ -113,19 +113,15 @@ export class SupplierDetailComponent {
   }
   submit(formGroup: FormGroup) {
     try {
-      if (formGroup.valid) {
-        if (this.supplierId == 0) {
-          this.supplierService.updateSupplier(this.supplierId, this.formGroup.value).subscribe(() => {
-            this.handleModal('success', 'Fornecedor salvo com sucesso.');
-          });
-        }
-        else {
-          this.supplierService.createSupplier(this.formGroup.value).subscribe(() => {
-            this.handleModal('success', 'Fornecedor criado com sucesso.');
-          });
-        }
-      } else {
-        this.handleModal('warning', 'Formulário não preenchido corretamente.');
+      if (this.supplierId == 0) {
+        this.supplierService.createSupplier(this.formGroup.value).subscribe(() => {
+          this.handleModal('success', 'Fornecedor criado com sucesso.');
+        });
+      }
+      else {
+        this.supplierService.updateSupplier(this.supplierId, this.formGroup.value).subscribe(() => {
+          this.handleModal('success', 'Fornecedor salvo com sucesso.');
+        });
       }
     } catch (error) {
       this.handleModal('danger', String(error));

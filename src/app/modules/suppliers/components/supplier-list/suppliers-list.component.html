@@ -1,14 +1,20 @@
 <app-title-page pageName="Fornecedor" [buttons]=buttons></app-title-page>
 <div>
-    <div style="width: 70%;">
-        <ng-container *ngFor="let supplier of suppliers">
-            <app-card-supplier style="width: 70%;" [supplierId]="supplier.id" [name]="supplier.name"
-                [CNPJ]="supplier.CNPJ" [telephone]="supplier.telephone"
-                [email]="supplier.email" [state]="supplier.state" [city]="supplier.city"
-                [image]="supplier.image"></app-card-supplier>
+    <div style="width: 70%;"
+      *ngIf="suppliers$ | async as suppliers; else list">
+        <ng-container *ngFor="let supplier of suppliers.content">
+            <app-card-supplier style="width: 70%;" [supplier]="supplier"></app-card-supplier>
         </ng-container>
-        <app-pagination></app-pagination>
+        <app-pagination [last]="suppliers.last" [size]="suppliers.size" [sort]="suppliers.sort"
+            [totalPages]="suppliers.totalPages" [totalElements]="suppliers.totalElements"
+            [numberOfElements]="suppliers.numberOfElements" [number]="suppliers.number" [empty]="suppliers.empty"
+            [first]="suppliers.first" [pageable]="suppliers.pageable"></app-pagination>
     </div>
+    <ng-template #list>
+      <div style="width:70%; text-align: center;">
+          <app-sppiner style="width: 100vw; height: 100vh;"></app-sppiner>
+      </div>
+  </ng-template>
     <div class="search">
         <form [formGroup]="formGroup">
             <input class="form-control" type="text" placeholder="Pesquise nome, CPF ou CNPJ" style="width: 100%;"

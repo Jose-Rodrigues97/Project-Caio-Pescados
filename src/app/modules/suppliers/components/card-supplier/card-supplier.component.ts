@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { SupplierModel } from '../../models/supplier-model';
 
 @Component({
   selector: 'app-card-supplier',
@@ -6,12 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./card-supplier.component.css']
 })
 export class CardSupplierComponent {
-  @Input() name!: string;
-  @Input() CNPJ!: string;
-  @Input() telephone!: number;
-  @Input() email!: string;
-  @Input() image!: string;
-  @Input() city!: string;
-  @Input() state!: string;
-  @Input() supplierId!: number;
+  @Input() supplier!:SupplierModel;
 }
