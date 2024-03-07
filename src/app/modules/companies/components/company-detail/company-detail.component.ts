@@ -45,7 +45,7 @@ export class CompanyDetailComponent {
     this.formGroup = this.formBuilder.group({
       id: this.companyId,
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      taxNumber: new FormControl('', [Validators.required, Validators.minLength(13)]),
+      taxNumber: new FormControl('', [Validators.required, Validators.minLength(14)]),
       corporateReason: '',
       cnae: '',
       stateRegistration: '',
