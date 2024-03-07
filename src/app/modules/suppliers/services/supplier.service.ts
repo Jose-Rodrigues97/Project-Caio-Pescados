@@ -1,25 +1,28 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment-prod';
-import { SupplierModel } from '../models/supplier-model/supplier-model.module';
+import { Observable, catchError, delay, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { SuppliersModel } from '../models/suppliers-model';
+import { SupplierModel } from '../models/supplier-model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SupplierService {
 
-  private readonly URL = `${environment.URL}competicao`;
+  private readonly URL = `${environment.URL}supplier`;
+  httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + window.localStorage.getItem('Token')!,
+  })
 
   constructor(private httpClient: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  }
-
-  getSupplier(): Observable<SupplierModel> {
-    return this.httpClient.get<SupplierModel>(this.URL)
+  getSuppliers(): Observable<SuppliersModel> {
+    return this.httpClient.get<SuppliersModel>(this.URL, { headers: this.httpHeaders })
       .pipe(
+        delay(3000),
         catchError(this.handleError))
   }
 
@@ -31,22 +34,21 @@ export class SupplierService {
   }
 
   createSupplier(supplier: SupplierModel): Observable<SupplierModel> {
-    return this.httpClient.post<SupplierModel>(this.URL, JSON.stringify(supplier), this.httpOptions)
+    return this.httpClient.post<SupplierModel>(this.URL, JSON.stringify(supplier), {headers: this.httpHeaders})
       .pipe(
         catchError(this.handleError)
-      )
+      );
   }
 
   updateSupplier(supplierId: number, supplier: SupplierModel): Observable<SupplierModel> {
-    console.log('updateCompany')
-    return this.httpClient.put<SupplierModel>(this.URL + '/' + supplierId, JSON.stringify(supplier), this.httpOptions)
+    return this.httpClient.put<SupplierModel>(this.URL + '/' + supplierId, JSON.stringify(supplier), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
-      )
+      );
   }
 
   deleteSupplier(supplierId: number) {
-    return this.httpClient.delete<any>(this.URL + '/' + supplierId, this.httpOptions)
+    return this.httpClient.delete<any>(this.URL + '/' + supplierId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       )

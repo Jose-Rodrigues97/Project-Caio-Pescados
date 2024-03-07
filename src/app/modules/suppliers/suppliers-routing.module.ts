@@ -7,12 +7,12 @@ import { ListSuppliersComponent } from './components/supplier-list/suppliers-lis
 
 const suppliersRoutes: Routes = [
   {
-    path: 'suppliers',
+    path: 'supplier',
     component: SuppliersComponent,
     children: [
-      { path: '', redirectTo: 'suppliersList', pathMatch: 'full' },
-      { path: 'suppliersList', component: ListSuppliersComponent },
-      { path: 'supplierDetail/:supplierid', component: SupplierDetailComponent },
+      { path: '', redirectTo: 'supplierList', pathMatch: 'full' },
+      { path: 'supplierList', component: ListSuppliersComponent },
+      { path: 'supplierDetail/:supplierId', component: SupplierDetailComponent },
       { path: '**', component: PageNotFoundComponent }
     ]
   }

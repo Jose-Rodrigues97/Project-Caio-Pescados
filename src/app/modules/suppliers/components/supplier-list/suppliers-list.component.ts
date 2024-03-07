@@ -5,7 +5,11 @@ import { CityModel } from 'src/app/models/city-model';
 import { EstateModel } from 'src/app/models/estate-model';
 import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
-
+import { SuppliersModel } from '../../models/suppliers-model';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { SupplierService } from '../../services/supplier.service';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-suppliers-list',
@@ -16,54 +20,61 @@ export class ListSuppliersComponent {
   buttons = [
     {
       name: 'CRIAR FORNECEDOR',
-      link: 'suppliers/supplierDetail/',
+      link: 'supplier/supplierDetail/',
       class: 'btn-primary'
     }]
-    estates = {} as EstateModel[];
-    cities$!: Observable<CityModel[]>;
-    formGroup!: FormGroup;
+  estates = {} as EstateModel[];
+  cities$!: Observable<CityModel[]>;
+  formGroup!: FormGroup;
+  suppliers$!: Observable<SuppliersModel>
+  bsModalRef?: BsModalRef;
+  faPlus = faPlusCircle;
+  faShare = faShare;
 
-    suppliers = [
-      { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", telephone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", CNPJ: "65181611616161" },
-      { id: 2, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", telephone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", CNPJ: "65181611616161" },
-    ]
+  constructor(
+    private supplierService: SupplierService,
+    private estateService: EstateService,
+    private citiesService: CityService,
+    private formBuilder: FormBuilder) {
+  }
 
-    constructor(private estateService: EstateService,
-      private citiesService: CityService,
-      private formBuilder: FormBuilder) {
-    }
+  ngOnInit() {
+    this.getSuppliers();
+    this.getEstates();
+    this.formGroup = this.formBuilder.group({
+      text: '',
+      estate: '',
+      city: ''
+    })
+  }
 
-    ngOnInit() {
-      this.getEstates();
-      this.formGroup = this.formBuilder.group({
-        text: '',
-        estate: '',
-        city: ''
-      })
-    }
+  onSubmit(): void {
 
-    onSubmit(): void {
+  }
 
-    }
+  getSuppliers() {
 
-    onClean() {
-      this.formGroup.reset();
-      this.cities$ = new Observable<[]>();
-    }
+    this.suppliers$ = this.supplierService.getSuppliers();
 
-    getEstates() {
-      this.estateService.getUFs().subscribe((estates: EstateModel[]) => {
-        this.estates = estates;
-      });
-    }
+  }
 
-    getCities() {
-      this.cities$ = this.citiesService.getCitiesByUF(this.formGroup.value.estate);
-    };
+  onClean() {
+    this.formGroup.reset();
+    this.cities$ = new Observable<[]>();
+  }
 
+  getEstates() {
+    this.estateService.getUFs().subscribe((estates: EstateModel[]) => {
+      this.estates = estates;
+    });
+  }
 
-    changeUF() {
-      this.getCities();
-      this.formGroup.value.city = "";
-    }
+  getCities() {
+    this.cities$ = this.citiesService.getCitiesByUF(this.formGroup.value.estate);
+  };
+
+  changeUF() {
+    this.getCities();
+    this.formGroup.value.city = "";
+  }
 }

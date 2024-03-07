@@ -1,11 +1,11 @@
 <div class="card-supplier">
-    <div><img src="{{image}}" alt=""></div>
+    <div><img src="{{supplier.image}}" alt=""></div>
     <div>
-      <a [routerLink]="['/suppliers/supplierDetail', supplierId]" style="text-transform: uppercase;">{{name}}</a>
-        <span>{{CNPJ}}</span>
+      <a [routerLink]="['/supplier/supplierDetail', supplier.supplierId]" style="text-transform: uppercase;">{{supplier.name}}</a>
+        <span>{{supplier.taxNumber}}</span>
     </div>
     <div>
-        <span>{{telephone}}</span>
-        <span>{{email}}</span>
+        <span>{{supplier.telephone}}</span>
+        <span>{{supplier.email}}</span>
     </div>
 </div>
