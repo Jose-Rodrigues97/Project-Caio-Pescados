@@ -1,4 +1,3 @@
-import { PaginationModel } from "src/app/modules/themes/models/pagination-model";
 import { Companyv2Model } from "./companyv2-model";
 import { PageableModel } from "../../themes/models/pageable-model";
 import { SortModel } from "../../themes/models/sort-model";

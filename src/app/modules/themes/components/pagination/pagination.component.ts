@@ -1,5 +1,4 @@
 import { Component, Input, Output } from '@angular/core';
-import { PaginationModel } from '../../models/pagination-model';
 import { PageableModel } from '../../models/pageable-model';
 import { SortModel } from '../../models/sort-model';
 

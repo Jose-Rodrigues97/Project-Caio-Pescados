@@ -5,6 +5,12 @@ import { AlertModalComponent } from 'src/app/modules/themes/components/alert-mod
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
 import { CompanyModel } from '../../models/company-model';
+import { Companyv3Model } from '../../models/companyv3-model';
+import { TelephoneModel } from '../../models/telephone-model';
+import { CompanyExtModel } from '../../models/company-ext-model';
+import { CompanyAddressModel } from '../../models/company-address-model';
+import { ErrorModel } from 'src/app/models/error/error-model';
+import { properties } from '../../module property/properties';
 
 @Component({
   selector: 'app-company-detail',
@@ -15,6 +21,9 @@ export class CompanyDetailComponent {
   @Input() companyId: number = 0;
   bsModalRef?: BsModalRef;
   formGroup!: FormGroup;
+  submitted: boolean = false;
+  image!: Blob;
+  isShowPanelOpeningHours = properties.isShowPanelOpeningHours;
   buttons = [
     {
       name: 'VOLTAR',
@@ -42,12 +51,14 @@ export class CompanyDetailComponent {
       stateRegistration: '',
       creationDate: '',
       situationRevenue: '',
-      street: '',
+      isHeadquarters: false,
+      address: '',
       city: '',
       estate: '',
       country: '',
       zipCode: '',
       complement: '',
+      image: Blob,
       homePhone: '',
       cellPhone: '',
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -187,31 +198,117 @@ export class CompanyDetailComponent {
 
   ngOnSubmit() {
     try {
-      if (this.companyId == 0) {
-        let companyv2Model = <CompanyModel>{};
-        companyv2Model.corporateName = this.formGroup.get('name')?.value;
-        companyv2Model.email = this.formGroup.get('email')?.value;
-        companyv2Model.taxNumber = this.formGroup.get('taxNumber')?.value;
-        this.companyService.createCompany(companyv2Model).subscribe(() => {
-          this.handleModal('success', 'Empresa criada com sucesso.');
-        });
+      this.submitted = true;
+      if (this.formGroup.valid) {
+        if (this.companyId == 0) {
+          let companyModel = {} as CompanyModel;
+          companyModel.corporateName = this.formGroup.get('name')?.value;
+          companyModel.email = this.formGroup.get('email')?.value;
+          companyModel.taxNumber = this.formGroup.get('taxNumber')?.value;
+          let companyExtModel = {} as CompanyExtModel;
+          companyExtModel.cnae = this.formGroup.get('cnae')?.value;
+          companyExtModel.fantasyName = this.formGroup.get('corporateReason')?.value;
+          companyExtModel.foundationDate = this.formGroup.get('creationDate')?.value;
+          companyExtModel.revenueStatus = this.formGroup.get('situationRevenue')?.value;
+          companyExtModel.stateRegistration = this.formGroup.get('stateRegistration')?.value;
+          companyExtModel.totalCollaborators = this.formGroup.get('totalCollaborators')?.value;
+          companyExtModel.isHeadquarters = this.formGroup.get('isHeadquarters')?.value;
+          companyModel.companyExtension = companyExtModel;
+          let companyAddressModel = {} as CompanyAddressModel;
+          companyAddressModel.address = this.formGroup.get('address')?.value;
+          companyAddressModel.cep = this.formGroup.get('zipCode')?.value;
+          companyAddressModel.city = this.formGroup.get('city')?.value;
+          companyAddressModel.complement = this.formGroup.get('complement')?.value;
+          companyAddressModel.country = this.formGroup.get('country')?.value;
+          companyAddressModel.estate = this.formGroup.get('estate')?.value;
+          companyModel.address = companyAddressModel;
+          let telephonesModel = [] as TelephoneModel[];
+          if (this.formGroup.get('homePhone')?.value) {
+            let telephoneModel = {} as TelephoneModel;
+            telephoneModel.number = this.formGroup.get('homePhone')?.value;
+            telephoneModel.prefix = Number(String(this.formGroup.get('homePhone')?.value).substring(0, 2));
+            telephoneModel.type = 'HOME';
+            telephonesModel.push(telephoneModel);
+          }
+          if (this.formGroup.get('cellPhone')?.value) {
+            let telephoneModel = {} as TelephoneModel;
+            telephoneModel.number = this.formGroup.get('cellPhone')?.value;
+            telephoneModel.prefix = Number(String(this.formGroup.get('cellPhone')?.value).substring(0, 2));
+            telephoneModel.type = 'CELL';
+            telephonesModel.push(telephoneModel);
+          }
+          companyModel.telephones = telephonesModel;
+          // companyModel.image.image = this.image;
+          console.log(companyModel);
+          this.companyService.createCompany(companyModel).subscribe(() => {
+            this.handleModal('success', 'Empresa criada com sucesso.');
+          },
+            error => {
+              let erro: ErrorModel;
+              erro = error;
+              this.handleModal('danger', erro.message);
+            });
+        }
+        else {
+          let companyv3Model = <Companyv3Model>{};
+          companyv3Model.corporateName = this.formGroup.get('name')?.value;
+          companyv3Model.email = this.formGroup.get('email')?.value;
+          companyv3Model.taxNumber = this.formGroup.get('taxNumber')?.value;
+
+          companyv3Model.address.address = this.formGroup.get('address')?.value;
+          companyv3Model.address.cep = this.formGroup.get('zipCode')?.value;
+          companyv3Model.address.city = this.formGroup.get('city')?.value;
+          companyv3Model.address.complement = this.formGroup.get('complement')?.value;
+          companyv3Model.address.country = this.formGroup.get('country')?.value;
+          companyv3Model.address.estate = this.formGroup.get('estate')?.value;
+          companyv3Model.address.addressId = this.formGroup.get('address')?.value;
+          companyv3Model.address.objectId = this.formGroup.get('estate')?.value;
+          companyv3Model.address.objectType = this.formGroup.get('estate')?.value;
+          companyv3Model.address.creationDate = this.formGroup.get('estate')?.value;
+          companyv3Model.address.updateDate = this.formGroup.get('estate')?.value;
+          this.companyService.updateCompany(this.companyId, companyv3Model).subscribe(() => {
+            this.handleModal('success', 'Empresa atualizada com sucesso.');
+          });
+        }
+      } else {
+        this.handleModal('danger', 'Formulário inválido.');
       }
-      else {
-        this.companyService.updateCompany(this.companyId, this.formGroup.value).subscribe(() => {
-          this.handleModal('success', 'Empresa atualizada com sucesso.');
-        });
-      }
+
     } catch (error) {
       this.handleModal('danger', String(error));
     }
   }
 
-  getCompanyById(id: number) {
-    this.companyService.getCompanyById(id).subscribe((company: CompanyModel) => {
-      this.formGroup = this.formBuilder.group({
-        name: [company.corporateName],
+  getCompanyById(companyId: number) {
+    this.companyService.getCompanyById(companyId).subscribe((company: CompanyModel) => {
+      this.formGroup.get('name')?.setValue(company.corporateName);
+      this.formGroup.get('taxNumber')?.setValue(company.taxNumber);
+      this.formGroup.get('email')?.setValue(company.email);
+      this.formGroup.get('corporateReason')?.setValue(company.companyExtension.fantasyName);
+      this.formGroup.get('cnae')?.setValue(company.companyExtension.cnae);
+      this.formGroup.get('stateRegistration')?.setValue(company.companyExtension.stateRegistration);
+      this.formGroup.get('creationDate')?.setValue(company.companyExtension.creationDate);
+      this.formGroup.get('situationRevenue')?.setValue(company.companyExtension.revenueStatus);
+      this.formGroup.get('totalCollaborators')?.setValue(company.companyExtension.totalCollaborators);
+      this.formGroup.get('isHeadquarters')?.setValue(company.companyExtension.isHeadquarters);
+      if (company.address) {
+        this.formGroup.get('address')?.setValue(company.address.address);
+        this.formGroup.get('city')?.setValue(company.address.city);
+        this.formGroup.get('estate')?.setValue(company.address.estate);
+        this.formGroup.get('country')?.setValue(company.address.country);
+        this.formGroup.get('zipCode')?.setValue(company.address.cep);
+        this.formGroup.get('complement')?.setValue(company.address.complement);
+      }
+      if (company.telephones) {
+        for (let index = 0; index < company.telephones.length; index++) {
+          if (company.telephones[index].type == 'HOME') {
+            this.formGroup.get('homePhone')?.setValue(company.telephones[index].number);
+          } else {
+            this.formGroup.get('cellPhone')?.setValue(company.telephones[index].number);
+          }
+        }
+      }
 
-      })
     });
   }
 
