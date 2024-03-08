@@ -4,7 +4,7 @@ import { CompanyImageModel } from "./company-image-model";
 import { TelephoneModel } from "./telephone-model";
 
 export interface CompanyModel {
-    companyId: number;
+    companyId: string;
     corporateName: string;
     taxNumber: string;
     email: string;

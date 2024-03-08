@@ -1,0 +1,21 @@
+.content {
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(#519EC8, white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-register {
+    width: 400px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+}

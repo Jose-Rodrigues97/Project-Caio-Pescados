@@ -18,7 +18,7 @@ import { properties } from '../../module property/properties';
   styleUrls: ['./company-detail.component.css']
 })
 export class CompanyDetailComponent {
-  @Input() companyId: number = 0;
+  @Input() companyId: string = '';
   bsModalRef?: BsModalRef;
   formGroup!: FormGroup;
   submitted: boolean = false;
@@ -41,7 +41,7 @@ export class CompanyDetailComponent {
     private modalService: BsModalService,
     private router: Router) {
     const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
-    this.companyId = Number(s.path);
+    this.companyId = String(s.path);
     this.formGroup = this.formBuilder.group({
       id: this.companyId,
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -200,7 +200,7 @@ export class CompanyDetailComponent {
     try {
       this.submitted = true;
       if (this.formGroup.valid) {
-        if (this.companyId == 0) {
+        if (this.companyId == '') {
           let companyModel = {} as CompanyModel;
           companyModel.corporateName = this.formGroup.get('name')?.value;
           companyModel.email = this.formGroup.get('email')?.value;
@@ -279,7 +279,7 @@ export class CompanyDetailComponent {
     }
   }
 
-  getCompanyById(companyId: number) {
+  getCompanyById(companyId: string) {
     this.companyService.getCompanyById(companyId).subscribe((company: CompanyModel) => {
       this.formGroup.get('name')?.setValue(company.corporateName);
       this.formGroup.get('taxNumber')?.setValue(company.taxNumber);

@@ -1,1 +1,38 @@
-<p>create-account works!</p>
+<div class="content">
+    <section class="form-register">
+        <form class="row g-2">
+            <div class="col-md-12">
+                <label for="inputZip" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-md-12">
+                <label for="inputEmail4" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="col-12">
+                <label for="inputAddress2" class="form-label">Data de Nascimento</label>
+                <input type="date" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+            </div>
+            <div class="col-md-12">
+                <label for="inputCity" class="form-label">CPF</label>
+                <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Login</label>
+                <input type="text" class="form-control" id="inputAddress">
+            </div>
+            <div class="col-md-12">
+                <label for="inputPassword4" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+            <div class="col-md-12">
+                <label for="inputPassword4" class="form-label">Repetir Senha</label>
+                <input type="password" class="form-control" id="inputPassword4">
+            </div>
+            <div class="col-12" style="text-align: center;">
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </form>
+        <a [routerLink]="['/login']">Já possui conta?</a>
+    </section>
+</div>

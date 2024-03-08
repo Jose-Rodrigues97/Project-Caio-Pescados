@@ -25,7 +25,8 @@ export class CompanyService {
         catchError(this.handleError))
   }
 
-  getCompanyById(id: number): Observable<CompanyModel> {
+  getCompanyById(id: string): Observable<CompanyModel> {
+    console.log(this.URL);
     return this.httpClient.get<CompanyModel>(this.URL + '/' + id, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
@@ -39,7 +40,7 @@ export class CompanyService {
       );
   }
 
-  updateCompany(companyId: number, company: Companyv3Model): Observable<Companyv3Model> {
+  updateCompany(companyId: string, company: Companyv3Model): Observable<Companyv3Model> {
     return this.httpClient.put<Companyv3Model>(this.URL + '/' + companyId, JSON.stringify(company), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
