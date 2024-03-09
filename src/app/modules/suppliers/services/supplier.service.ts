@@ -22,7 +22,6 @@ export class SupplierService {
   getSuppliers(): Observable<SuppliersModel> {
     return this.httpClient.get<SuppliersModel>(this.URL, { headers: this.httpHeaders })
       .pipe(
-        delay(3000),
         catchError(this.handleError))
   }
 
@@ -34,10 +33,9 @@ export class SupplierService {
   }
 
   createSupplier(supplier: SupplierModel): Observable<SupplierModel> {
-    return this.httpClient.post<SupplierModel>(this.URL, JSON.stringify(supplier), {headers: this.httpHeaders})
+    return this.httpClient.post<SupplierModel>(this.URL, JSON.stringify(supplier), { headers: this.httpHeaders })
       .pipe(
-        catchError(this.handleError)
-      );
+        catchError(this.handleError));
   }
 
   updateSupplier(supplierId: number, supplier: SupplierModel): Observable<SupplierModel> {
