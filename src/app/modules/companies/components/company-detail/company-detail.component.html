@@ -7,7 +7,7 @@
                 <div class="group-input">
                     <label for="name" style="font-size: 15px; margin-bottom: 0px;">Nome</label>
                     <input id="name" class="form-control" type="text" style="width: 100%;" formControlName="name">
-                    <div *ngIf="name.invalid && formDir.submitted" class="validation-error">
+                    <div *ngIf="name.invalid && submitted" class="validation-error">
                         <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
                         <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 2 caracteres.
                         </p>
@@ -16,7 +16,12 @@
                 <div class="group-input">
                     <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
                     <input id="tax-number" class="form-control" type="text" style="width: 100%;"
-                        formControlName="CNPJ">
+                        formControlName="taxNumber">
+                    <div *ngIf="taxNumber.invalid && submitted" class="validation-error">
+                        <p *ngIf="taxNumber.errors?.['required']">CNPJ obrigatório.</p>
+                        <p *ngIf="taxNumber.errors?.['minlength']">CNPJ deve conter 14 caracteres.
+                        </p>
+                    </div>
                 </div>
                 <div class="group-input">
                     <label for="corporate-reason" style="font-size: 15px; margin-bottom: 0px;">Razão Social</label>
@@ -44,14 +49,19 @@
                     <input id="situation-revenue" class="form-control" type="text" style="width: 100%;"
                         formControlName="situationRevenue">
                 </div>
+                <div class="group-input" style="display: flex; flex-direction: column;">
+                    <label for="isHeadquarters" style="font-size: 15px; margin-bottom: 0px;">Matriz</label>
+                    <input id="isHeadquarters" class="form-check-input" type="checkbox"
+                        formControlName="isHeadquarters">
+                </div>
             </div>
         </div>
         <div class="group-content">
             <span class="group-title">Endereço</span>
             <div class="group-info">
                 <div class="group-input">
-                    <label for="street" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
-                    <input id="street" class="form-control" type="text" style="width: 100%;" formControlName="street">
+                    <label for="address" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
+                    <input id="address" class="form-control" type="text" style="width: 100%;" formControlName="address">
                 </div>
                 <div class="group-input">
                     <label for="city" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
@@ -93,7 +103,7 @@
                 <div class="group-input">
                     <label for="email" style="font-size: 15px; margin-bottom: 0px;">E-mail</label>
                     <input id="email" class="form-control" type="text" style="width: 100%;" formControlName="email">
-                    <div *ngIf="email.invalid && formDir.submitted" class="validation-error">
+                    <div *ngIf="email.invalid && submitted" class="validation-error">
                         <p *ngIf="email.errors?.['required']">E-mail obrigatório.</p>
                         <p *ngIf="email.errors?.['email']">E-mail inválido.</p>
                     </div>
@@ -105,17 +115,17 @@
             <div class="group-info">
                 <div class="group-input">
                     <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Imagem</label>
-                    <app-upload></app-upload>
+                    <app-upload [image]='image'></app-upload>
                 </div>
                 <div class="group-input">
                     <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Total de
                         Colaboradores</label>
                     <input id="Total-collaborators" class="form-control" type="text" style="width: 100%;"
-                        formControlName="totalCollaborators" readonly>
+                        formControlName="totalCollaborators">
                 </div>
             </div>
         </div>
-        <div class="group-content">
+        <div *ngIf="isShowPanelOpeningHours" class="group-content">
             <span class="group-title">Horário de Funcionamento</span>
             <div class="group-info">
                 <div class="group-input-opening-hours">

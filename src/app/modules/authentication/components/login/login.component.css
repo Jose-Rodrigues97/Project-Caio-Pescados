@@ -24,6 +24,8 @@ p{
     display: flex;
     align-items: center;
     background-image: linear-gradient(#519EC8, white);
+    flex-direction: column;
+    justify-content: center;
 }
 
 .validation-error {

@@ -1,5 +1,5 @@
 export interface Companyv2Model {
-    companyId: number;
+    companyId: string;
     corporateName: string,
     taxNumber: string,
     address: string,

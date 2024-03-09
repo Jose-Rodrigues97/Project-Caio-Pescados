@@ -45,7 +45,6 @@ export class LoginComponent {
             window.localStorage.setItem('Token', response.token);
             this.router.navigate(['company']);
             this.handleModal('success', 'Bem-vindo.');
-            console.log(this.router)
           },
             error => {
               this.handleModal('danger', error.error);

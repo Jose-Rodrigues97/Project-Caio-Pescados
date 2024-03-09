@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { IconDefinition, faShare } from '@fortawesome/free-solid-svg-icons';
+import { ButtonModel } from '../../models/button-model';
 
-import { Button } from '../../models/button';
+
 
 @Component({
   selector: 'app-title-page',
@@ -14,7 +15,7 @@ export class TitlePageComponent {
   faShare = faShare;
   @Input() pageName!: string;
   @Input() iconButton!: IconDefinition;
-  @Input() buttons!: Button[];
+  @Input() buttons!: ButtonModel[];
   @Output() clickButton: EventEmitter<Boolean> = new EventEmitter();
 
   constructor(private router: Router) {
