@@ -92,12 +92,12 @@
             <div class="group-info">
                 <div class="group-input">
                     <label for="home-phone" style="font-size: 15px; margin-bottom: 0px;">Telefone Residencial</label>
-                    <input id="home-phone" class="form-control" type="text" style="width: 100%;"
+                    <input id="home-phone" class="form-control" type="number" style="width: 100%;"
                         formControlName="homePhone">
                 </div>
                 <div class="group-input">
                     <label for="cell-phone" style="font-size: 15px; margin-bottom: 0px;">Telefone Celular</label>
-                    <input id="cell-phone" class="form-control" type="text" style="width: 100%;"
+                    <input id="cell-phone" class="form-control" type="number" style="width: 100%;"
                         formControlName="cellPhone">
                 </div>
                 <div class="group-input">
@@ -115,7 +115,7 @@
             <div class="group-info">
                 <div class="group-input">
                     <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Imagem</label>
-                    <app-upload [image]='image'></app-upload>
+                    <app-upload [image]='image' (insertImage)="onInsertImage($event)"></app-upload>
                 </div>
                 <div class="group-input">
                     <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Total de

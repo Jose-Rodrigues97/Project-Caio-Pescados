@@ -4,13 +4,15 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/login-model';
 import { TokenModel } from '../models/token-model';
+import { CreateAccountModel } from '../models/create-account-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
 
-  private readonly URL = `${environment.URL}auth/login`;
+  private readonly URLLogin = `${environment.URL}auth/login`;
+  private readonly URLCreateUser = `${environment.URL}user`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,6 +21,10 @@ export class AccountService {
   }
 
   login(login: LoginModel): Observable<TokenModel> {
-    return this.httpClient.post<any>(this.URL, JSON.stringify(login), this.httpOptions)
+    return this.httpClient.post<any>(this.URLLogin, JSON.stringify(login), this.httpOptions)
+  }
+
+  createAccount(account: CreateAccountModel) {
+    return this.httpClient.post<any>(this.URLCreateUser, JSON.stringify(account), this.httpOptions)
   }
 }

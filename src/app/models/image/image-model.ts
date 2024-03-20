@@ -1,4 +1,4 @@
-export interface CompanyImageModel {
+export interface ImageModel {
     imageId: number;
     image: Blob;
     objectId: string;

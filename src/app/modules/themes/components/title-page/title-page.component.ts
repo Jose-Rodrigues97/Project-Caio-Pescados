@@ -14,19 +14,17 @@ import { ButtonModel } from '../../models/button-model';
 export class TitlePageComponent {
   faShare = faShare;
   @Input() pageName!: string;
-  @Input() iconButton!: IconDefinition;
   @Input() buttons!: ButtonModel[];
-  @Output() clickButton: EventEmitter<Boolean> = new EventEmitter();
+  @Output() clickButton: EventEmitter<string> = new EventEmitter();
 
-  constructor(private router: Router) {
+  constructor(private router: Router) { }
 
-  }
-
-  onClickButton(link: string) {
-    if (link == '') {
-      this.clickButton.emit(true);
+  onClickButton(button: ButtonModel) {
+    if (button.type == 'RETURN') {
+      this.router.navigateByUrl(button.link);
+    } else{
+      this.clickButton.emit(button.type);
       return;
     }
-    this.router.navigateByUrl(link);
   }
 }
