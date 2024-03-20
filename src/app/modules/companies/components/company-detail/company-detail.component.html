@@ -1,4 +1,4 @@
-<app-title-page pageName="Detalhes da Empresa" (clickButton)="onClickButton()" [buttons]=buttons></app-title-page>
+<app-title-page pageName="Detalhes da Empresa" (clickButton)="onClickButton($event)" [buttons]=buttons></app-title-page>
 <section class="main-content">
     <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
         <div class="group-content">

@@ -205,12 +205,27 @@ export class CompanyDetailComponent {
     }
   }
 
-  onClickButton() {
-    this.ngOnSubmit();
+  onClickButton(type: string) {
+    if (type == 'DELETE') {
+      this.onDeleteCompany();
+    } else {
+      this.ngOnSubmit();
+    }
   }
 
   onInsertImage(file: Blob) {
     this.formGroup.get('image')?.setValue(file);
+  }
+
+  onDeleteCompany() {
+    this.companyService.deleteCompany(this.companyId).subscribe(() => {
+      this.handleModal('success', 'Empresa excluída com sucesso.');
+    },
+      error => {
+        let erro: ErrorModel;
+        erro = error;
+        this.handleModal('danger', erro.message);
+      });
   }
 
   ngOnSubmit() {

@@ -20,7 +20,7 @@ export class TitlePageComponent {
   constructor(private router: Router) { }
 
   onClickButton(button: ButtonModel) {
-    if (button.type == 'RETURN') {
+    if (button.type == 'RETURN' || button.type == 'CREATE') {
       this.router.navigateByUrl(button.link);
     } else{
       this.clickButton.emit(button.type);
