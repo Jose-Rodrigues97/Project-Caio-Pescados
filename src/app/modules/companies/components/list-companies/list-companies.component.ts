@@ -5,7 +5,7 @@ import { CityModel } from 'src/app/models/city-model';
 import { EstateModel } from 'src/app/models/estate-model';
 import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
-import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faShare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { CompanyService } from '../../services/company.service';
 import { CompaniesModel } from '../../models/companies-model';
@@ -21,9 +21,11 @@ export class ListCompaniesComponent {
   faPlus = faPlusCircle;
   buttons = [
     {
-      name: 'NOVA EMPRESA',
+      name: 'CRIAR EMPRESA',
       link: 'company/companyDetail/',
-      class: 'btn-primary'
+      class: 'btn-primary',
+      iconButton: {} as IconDefinition,
+      type: 'CREATE'
     }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;

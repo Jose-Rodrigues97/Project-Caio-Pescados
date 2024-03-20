@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-collaborator-detail',
@@ -12,12 +13,16 @@ export class CollaboratorDetailComponent {
   buttons = [{
     name: 'VOLTAR',
     link: '/collaborator/collaboratorsList',
-    class: 'btn-secondary'
+    class: 'btn-secondary',
+    iconButton: {} as IconDefinition,
+    type: 'RETURN'
   },
   {
     name: 'SALVAR',
     link: '/collaborators',
-    class: 'btn-primary'
+    class: 'btn-primary',
+    iconButton: {} as IconDefinition,
+    type: 'SAVE'
   }]
 
   constructor(private formBuilder: FormBuilder) {

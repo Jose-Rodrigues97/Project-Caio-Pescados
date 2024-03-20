@@ -4,6 +4,7 @@ import { SupplierService } from '../../services/supplier.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-supplier-detail',
@@ -18,12 +19,16 @@ export class SupplierDetailComponent {
     {
       name: 'VOLTAR',
       link: 'supplier/supplierList',
-      class: 'btn-secondary'
+      class: 'btn-secondary',
+      iconButton: {} as IconDefinition,
+      type: 'RETURN'
     },
     {
       name: 'SALVAR',
       link: '',
-      class: 'btn-primary'
+      class: 'btn-primary',
+      iconButton: {} as IconDefinition,
+      type: 'SAVE'
     }]
 
   constructor(
