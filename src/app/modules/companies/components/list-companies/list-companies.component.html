@@ -1,4 +1,4 @@
-<app-title-page pageName="Minhas Empresas" [buttons]=buttons [iconButton]=faPlus></app-title-page>
+<app-title-page pageName="Minhas Empresas" [buttons]=buttons></app-title-page>
 <div>
     <div style="width: 70%;" *ngIf="companies$ | async as companies; else list">
         <ng-container *ngFor="let company of companies.content">

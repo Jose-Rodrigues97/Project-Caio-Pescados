@@ -26,7 +26,6 @@ export class CompanyService {
   }
 
   getCompanyById(id: string): Observable<CompanyModel> {
-    console.log(this.URL);
     return this.httpClient.get<CompanyModel>(this.URL + '/' + id, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
@@ -41,13 +40,14 @@ export class CompanyService {
   }
 
   updateCompany(companyId: string, company: Companyv3Model): Observable<Companyv3Model> {
+    console.log(company);
     return this.httpClient.put<Companyv3Model>(this.URL + '/' + companyId, JSON.stringify(company), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  deleteCompany(companyId: number) {
+  deleteCompany(companyId: string) {
     return this.httpClient.delete<any>(this.URL + '/' + companyId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)

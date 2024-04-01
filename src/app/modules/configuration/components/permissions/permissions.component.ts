@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-permissions',
@@ -10,7 +11,9 @@ export class PermissionsComponent {
     {
       name: 'Voltar',
       link: '/configuration',
-      class: 'btn-secondary'
+      class: 'btn-secondary',
+      iconButton: {} as IconDefinition,
+      type: 'RETURN'
     }
   ]
 }

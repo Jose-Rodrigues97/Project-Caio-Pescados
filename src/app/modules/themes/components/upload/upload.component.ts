@@ -10,9 +10,9 @@ export class UploadComponent {
   faCloudUploadAlt = faCloudUploadAlt;
   selectedFiles: any = null;
   @Input() image!: Blob;
-  @Output() clickButton: EventEmitter<Blob> = new EventEmitter();
+  @Output() insertImage: EventEmitter<Blob> = new EventEmitter();
 
-  ngOnChange(event: any) {
+  onInsertImage(event: any) {
     this.selectedFiles = <FileList>event.srcElement.files;
     const q = document.querySelector("#inputArchive");
     const documentName = this.selectedFiles[0].name;
@@ -20,6 +20,6 @@ export class UploadComponent {
     if (this.selectedFiles && q) {
       q.innerHTML = documentName;
     }
-    this.clickButton.emit(this.selectedFiles[0]);
+    this.insertImage.emit(this.selectedFiles[0]);
   }
 }

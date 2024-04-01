@@ -8,7 +8,7 @@ import { EstateService } from 'src/app/services/estate/estate.service';
 import { SuppliersModel } from '../../models/suppliers-model';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { SupplierService } from '../../services/supplier.service';
-import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faShare } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -21,7 +21,9 @@ export class ListSuppliersComponent {
     {
       name: 'CRIAR FORNECEDOR',
       link: 'supplier/supplierDetail/',
-      class: 'btn-primary'
+      class: 'btn-primary',
+      iconButton: {} as IconDefinition,
+      type: 'CREATE'
     }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;

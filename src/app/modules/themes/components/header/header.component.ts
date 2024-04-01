@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { faUserCircle, faPowerOff, faCogs } from '@fortawesome/free-solid-svg-icons';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +12,9 @@ export class HeaderComponent {
   faUserCircle = faUserCircle;
   faPowerOff = faPowerOff;
   faCogs = faCogs;
+
+  constructor(private modalService: BsModalService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,4 +27,7 @@ export class HeaderComponent {
     document.getElementById('10')?.classList.add('active');
   }
 
+  onExitAccount() {
+    localStorage.removeItem('Token');
+  }
 }

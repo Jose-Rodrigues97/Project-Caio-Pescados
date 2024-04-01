@@ -1,4 +1,4 @@
-export interface CompanyAddressModel {
+export interface AddressModel {
     addressId: number;
     address: string;
     country: string;

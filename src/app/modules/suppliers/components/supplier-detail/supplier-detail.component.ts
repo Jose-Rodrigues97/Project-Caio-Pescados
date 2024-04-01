@@ -9,6 +9,7 @@ import { SupplierAddressModel } from '../../models/supplier-address-model';
 import { TelephoneModel } from '../../models/supplier-telephone-model';
 import { ErrorModel } from 'src/app/models/error/error-model';
 import { SupplierPutModel } from '../../models/supplierPut-model';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-supplier-detail',
@@ -25,12 +26,16 @@ export class SupplierDetailComponent {
     {
       name: 'VOLTAR',
       link: 'supplier/supplierList',
-      class: 'btn-secondary'
+      class: 'btn-secondary',
+      iconButton: {} as IconDefinition,
+      type: 'RETURN'
     },
     {
       name: 'SALVAR',
       link: '',
-      class: 'btn-primary'
+      class: 'btn-primary',
+      iconButton: {} as IconDefinition,
+      type: 'SAVE'
     }]
 
   constructor(

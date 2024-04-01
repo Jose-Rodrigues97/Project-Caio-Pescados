@@ -21,7 +21,7 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private modalService: BsModalService) {
     this.formGroup = this.formBuilder.group({
-      login: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      login: new FormControl('', [Validators.required, Validators.minLength(3)]),
       password: new FormControl('', [Validators.required]),
       check: false
     });
@@ -52,6 +52,8 @@ export class LoginComponent {
           );
         }
       }
+    } else {
+      this.handleModal('warning', 'Formulário inválido.');
     }
   }
 
