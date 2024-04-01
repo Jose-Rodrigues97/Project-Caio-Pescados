@@ -4,6 +4,7 @@ import { Observable, catchError, delay, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SuppliersModel } from '../models/suppliers-model';
 import { SupplierModel } from '../models/supplier-model';
+import { SupplierPutModel } from '../models/supplierPut-model';
 
 
 @Injectable({
@@ -25,8 +26,9 @@ export class SupplierService {
         catchError(this.handleError))
   }
 
-  getSupplierById(id: number): Observable<SupplierModel> {
-    return this.httpClient.get<SupplierModel>(this.URL + '/' + id)
+  getSupplierById(id: string): Observable<SupplierModel> {
+    console.log(this.URL);
+    return this.httpClient.get<SupplierModel>(this.URL + '/' + id, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       )
@@ -38,14 +40,14 @@ export class SupplierService {
         catchError(this.handleError));
   }
 
-  updateSupplier(supplierId: number, supplier: SupplierModel): Observable<SupplierModel> {
-    return this.httpClient.put<SupplierModel>(this.URL + '/' + supplierId, JSON.stringify(supplier), { headers: this.httpHeaders })
+  updateSupplier(supplierId: string, supplier: SupplierPutModel): Observable<SupplierPutModel> {
+    return this.httpClient.put<SupplierPutModel>(this.URL + '/' + supplierId, JSON.stringify(supplier), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  deleteSupplier(supplierId: number) {
+  deleteSupplier(supplierId: string) {
     return this.httpClient.delete<any>(this.URL + '/' + supplierId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
