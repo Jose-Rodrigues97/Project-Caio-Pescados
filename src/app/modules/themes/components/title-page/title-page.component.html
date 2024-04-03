@@ -11,7 +11,7 @@
                 align-items: center;
                 display: flex;
                 gap: 5px;" (click)="onClickButton(button)">
-                    <div *ngIf="button.iconButton != null;">
+                    <div *ngIf="button.iconButton != undefined;">
                         <fa-icon [icon]='button.iconButton' style="display: flex;"></fa-icon>
                     </div>
                     {{button.name}}

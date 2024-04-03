@@ -18,13 +18,12 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./list-companies.component.css']
 })
 export class ListCompaniesComponent {
-  faPlus = faPlusCircle;
   buttons = [
     {
       name: 'CRIAR EMPRESA',
       link: 'company/companyDetail/',
       class: 'btn-primary',
-      iconButton: {} as IconDefinition,
+      iconButton: faPlusCircle,
       type: 'CREATE'
     }]
   estates = {} as EstateModel[];
