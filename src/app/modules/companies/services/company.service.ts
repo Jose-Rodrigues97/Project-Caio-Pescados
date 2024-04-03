@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, delay, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CompaniesModel } from '../models/companies-model';
 import { CompanyModel } from '../models/company-model';
@@ -10,7 +10,6 @@ import { Companyv3Model } from '../models/companyv3-model';
   providedIn: 'root'
 })
 export class CompanyService {
-
   private readonly URL = `${environment.URL}company`;
   httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -25,8 +24,8 @@ export class CompanyService {
         catchError(this.handleError))
   }
 
-  getCompanyById(id: string): Observable<CompanyModel> {
-    return this.httpClient.get<CompanyModel>(this.URL + '/' + id, { headers: this.httpHeaders })
+  getCompanyById(companyId: string): Observable<CompanyModel> {
+    return this.httpClient.get<CompanyModel>(this.URL + '/' + companyId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
@@ -40,7 +39,6 @@ export class CompanyService {
   }
 
   updateCompany(companyId: string, company: Companyv3Model): Observable<Companyv3Model> {
-    console.log(company);
     return this.httpClient.put<Companyv3Model>(this.URL + '/' + companyId, JSON.stringify(company), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
@@ -61,9 +59,8 @@ export class CompanyService {
       errorMessage = error.error.message;
     } else {
       // Erro ocorreu no lado do servidor
-      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
+      errorMessage = error.error;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   };
 }

@@ -5,7 +5,6 @@ import { AlertModalComponent } from 'src/app/modules/themes/components/alert-mod
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
 import { CompanyModel } from '../../models/company-model';
-import { Companyv3Model } from '../../models/companyv3-model';
 import { TelephoneModel } from '../../../../models/telephone/telephone-model';
 import { CompanyExtModel } from '../../models/company-ext-model';
 import { AddressModel } from '../../../../models/address/address-model';
@@ -219,12 +218,11 @@ export class CompanyDetailComponent {
 
   onDeleteCompany() {
     this.companyService.deleteCompany(this.companyId).subscribe(() => {
+      this.router.navigateByUrl('/company/companiesList');
       this.handleModal('success', 'Empresa excluída com sucesso.');
     },
       error => {
-        let erro: ErrorModel;
-        erro = error;
-        this.handleModal('danger', erro.message);
+        this.handleModal('danger', error);
       });
   }
 
@@ -275,7 +273,7 @@ export class CompanyDetailComponent {
         //   companyModel.image = image;
         // }
         if (this.companyId == '') {
-          this.companyService.createCompany(companyModel).subscribe(() => {
+          this.companyService.createCompany(companyModel).subscribe((companyModel: CompanyModel) => {
             this.buttons.push({
               name: 'EXCLUIR',
               link: '/company/companiesList',
@@ -283,12 +281,11 @@ export class CompanyDetailComponent {
               iconButton: {} as IconDefinition,
               type: 'DELETE'
             })
+            this.companyId = companyModel.companyId;
             this.handleModal('success', 'Empresa criada com sucesso.');
           },
             error => {
-              let erro: ErrorModel;
-              erro = error;
-              this.handleModal('danger', erro.message);
+              this.handleModal('danger', error);
             });
         }
         else {
@@ -296,9 +293,7 @@ export class CompanyDetailComponent {
             this.handleModal('success', 'Empresa atualizada com sucesso.');
           },
             error => {
-              let erro: ErrorModel;
-              erro = error;
-              this.handleModal('danger', erro.message);
+              this.handleModal('danger', error);
             });
         }
       } else {
