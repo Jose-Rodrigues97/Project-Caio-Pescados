@@ -50,7 +50,7 @@ export class CompanyDetailComponent {
     this.formGroup = this.formBuilder.group({
       id: this.companyId,
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      taxNumber: new FormControl('', [Validators.required, Validators.minLength(14)]),
+      taxNumber: new FormControl('', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]),
       corporateReason: '',
       cnae: '',
       stateRegistration: '',
@@ -115,6 +115,36 @@ export class CompanyDetailComponent {
 
   get taxNumber() {
     return this.formGroup.get("taxNumber")!;
+  }
+
+  onChangeName(event: Event) {
+    if (this.name.errors) {
+      (<HTMLInputElement>event.target).classList.remove('is-valid');
+      (<HTMLInputElement>event.target).classList.add('is-invalid');
+    } else {
+      (<HTMLInputElement>event.target).classList.add('is-valid');
+      (<HTMLInputElement>event.target).classList.remove('is-invalid');
+    }
+  }
+
+  onChangeTaxNumber(event: Event) {
+    if (this.taxNumber.errors) {
+      (<HTMLInputElement>event.target).classList.remove('is-valid');
+      (<HTMLInputElement>event.target).classList.add('is-invalid');
+    } else {
+      (<HTMLInputElement>event.target).classList.add('is-valid');
+      (<HTMLInputElement>event.target).classList.remove('is-invalid');
+    }
+  }
+
+  onChangeEmail(event: Event) {
+    if (this.email.errors) {
+      (<HTMLInputElement>event.target).classList.remove('is-valid');
+      (<HTMLInputElement>event.target).classList.add('is-invalid');
+    } else {
+      (<HTMLInputElement>event.target).classList.add('is-valid');
+      (<HTMLInputElement>event.target).classList.remove('is-invalid');
+    }
   }
 
   onChangeWorkingDay(event: Event) {

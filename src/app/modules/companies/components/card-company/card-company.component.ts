@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Companyv2Model } from '../../models/companyv2-model';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-card-company',
@@ -8,4 +9,5 @@ import { Companyv2Model } from '../../models/companyv2-model';
 })
 export class CardCompanyComponent {
   @Input() company!: Companyv2Model;
+  faBuilding = faBuilding;
 }
