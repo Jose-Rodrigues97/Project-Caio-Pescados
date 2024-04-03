@@ -2,8 +2,7 @@ import { SupplierAddressModel } from "./supplier-address-model";
 import { TelephoneModel } from "./supplier-telephone-model";
 
 //struct para post e get unitario do backend
-export interface SupplierModel {
-  supplierId: string;
+export interface SupplierPutModel {
   name: string;
   taxNumber: string;
   email: string;
