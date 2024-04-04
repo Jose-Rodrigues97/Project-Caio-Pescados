@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompaniesComponent } from '../../modules/companies/companies.component';
@@ -29,6 +29,6 @@ import { CompanyService } from './services/company.service';
     RouterModule,
     CompaniesRoutingModule
   ],
-  providers: []
+  providers: [DatePipe]
 })
 export class CompaniesModule { }

@@ -7,7 +7,7 @@
                 <div class="group-input">
                     <label for="name" style="font-size: 15px; margin-bottom: 0px;">Nome</label>
                     <input id="name" class="form-control is-invalid" type="text" style="width: 100%;"
-                        formControlName="name" required (change)="onChangeName($event)">
+                        formControlName="name" required (change)="onChangeName($event.target)">
                     <div *ngIf="name.invalid && submitted" class="invalid-feedback">
                         <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
                         <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 2 caracteres.
@@ -17,7 +17,7 @@
                 <div class="group-input">
                     <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
                     <input id="tax-number" class="form-control is-invalid" type="text" style="width: 100%;"
-                        formControlName="taxNumber" required (change)="onChangeTaxNumber($event)">
+                        formControlName="taxNumber" required (change)="onChangeTaxNumber($event.target)">
                     <div *ngIf="taxNumber.invalid && submitted" class="invalid-feedback">
                         <p *ngIf="taxNumber.errors?.['required']">CNPJ obrigatório.</p>
                         <p *ngIf="taxNumber.errors?.['minlength'] || taxNumber.errors?.['maxlength']">CNPJ deve conter 14 caracteres.
@@ -42,7 +42,7 @@
                 <div class="group-input">
                     <label for="creation-date" style="font-size: 15px; margin-bottom: 0px;">Data de Fundação</label>
                     <input id="creation-date" class="form-control" type="date" style="width: 100%;"
-                        formControlName="creationDate">
+                        formControlName="fundationDate">
                 </div>
                 <div class="group-input">
                     <label for="situation-revenue" style="font-size: 15px; margin-bottom: 0px;">Status na
@@ -103,12 +103,8 @@
                 </div>
                 <div class="group-input">
                     <label for="email" style="font-size: 15px; margin-bottom: 0px;">E-mail</label>
-                    <input id="email" class="form-control is-invalid" type="text" style="width: 100%;"
-                        formControlName="email" required (change)="onChangeEmail($event)">
-                    <div *ngIf="email.invalid && submitted" class="invalid-feedback">
-                        <p *ngIf="email.errors?.['required']">E-mail obrigatório.</p>
-                        <p *ngIf="email.errors?.['email']">E-mail inválido.</p>
-                    </div>
+                    <input id="email" class="form-control" type="text" style="width: 100%;"
+                        formControlName="email" >
                 </div>
             </div>
         </div>

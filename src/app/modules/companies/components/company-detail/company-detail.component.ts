@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CompanyService } from '../../services/company.service';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
@@ -12,13 +12,14 @@ import { ErrorModel } from 'src/app/models/error/error-model';
 import { properties } from '../../module property/properties';
 import { ImageModel } from 'src/app/models/image/image-model';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { DatePipe, formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-company-detail',
   templateUrl: './company-detail.component.html',
   styleUrls: ['./company-detail.component.css']
 })
-export class CompanyDetailComponent {
+export class CompanyDetailComponent implements OnInit, AfterViewChecked {
   @Input() companyId: string = '';
   bsModalRef?: BsModalRef;
   formGroup!: FormGroup;
@@ -44,6 +45,7 @@ export class CompanyDetailComponent {
   constructor(private formBuilder: FormBuilder,
     private companyService: CompanyService,
     private modalService: BsModalService,
+    private datepipe: DatePipe,
     private router: Router) {
     const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
     this.companyId = String(s.path);
@@ -54,7 +56,7 @@ export class CompanyDetailComponent {
       corporateReason: '',
       cnae: '',
       stateRegistration: '',
-      creationDate: '',
+      fundationDate: '',
       situationRevenue: '',
       isHeadquarters: false,
       address: '',
@@ -66,7 +68,7 @@ export class CompanyDetailComponent {
       image: Blob,
       homePhone: '',
       cellPhone: '',
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: '',
       totalCollaborators: '',
       sunday: false,
       monday: false,
@@ -92,7 +94,7 @@ export class CompanyDetailComponent {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.formGroup.get('id')?.value !== '') {
       this.getCompanyById(this.formGroup.get('id')?.value);
       this.buttons.push({
@@ -101,49 +103,45 @@ export class CompanyDetailComponent {
         class: 'btn-danger',
         iconButton: {} as IconDefinition,
         type: 'DELETE'
-      })
+      });
+
     }
+  }
+
+  ngAfterViewChecked(): void {
+    this.onChangeName(document.getElementById('name'));
+    this.onChangeTaxNumber(document.getElementById('tax-number'));
   }
 
   get name() {
     return this.formGroup.get("name")!;
   }
 
-  get email() {
-    return this.formGroup.get("email")!;
-  }
-
   get taxNumber() {
     return this.formGroup.get("taxNumber")!;
   }
 
-  onChangeName(event: Event) {
-    if (this.name.errors) {
-      (<HTMLInputElement>event.target).classList.remove('is-valid');
-      (<HTMLInputElement>event.target).classList.add('is-invalid');
-    } else {
-      (<HTMLInputElement>event.target).classList.add('is-valid');
-      (<HTMLInputElement>event.target).classList.remove('is-invalid');
+  onChangeName(target: any) {
+    if (target) {
+      if (this.name.errors) {
+        (<HTMLInputElement>target).classList.remove('is-valid');
+        (<HTMLInputElement>target).classList.add('is-invalid');
+      } else {
+        (<HTMLInputElement>target).classList.add('is-valid');
+        (<HTMLInputElement>target).classList.remove('is-invalid');
+      }
     }
   }
 
-  onChangeTaxNumber(event: Event) {
-    if (this.taxNumber.errors) {
-      (<HTMLInputElement>event.target).classList.remove('is-valid');
-      (<HTMLInputElement>event.target).classList.add('is-invalid');
-    } else {
-      (<HTMLInputElement>event.target).classList.add('is-valid');
-      (<HTMLInputElement>event.target).classList.remove('is-invalid');
-    }
-  }
-
-  onChangeEmail(event: Event) {
-    if (this.email.errors) {
-      (<HTMLInputElement>event.target).classList.remove('is-valid');
-      (<HTMLInputElement>event.target).classList.add('is-invalid');
-    } else {
-      (<HTMLInputElement>event.target).classList.add('is-valid');
-      (<HTMLInputElement>event.target).classList.remove('is-invalid');
+  onChangeTaxNumber(target: any) {
+    if (target) {
+      if (this.taxNumber.errors) {
+        (<HTMLInputElement>target).classList.remove('is-valid');
+        (<HTMLInputElement>target).classList.add('is-invalid');
+      } else {
+        (<HTMLInputElement>target).classList.add('is-valid');
+        (<HTMLInputElement>target).classList.remove('is-invalid');
+      }
     }
   }
 
@@ -267,7 +265,7 @@ export class CompanyDetailComponent {
         let companyExtModel = {} as CompanyExtModel;
         companyExtModel.cnae = this.formGroup.get('cnae')?.value;
         companyExtModel.fantasyName = this.formGroup.get('corporateReason')?.value;
-        companyExtModel.foundationDate = this.formGroup.get('creationDate')?.value;
+        companyExtModel.foundationDate = this.formGroup.get('fundationDate')?.value;
         companyExtModel.revenueStatus = this.formGroup.get('situationRevenue')?.value;
         companyExtModel.stateRegistration = this.formGroup.get('stateRegistration')?.value;
         companyExtModel.totalCollaborators = this.formGroup.get('totalCollaborators')?.value;
@@ -343,10 +341,10 @@ export class CompanyDetailComponent {
       this.formGroup.get('corporateReason')?.setValue(company.companyExtension.fantasyName);
       this.formGroup.get('cnae')?.setValue(company.companyExtension.cnae);
       this.formGroup.get('stateRegistration')?.setValue(company.companyExtension.stateRegistration);
-      this.formGroup.get('creationDate')?.setValue(company.companyExtension.creationDate);
       this.formGroup.get('situationRevenue')?.setValue(company.companyExtension.revenueStatus);
       this.formGroup.get('totalCollaborators')?.setValue(company.companyExtension.totalCollaborators);
       this.formGroup.get('isHeadquarters')?.setValue(company.companyExtension.isHeadquarters);
+      this.formGroup.get('fundationDate')?.setValue(this.datepipe.transform(company.companyExtension.foundationDate, 'yyyy-MM-dd'));
       if (company.address) {
         this.formGroup.get('address')?.setValue(company.address.address);
         this.formGroup.get('city')?.setValue(company.address.city);
