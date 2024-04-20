@@ -1,4 +1,4 @@
-<app-title-page pageName="Detalhes da Empresa" (clickButton)="onClickButton()" [buttons]=buttons></app-title-page>
+<app-title-page pageName="Detalhes da Empresa" (clickButton)="onClickButton($event)" [buttons]=buttons></app-title-page>
 <section class="main-content">
     <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
         <div class="group-content">
@@ -6,8 +6,9 @@
             <div class="group-info">
                 <div class="group-input">
                     <label for="name" style="font-size: 15px; margin-bottom: 0px;">Nome</label>
-                    <input id="name" class="form-control" type="text" style="width: 100%;" formControlName="name">
-                    <div *ngIf="name.invalid && submitted" class="validation-error">
+                    <input id="name" class="form-control is-invalid" type="text" style="width: 100%;"
+                        formControlName="name" required (change)="onChangeName($event.target)">
+                    <div *ngIf="name.invalid && submitted" class="invalid-feedback">
                         <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
                         <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 2 caracteres.
                         </p>
@@ -15,11 +16,11 @@
                 </div>
                 <div class="group-input">
                     <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
-                    <input id="tax-number" class="form-control" type="text" style="width: 100%;"
-                        formControlName="taxNumber">
-                    <div *ngIf="taxNumber.invalid && submitted" class="validation-error">
+                    <input id="tax-number" class="form-control is-invalid" type="text" style="width: 100%;"
+                        formControlName="taxNumber" required (change)="onChangeTaxNumber($event.target)">
+                    <div *ngIf="taxNumber.invalid && submitted" class="invalid-feedback">
                         <p *ngIf="taxNumber.errors?.['required']">CNPJ obrigatório.</p>
-                        <p *ngIf="taxNumber.errors?.['minlength']">CNPJ deve conter 14 caracteres.
+                        <p *ngIf="taxNumber.errors?.['minlength'] || taxNumber.errors?.['maxlength']">CNPJ deve conter 14 caracteres.
                         </p>
                     </div>
                 </div>
@@ -41,7 +42,7 @@
                 <div class="group-input">
                     <label for="creation-date" style="font-size: 15px; margin-bottom: 0px;">Data de Fundação</label>
                     <input id="creation-date" class="form-control" type="date" style="width: 100%;"
-                        formControlName="creationDate">
+                        formControlName="fundationDate">
                 </div>
                 <div class="group-input">
                     <label for="situation-revenue" style="font-size: 15px; margin-bottom: 0px;">Status na
@@ -92,21 +93,18 @@
             <div class="group-info">
                 <div class="group-input">
                     <label for="home-phone" style="font-size: 15px; margin-bottom: 0px;">Telefone Residencial</label>
-                    <input id="home-phone" class="form-control" type="text" style="width: 100%;"
+                    <input id="home-phone" class="form-control" type="number" style="width: 100%;"
                         formControlName="homePhone">
                 </div>
                 <div class="group-input">
                     <label for="cell-phone" style="font-size: 15px; margin-bottom: 0px;">Telefone Celular</label>
-                    <input id="cell-phone" class="form-control" type="text" style="width: 100%;"
+                    <input id="cell-phone" class="form-control" type="number" style="width: 100%;"
                         formControlName="cellPhone">
                 </div>
                 <div class="group-input">
                     <label for="email" style="font-size: 15px; margin-bottom: 0px;">E-mail</label>
-                    <input id="email" class="form-control" type="text" style="width: 100%;" formControlName="email">
-                    <div *ngIf="email.invalid && submitted" class="validation-error">
-                        <p *ngIf="email.errors?.['required']">E-mail obrigatório.</p>
-                        <p *ngIf="email.errors?.['email']">E-mail inválido.</p>
-                    </div>
+                    <input id="email" class="form-control" type="text" style="width: 100%;"
+                        formControlName="email" >
                 </div>
             </div>
         </div>
@@ -115,7 +113,7 @@
             <div class="group-info">
                 <div class="group-input">
                     <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Imagem</label>
-                    <app-upload [image]='image'></app-upload>
+                    <app-upload [image]='image' (insertImage)="onInsertImage($event)"></app-upload>
                 </div>
                 <div class="group-input">
                     <label for="Total-collaborators" style="font-size: 15px; margin-bottom: 0px;">Total de

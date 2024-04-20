@@ -10,9 +10,9 @@
                 <button class="btn {{button.class}}" style="text-transform: uppercase;
                 align-items: center;
                 display: flex;
-                gap: 5px;" (click)="onClickButton(button.link)">
-                    <div *ngIf="iconButton != null;">
-                        <fa-icon [icon]='iconButton' style="display: flex;"></fa-icon>
+                gap: 5px;" (click)="onClickButton(button)">
+                    <div *ngIf="button.iconButton.iconName;">
+                        <fa-icon [icon]='button.iconButton' style="display: flex;"></fa-icon>
                     </div>
                     {{button.name}}
                 </button>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faShare } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { CityModel } from 'src/app/models/city-model';
 import { EstateModel } from 'src/app/models/estate-model';
@@ -17,7 +17,9 @@ export class PurchaseComponent {
     {
       name: 'CRIAR PEDIDO DE COMPRA',
       link: '/purchaseDetail/',
-      class: 'btn-primary'
+      class: 'btn-primary',
+      iconButton: {} as IconDefinition,
+      type: 'CREATE'
     }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;

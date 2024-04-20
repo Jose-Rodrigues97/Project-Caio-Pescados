@@ -18,12 +18,13 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./list-companies.component.css']
 })
 export class ListCompaniesComponent {
-  faPlus = faPlusCircle;
   buttons = [
     {
-      name: 'NOVA EMPRESA',
+      name: 'CRIAR EMPRESA',
       link: 'company/companyDetail/',
-      class: 'btn-primary'
+      class: 'btn-primary',
+      iconButton: faPlusCircle,
+      type: 'CREATE'
     }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;

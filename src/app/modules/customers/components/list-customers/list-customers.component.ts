@@ -5,7 +5,7 @@ import { CityModel } from 'src/app/models/city-model';
 import { EstateModel } from 'src/app/models/estate-model';
 import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-list-customers',
@@ -18,7 +18,9 @@ export class ListCustomersComponent {
     {
       name: 'CRIAR CLIENTE',
       link: '/customer/customerDetail/',
-      class: 'btn-primary'
+      class: 'btn-primary',
+      iconButton: {} as IconDefinition,
+      type: 'CREATE'
     }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;

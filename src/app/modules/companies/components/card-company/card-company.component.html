@@ -1,7 +1,13 @@
 <div class="card-company">
-    <img src="{{company.image}}" alt="">
+    <div *ngIf="company.image; else noImage">
+        <img src="{{company.image}}" alt="">
+    </div>
+    <ng-template #noImage>
+        <img src="../../../../../assets/iconcompany.png" alt="" style="height: 100%; width: 76%;">
+    </ng-template>
     <div>
-        <a [routerLink]="['/company/companyDetail', company.companyId]" style="text-transform: uppercase;">{{company.corporateName}}</a>
+        <a [routerLink]="['/company/companyDetail', company.companyId]"
+            style="text-transform: uppercase;">{{company.corporateName}}</a>
         <span>{{company.taxNumber}}</span>
         <div *ngIf="company.isHeadquarters; else blockSubsidiary">
             <span>Matriz</span>

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-customer-detail',
@@ -14,12 +15,16 @@ export class CustomerDetailComponent {
     {
       name: 'VOLTAR',
       link: 'customer/customersList',
-      class: 'btn-secondary'
+      class: 'btn-secondary',
+      iconButton: {} as IconDefinition,
+      type: 'RETURN'
     },
     {
       name: 'SALVAR',
       link: '/customerDetail/',
-      class: 'btn-primary'
+      class: 'btn-primary',
+      iconButton: {} as IconDefinition,
+      type: 'SAVE'
     }]
 
   constructor(private formBuilder: FormBuilder) {

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ClientModel } from '../../models/client-model';
 import { ShippingCompanyModel } from 'src/app/modules/accounting/models/shipping-company-model';
 import { TransportModel } from 'src/app/modules/accounting/models/transport-model';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sale-detail',
@@ -16,12 +17,16 @@ export class SaleDetailComponent {
     {
       name: 'VOLTAR',
       link: '/sale',
-      class: 'btn-secondary'
+      class: 'btn-secondary',
+      iconButton: {} as IconDefinition,
+      type: 'RETURN'
     },
     {
       name: 'SALVAR',
       link: '/saleDetail/',
-      class: 'btn-primary'
+      class: 'btn-primary',
+      iconButton: {} as IconDefinition,
+      type: 'SAVE'
     }]
 
     suppliers = {} as ClientModel[];

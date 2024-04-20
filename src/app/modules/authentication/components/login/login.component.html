@@ -8,7 +8,7 @@
                 <input type="login" class="form-control" id="login" formControlName="login">
                 <div *ngIf="login.invalid && formDir.submitted" class="validation-error">
                     <p *ngIf="login.errors?.['required']">Login obrigatório.</p>
-                    <p *ngIf="login.errors?.['minLength']">Login deve conter pelo menos 4 caracteres.</p>
+                    <p *ngIf="login.errors?.['minLength']">Login deve conter pelo menos 3 caracteres.</p>
                 </div>
             </div>
             <div class="mb-3">

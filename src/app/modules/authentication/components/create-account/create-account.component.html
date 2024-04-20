@@ -1,33 +1,54 @@
 <div class="content">
     <section class="form-register">
-        <form class="row g-2">
+        <form class="row g-2" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
             <div class="col-md-12">
-                <label for="inputZip" class="form-label">Nome Completo</label>
-                <input type="text" class="form-control" id="inputZip">
+                <label for="name" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+                <div *ngIf="name.invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
+                    <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 2 caracteres.
+                    </p>
+                </div>
             </div>
             <div class="col-md-12">
-                <label for="inputEmail4" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="inputEmail4">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <div *ngIf="email.invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="email.errors?.['required']">E-mail obrigatório.</p>
+                    <p *ngIf="email.errors?.['email']">E-mail inválido.
+                    </p>
+                </div>
             </div>
             <div class="col-12">
-                <label for="inputAddress2" class="form-label">Data de Nascimento</label>
-                <input type="date" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                <label for="login" class="form-label">Login</label>
+                <input type="text" class="form-control" id="login" formControlName="login">
+                <div *ngIf="login.invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="login.errors?.['required']">Login obrigatório.</p>
+                    <p *ngIf="login.errors?.['minlength']">Login deve conter pelo menos 3 caracteres.
+                    </p>
+                </div>
             </div>
             <div class="col-md-12">
-                <label for="inputCity" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="inputCity">
+                <label for="password" class="form-label" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip" data-bs-="Senha deve conter pelo menos 8 caracteres."
+                    id="labelPassword">Senha</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                <div *ngIf="password.invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="password.errors?.['required']">Senha obrigatória.</p>
+                </div>
             </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Login</label>
-                <input type="text" class="form-control" id="inputAddress">
-            </div>
+            <script>
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl)
+                })
+            </script>
             <div class="col-md-12">
-                <label for="inputPassword4" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-md-12">
-                <label for="inputPassword4" class="form-label">Repetir Senha</label>
-                <input type="password" class="form-control" id="inputPassword4">
+                <label for="confirmPassword" class="form-label">Repetir Senha</label>
+                <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+                <div *ngIf="confirmPassword.invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="confirmPassword.errors?.['required']">Confirmação de senha obrigatória.</p>
+                </div>
             </div>
             <div class="col-12" style="text-align: center;">
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
