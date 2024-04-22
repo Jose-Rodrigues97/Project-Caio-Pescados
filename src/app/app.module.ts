@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CompaniesModule } from './modules/companies/companies.module';
-import { ProductsModule } from './modules/products/products.module';
 import { AboutModule } from './modules/about/about.module';
 import { ConfigurationModule } from './modules/configuration/configuration.module';
 import { CustomersModule } from './modules/customers/customers.module';
@@ -15,6 +14,7 @@ import { LogisticModule } from './modules/logistic/logistic.module';
 import { AccountingModule } from './modules/accounting/accounting.module';
 import { CollaboratorsModule } from './modules/collaborators/collaborators.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ProductsModule } from './modules/products/products.module';
 
 @NgModule({
   declarations: [

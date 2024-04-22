@@ -9,7 +9,5 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 
 export class ProductsComponent {
-  
   menuId: string = '6'
-
 }

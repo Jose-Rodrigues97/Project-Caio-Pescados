@@ -9,7 +9,7 @@ import { ProductModel } from '../models/ProductModel';
 })
 
 export class ProductServiceTsService {
-  private readonly URL = `${environment.URL}products`;
+  private readonly URL = `${environment.URL}product`;
   httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + window.localStorage.getItem('Token')!,
@@ -56,7 +56,7 @@ export class ProductServiceTsService {
       errorMessage = error.error.message;
     } else {
       // Erro ocorreu no lado do servidor
-      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
+      errorMessage = error.error;
     }
     return throwError(errorMessage);
   };
