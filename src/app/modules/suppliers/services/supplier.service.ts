@@ -4,8 +4,6 @@ import { Observable, catchError, delay, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SuppliersModel } from '../models/suppliers-model';
 import { SupplierModel } from '../models/supplier-model';
-import { SupplierPutModel } from '../models/supplierPut-model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +38,8 @@ export class SupplierService {
         catchError(this.handleError));
   }
 
-  updateSupplier(supplierId: string, supplier: SupplierPutModel): Observable<SupplierPutModel> {
-    return this.httpClient.put<SupplierPutModel>(this.URL + '/' + supplierId, JSON.stringify(supplier), { headers: this.httpHeaders })
+  updateSupplier(supplierId: string, supplier: SupplierModel): Observable<SupplierModel> {
+    return this.httpClient.put<SupplierModel>(this.URL + '/' + supplierId, JSON.stringify(supplier), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
@@ -61,7 +59,7 @@ export class SupplierService {
       errorMessage = error.error.message;
     } else {
       // Erro ocorreu no lado do servidor
-      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
+      errorMessage = error.error;
     }
     console.log(errorMessage);
     return throwError(errorMessage);

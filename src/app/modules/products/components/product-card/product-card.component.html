@@ -1,29 +1,29 @@
 <a href="" style="text-decoration: none; color: black; position: relative;">
     <div class="card-product">
-        <img src="{{image}}" alt="">
-        <span style="font-size: 20px; height: 10%;"><b>{{name}}</b></span>
+        <img src="" alt="">
+        <span style="font-size: 20px; height: 10%;"><b></b></span>
         <div style="padding: 0 10px; height: 20%;">
             <div class="infos-card">
                 <div style="text-align: center; display: flex; gap: 5px;">
                     <fa-icon style="font-size: 15px; color: green" [icon]="faMoneyBillWave"></fa-icon>
-                    <span>Preço<br>R${{price}}</span>
+                    <span>Preço<br>R$</span>
                 </div>
                 <div style="text-align: center; display: flex; gap: 5px;">
                     <fa-icon style="font-size: 15px; margin: 3px; color: brown" [icon]="faDolly"></fa-icon>
-                    <div *ngIf="stock > 50; else blockAverageStock">
-                        Estoque<br><span title="Alto" style="color: green;">{{stock}}KG</span></div>
+                    <div *ngIf="51 > 50; else blockAverageStock">
+                        Estoque<br><span title="Alto" style="color: green;">KG</span></div>
                     <ng-template #blockAverageStock>
-                        <div *ngIf="stock > 20; else blockLowStock">
-                            Estoque<br><span title="Médio" style="color: orange;">{{stock}}KG</span></div>
+                        <div *ngIf="21 > 20; else blockLowStock">
+                            Estoque<br><span title="Médio" style="color: orange;">KG</span></div>
                         <ng-template #blockLowStock>
-                            <div>Estoque<br><span title="Baixo" style="color: red;">{{stock}}KG</span></div>
+                            <div>Estoque<br><span title="Baixo" style="color: red;">KG</span></div>
                         </ng-template>
                     </ng-template>
                 </div>
             </div>
         </div>
-        <p [attr.data-bs-toggle]="id" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-            [attr.data-bs-title]="description">{{description}}</p>
+        <p [attr.data-bs-toggle]="" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+            [attr.data-bs-title]=""></p>
     </div>
     <div class="new-card">
         Novo

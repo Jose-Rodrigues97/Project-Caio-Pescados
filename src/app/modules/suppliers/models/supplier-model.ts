@@ -1,5 +1,6 @@
-import { SupplierAddressModel } from "./supplier-address-model";
-import { TelephoneModel } from "./supplier-telephone-model";
+import { ImageModel } from "src/app/models/image/image-model";
+import { AddressModel } from "src/app/models/address/address-model";
+import { TelephoneModel } from "src/app/models/telephone/telephone-model";
 
 //struct para post e get unitario do backend
 export interface SupplierModel {
@@ -7,14 +8,9 @@ export interface SupplierModel {
   name: string;
   taxNumber: string;
   email: string;
-  telephone: TelephoneModel[];
-  address: SupplierAddressModel;
-  image: {
-    imageId: number;
-    image: Blob;
-    objectId: string;
-    objectType: string
-  };
+  telephones: TelephoneModel[];
+  address: AddressModel;
+  image: ImageModel;
   stateRegistration: string;
   branchActivity: string;
 }

@@ -7,6 +7,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationComponent } from './modules/authentication/authentication.component';
 import { LoginComponent } from './modules/authentication/components/login/login.component';
 import { CreateAccountComponent } from './modules/authentication/components/create-account/create-account.component';
+import { SuppliersComponent } from './modules/suppliers/suppliers.component';
+import { ProductsComponent } from './modules/products/products.component';
 
 const routes: Routes = [
   {
@@ -35,7 +37,12 @@ const routes: Routes = [
   },
   {
     path: 'supplier',
-    component: CustomersComponent,
+    component: SuppliersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'product',
+    component: ProductsComponent,
     canActivate: [AuthGuard]
   }
 ];
