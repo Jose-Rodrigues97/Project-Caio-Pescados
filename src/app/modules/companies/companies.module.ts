@@ -10,7 +10,6 @@ import { CompanyDetailComponent } from './components/company-detail/company-deta
 import { RouterModule } from '@angular/router';
 import { CompaniesRoutingModule } from './companies-routing.module';
 import { ListCompaniesComponent } from './components/list-companies/list-companies.component';
-import { CompanyService } from './services/company.service';
 
 @NgModule({
   declarations: [

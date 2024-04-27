@@ -9,7 +9,7 @@ import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 export class UploadComponent {
   faCloudUploadAlt = faCloudUploadAlt;
   selectedFiles: any = null;
-  @Input() image!: Blob;
+  @Input() image?: Blob;
   @Output() insertImage: EventEmitter<Blob> = new EventEmitter();
 
   onInsertImage(event: any) {

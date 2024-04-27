@@ -1,6 +1,6 @@
 export interface ImageModel {
-    imageId: number;
+    imageId: string;
     image: Blob;
     objectId: string;
-    objectType: string
+    objectType: string;
 }

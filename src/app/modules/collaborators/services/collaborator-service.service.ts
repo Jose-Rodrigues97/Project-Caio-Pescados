@@ -1,14 +1,14 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CompaniesModel } from '../models/companies-model';
-import { CompanyModel } from '../models/company-model';
+import { UserModel } from '../models/user-model';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CompanyService {
+export class CollaboratorService {
+
   private readonly URL = `${environment.URL}company`;
   httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -17,34 +17,34 @@ export class CompanyService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCompanies(): Observable<CompaniesModel> {
-    return this.httpClient.get<CompaniesModel>(this.URL, { headers: this.httpHeaders })
+  getUser(): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(this.URL, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError))
   }
 
-  getCompanyById(companyId: string): Observable<CompanyModel> {
-    return this.httpClient.get<CompanyModel>(this.URL + '/' + companyId, { headers: this.httpHeaders })
+  getUserById(userId: string): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(this.URL + '/' + userId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  createCompany(company: CompanyModel): Observable<CompanyModel> {
-    return this.httpClient.post<CompanyModel>(this.URL, JSON.stringify(company), { headers: this.httpHeaders })
+  createUser(user: UserModel): Observable<UserModel> {
+    return this.httpClient.post<UserModel>(this.URL, JSON.stringify(user), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  updateCompany(companyId: string, company: CompanyModel): Observable<CompanyModel> {
-    return this.httpClient.put<CompanyModel>(this.URL + '/' + companyId, JSON.stringify(company), { headers: this.httpHeaders })
+  updateUser(userId: string, user: UserModel): Observable<UserModel> {
+    return this.httpClient.put<UserModel>(this.URL + '/' + userId, JSON.stringify(user), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  deleteCompany(companyId: string) {
+  deleteUser(companyId: string) {
     return this.httpClient.delete<any>(this.URL + '/' + companyId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)

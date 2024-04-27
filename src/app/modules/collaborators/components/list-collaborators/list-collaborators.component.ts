@@ -7,6 +7,7 @@ import { EstateModel } from 'src/app/models/estate-model';
 import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { UserModel } from '../../models/user-model';
 
 @Component({
   selector: 'app-list-collaborators',
@@ -17,26 +18,17 @@ export class ListCollaboratorsComponent {
   faPlus = faPlusCircle;
   buttons = [
     {
-      name: 'Criar colaborador',
-      link: 'collaborator/collaboratorDetail/',
+      name: 'CRIAR COLABORADOR',
+      link: 'company/collaboratorDetail/',
       class: 'btn-primary',
-      iconButton: {} as IconDefinition,
+      iconButton: faPlusCircle,
       type: 'CREATE'
     }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;
   faShare = faShare;
-  companies = [
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-  ]
+  collaborators$!: Observable<UserModel>;
   constructor(private estateService: EstateService,
     private citiesService: CityService,
     private formBuilder: FormBuilder) {
@@ -51,7 +43,7 @@ export class ListCollaboratorsComponent {
     })
   }
 
-  onSubmit(): void {
+  ngOnSubmit(): void {
 
   }
 
@@ -69,7 +61,6 @@ export class ListCollaboratorsComponent {
   getCities() {
     this.cities$ = this.citiesService.getCitiesByUF(this.formGroup.value.estate);
   };
-
 
   changeUF() {
     this.getCities();

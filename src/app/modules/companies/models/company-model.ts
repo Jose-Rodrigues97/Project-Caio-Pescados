@@ -1,7 +1,7 @@
 import { AddressModel } from "../../../models/address/address-model";
 import { CompanyExtModel } from "./company-ext-model";
-import { ImageModel } from "../../../models/image/image-model";
 import { TelephoneModel } from "../../../models/telephone/telephone-model";
+import { ImageModel } from "../../themes/models/image-model";
 
 export interface CompanyModel {
     companyId: string;

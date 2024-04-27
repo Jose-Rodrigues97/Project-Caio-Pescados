@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Companyv2Model } from '../../models/companyv2-model';
+import { Companyv2Model } from '../../models/company-card-model';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CompanyService } from '../../services/company.service';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
@@ -10,9 +10,9 @@ import { CompanyExtModel } from '../../models/company-ext-model';
 import { AddressModel } from '../../../../models/address/address-model';
 import { ErrorModel } from 'src/app/models/error/error-model';
 import { properties } from '../../module property/properties';
-import { ImageModel } from 'src/app/models/image/image-model';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { DatePipe, formatDate } from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { ImageService } from 'src/app/modules/themes/components/upload/services/image.service';
 
 @Component({
   selector: 'app-company-detail',
@@ -24,6 +24,7 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
   bsModalRef?: BsModalRef;
   formGroup!: FormGroup;
   submitted: boolean = false;
+  imageId!: string;
   image!: Blob;
   isShowPanelOpeningHours = properties.isShowPanelOpeningHours;
   buttons = [
@@ -44,6 +45,7 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
 
   constructor(private formBuilder: FormBuilder,
     private companyService: CompanyService,
+    private imageService: ImageService,
     private modalService: BsModalService,
     private datepipe: DatePipe,
     private router: Router) {
@@ -59,13 +61,15 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
       fundationDate: '',
       situationRevenue: '',
       isHeadquarters: false,
+      addressId: '',
       address: '',
       city: '',
       estate: '',
       country: '',
       zipCode: '',
       complement: '',
-      image: Blob,
+      addresObjectId: '',
+      addresObjectType: '',
       homePhone: '',
       cellPhone: '',
       email: '',
@@ -91,6 +95,7 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
       thursdayEnd: { value: '', disabled: true },
       fridayEnd: { value: '', disabled: true },
       saturdayEnd: { value: '', disabled: true },
+      image: Blob,
     });
   }
 
@@ -104,7 +109,6 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
         iconButton: {} as IconDefinition,
         type: 'DELETE'
       });
-
     }
   }
 
@@ -245,13 +249,16 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
   }
 
   onDeleteCompany() {
-    this.companyService.deleteCompany(this.companyId).subscribe(() => {
-      this.router.navigateByUrl('/company/companiesList');
-      this.handleModal('success', 'Empresa excluída com sucesso.');
-    },
-      error => {
-        this.handleModal('danger', error);
-      });
+    let exclude = confirm("Deseja realmente excluir a empresa?");
+    if (exclude) {
+      this.companyService.deleteCompany(this.companyId).subscribe(() => {
+        this.router.navigateByUrl('/company/companiesList');
+        this.handleModal('success', 'Empresa excluída com sucesso.');
+      },
+        error => {
+          this.handleModal('danger', error);
+        });
+    }
   }
 
   ngOnSubmit() {
@@ -272,12 +279,15 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
         companyExtModel.isHeadquarters = this.formGroup.get('isHeadquarters')?.value;
         companyModel.companyExtension = companyExtModel;
         let companyAddressModel = {} as AddressModel;
+        companyAddressModel.addressId = this.formGroup.get('addressId')?.value;
         companyAddressModel.address = this.formGroup.get('address')?.value;
         companyAddressModel.cep = this.formGroup.get('zipCode')?.value;
         companyAddressModel.city = this.formGroup.get('city')?.value;
         companyAddressModel.complement = this.formGroup.get('complement')?.value;
         companyAddressModel.country = this.formGroup.get('country')?.value;
         companyAddressModel.estate = this.formGroup.get('estate')?.value;
+        companyAddressModel.objectType = this.formGroup.get('addresObjectType')?.value;
+        companyAddressModel.objectId = this.formGroup.get('addresObjectId')?.value;
         companyModel.address = companyAddressModel;
         let telephonesModel = [] as TelephoneModel[];
         if (this.formGroup.get('homePhone')?.value) {
@@ -295,11 +305,6 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
           telephonesModel.push(telephoneModel);
         }
         companyModel.telephones = telephonesModel;
-        // let image = {} as ImageModel;
-        // if (this.formGroup.get('image')?.value) {
-        //   image.image = this.formGroup.get('image')?.value;
-        //   companyModel.image = image;
-        // }
         if (this.companyId == '') {
           this.companyService.createCompany(companyModel).subscribe((companyModel: CompanyModel) => {
             this.buttons.push({
@@ -324,10 +329,21 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
               this.handleModal('danger', error);
             });
         }
+        var formData = new FormData();
+        if (this.formGroup.get('image')?.value) {
+          formData.append('objectId', this.companyId);
+          formData.append('objectType', 'COMPANY');
+          if (this.imageId) {
+            formData.append('imageId', this.imageId);
+            this.imageService.updateImage(this.imageId, formData);
+          } else {
+            this.imageService.createImage(formData);
+          }
+          console.log(formData);
+        }
       } else {
         this.handleModal('danger', 'Formulário inválido.');
       }
-
     } catch (error) {
       this.handleModal('danger', String(error));
     }
@@ -346,12 +362,15 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
       this.formGroup.get('isHeadquarters')?.setValue(company.companyExtension.isHeadquarters);
       this.formGroup.get('fundationDate')?.setValue(this.datepipe.transform(company.companyExtension.foundationDate, 'yyyy-MM-dd'));
       if (company.address) {
+        this.formGroup.get('addressId')?.setValue(company.address.addressId);
         this.formGroup.get('address')?.setValue(company.address.address);
         this.formGroup.get('city')?.setValue(company.address.city);
         this.formGroup.get('estate')?.setValue(company.address.estate);
         this.formGroup.get('country')?.setValue(company.address.country);
         this.formGroup.get('zipCode')?.setValue(company.address.cep);
         this.formGroup.get('complement')?.setValue(company.address.complement);
+        this.formGroup.get('addresObjectId')?.setValue(company.address.objectId);
+        this.formGroup.get('addresObjectType')?.setValue(company.address.objectType);
       }
       if (company.telephones) {
         for (let index = 0; index < company.telephones.length; index++) {
@@ -362,7 +381,6 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
           }
         }
       }
-
     },
       error => {
         let erro: ErrorModel;

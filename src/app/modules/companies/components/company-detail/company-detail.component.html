@@ -1,6 +1,6 @@
 <app-title-page pageName="Detalhes da Empresa" (clickButton)="onClickButton($event)" [buttons]=buttons></app-title-page>
 <section class="main-content">
-    <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
+    <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm" method="POST">
         <div class="group-content">
             <span class="group-title">Dados Cadastrais</span>
             <div class="group-info">
@@ -20,7 +20,8 @@
                         formControlName="taxNumber" required (change)="onChangeTaxNumber($event.target)">
                     <div *ngIf="taxNumber.invalid && submitted" class="invalid-feedback">
                         <p *ngIf="taxNumber.errors?.['required']">CNPJ obrigatório.</p>
-                        <p *ngIf="taxNumber.errors?.['minlength'] || taxNumber.errors?.['maxlength']">CNPJ deve conter 14 caracteres.
+                        <p *ngIf="taxNumber.errors?.['minlength'] || taxNumber.errors?.['maxlength']">CNPJ deve conter
+                            14 caracteres.
                         </p>
                     </div>
                 </div>
@@ -103,8 +104,7 @@
                 </div>
                 <div class="group-input">
                     <label for="email" style="font-size: 15px; margin-bottom: 0px;">E-mail</label>
-                    <input id="email" class="form-control" type="text" style="width: 100%;"
-                        formControlName="email" >
+                    <input id="email" class="form-control" type="text" style="width: 100%;" formControlName="email">
                 </div>
             </div>
         </div>
