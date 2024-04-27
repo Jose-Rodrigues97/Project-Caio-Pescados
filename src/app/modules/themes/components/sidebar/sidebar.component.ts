@@ -30,15 +30,82 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   previousSubMenuId = '';
 
   menus: any[] = [
-    { submenus: [], id: 1, class: "", icon: faHome, name: "Empresas", link: "/company/companiesList", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { submenus: [], id: 2, class: "", icon: faUserPlus, name: "Colaboradores", link: "/collaborator/collaboratorsList", visibleProfiles: ["Time", "Atleta"] },
-    { submenus: [], id: 3, class: "", icon: faUsers, name: "Clientes", link: "/customer/customersList", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { submenus: [{ submenus: [], id: 102, class: "", icon: faShoppingCart, name: "Compras", link: "/purchase", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] }, { submenus: [], id: 103, class: "", icon: faMoneyBillWave, name: "Vendas", link: "/sale", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] }, { submenus: [], id: 104, class: "", icon: faChartBar, name: "Métricas", link: "/metrics", visibleProfiles: ["Estabelecimento"] }], id: 11, class: "", icon: faCalculator, name: "Contabilidade", link: "/accounting", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { submenus: [{ submenus: [], id: 100, class: "", icon: faDolly, name: "Estoque", link: "/stock", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] }, { submenus: [], id: 101, class: "", icon: faTruck, name: "Transportadora", link: "/shippingCompany", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] }], id: 12, class: "", icon: faGlobeAmericas, name: "Logística", link: "/logistics", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { submenus: [], id: 6, class: "", icon: faStore, name: "Produtos", link: "/product/productList", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { submenus: [], id: 7, class: "", icon: faCity, name: "Fornecedores", link: "/supplier/supplierList", visibleProfiles: ["Time", "Atleta"] },
-    { submenus: [], id: 9, class: "", icon: faAddressCard, name: "Sobre", link: "/about", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
-    { submenus: [], id: 10, class: "", icon: faCogs, name: "Configurações", link: "/configuration", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"] },
+    {
+      submenus: [], id: 1, class: "", icon: faHome,
+      name: "Empresas",
+      link: "/company/companiesList",
+      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+    },
+    {
+      submenus: [], id: 2, class: "", icon: faUserPlus,
+      name: "Colaboradores",
+      link: "/collaborator/collaboratorsList",
+      visibleProfiles: ["Time", "Atleta"]
+    },
+    {
+      submenus: [], id: 3, class: "", icon: faUsers,
+      name: "Clientes",
+      link: "/customer/customersList",
+      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+    },
+    {
+      submenus: [{
+        submenus: [], id: 102, class: "", icon: faShoppingCart,
+        name: "Compras",
+        link: "/purchase",
+        visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      }, {
+        submenus: [], id: 103, class: "", icon: faMoneyBillWave,
+        name: "Vendas",
+        link: "/sale", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      }, {
+        submenus: [], id: 104, class: "", icon: faChartBar,
+        name: "Métricas", link: "/metrics",
+        visibleProfiles: ["Estabelecimento"]
+      }], id: 11, class: "", icon: faCalculator,
+      name: "Contabilidade",
+      link: "/accounting",
+      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+    },
+    {
+      submenus: [{
+        submenus: [], id: 100, class: "", icon: faDolly,
+        name: "Estoque",
+        link: "/stock",
+        visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      }, {
+        submenus: [], id: 101, class: "", icon: faTruck,
+        name: "Transportadora",
+        link: "/shippingCompany",
+        visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      }], id: 12, class: "", icon: faGlobeAmericas,
+      name: "Logística", link: "/logistics",
+      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+    },
+    {
+      submenus: [], id: 6, class: "", icon: faStore,
+      name: "Produtos",
+      link: "/product/productList",
+      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+    },
+    {
+      submenus: [], id: 7, class: "", icon: faCity,
+      name: "Fornecedores",
+      link: "/supplier/supplierList",
+      visibleProfiles: ["Time", "Atleta"]
+    },
+    {
+      submenus: [], id: 9, class: "", icon: faAddressCard,
+      name: "Sobre",
+      link: "/about",
+      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+    },
+    {
+      submenus: [], id: 10, class: "", icon: faCogs,
+      name: "Configurações",
+      link: "/configuration",
+      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+    },
   ]
 
   constructor(

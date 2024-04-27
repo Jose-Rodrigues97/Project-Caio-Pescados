@@ -1,12 +1,12 @@
 <app-title-page pageName="Colaboradores" [buttons]=buttons></app-title-page>
 <div>
     <div style="width: 70%;">
-        <ng-container *ngFor="let company of companies">
+        <!-- <ng-container *ngFor="let company of companies">
             <app-card-collaborator style="width: 70%;" [id]="company.id" [name]="company.name"
                 [isHeadquarters]="company.isHeadquarters" [taxNumber]="company.taxNumber" [address]="company.address"
                 [phone]="company.phone" [email]="company.email" [state]="company.state" [city]="company.city"
                 [image]="company.image"></app-card-collaborator>
-        </ng-container>
+        </ng-container> -->
         <app-pagination></app-pagination>
     </div>
     <div class="search">
@@ -32,7 +32,7 @@
             </div>
             <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
                 <button type="button" class="btn btn-secondary" (click)="onClean()">Limpar</button>
-                <button type="button" class="btn btn-primary" (click)="onSubmit()">Buscar</button>
+                <button type="button" class="btn btn-primary" (click)="ngOnSubmit()">Buscar</button>
             </div>
         </form>
     </div>

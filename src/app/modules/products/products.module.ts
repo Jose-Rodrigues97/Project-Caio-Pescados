@@ -10,13 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ProductsRoutingModule } from './product-routing.module';
 import { CardProductComponent } from './components/product-card/product-card.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
     CardProductComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,

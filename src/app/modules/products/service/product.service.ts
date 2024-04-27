@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProductModel } from '../models/ProductModel';
+import { ProductsModel } from '../models/ProductsModel';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ProductServiceTsService {
+export class ProductService {
   private readonly URL = `${environment.URL}product`;
   httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -16,8 +17,8 @@ export class ProductServiceTsService {
   })
   constructor(private httpClient: HttpClient) { }
 
-  getProduct(): Observable<ProductModel> {
-    return this.httpClient.get<ProductModel>(this.URL, { headers: this.httpHeaders })
+  getProducts(): Observable<ProductsModel> {
+    return this.httpClient.get<ProductsModel>(this.URL, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError))
   }

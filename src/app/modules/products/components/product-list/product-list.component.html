@@ -1,1 +1,49 @@
-<app-title-page pageName="Product"></app-title-page>
+<app-title-page pageName="Produtos" [buttons]=buttons></app-title-page>
+<div class="search">
+
+  <form [formGroup]="formGroup">
+    <div class="stylized-filter">
+      <label for="name">Nome</label>
+      <input id="name" class="form-control" type="text" placeholder="Pesquise nome" style="width: 100%;"
+        formControlName="name">
+      <label for="has-stock">Tem Estoque</label>
+      <input id="has-stock" class="form-check-input" type="checkbox" formControlName="hasStock">
+      <label for="price">Preço</label>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <input id="price" class="form-control" type="number" style="width: 50%;" formControlName="price">
+        <input class="form-check-input" type="radio" formControlName="typePrice" value="bigger" id="radio-price-bigger">
+        <label for="radio-price-bigger">
+          Maior
+        </label>
+        <input class="form-check-input" type="radio" formControlName="typePrice" value="smaller"
+          id="radio-price-smaller">
+        <label for="radio-price-smaller">
+          Menor
+        </label>
+      </div>
+      <label for="stock">Estoque</label>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <input id="stock" class="form-control" type="number" style="width: 50%;" formControlName="stock">
+        <input class="form-check-input" type="radio" formControlName="typeStock" value="bigger" id="radio-stock-bigger">
+        <label for="radio-stock-bigger">
+          Maior
+        </label>
+        <input class="form-check-input" type="radio" formControlName="typeStock" value="smaller"
+          id="radio-stock-smaller">
+        <label for="radio-stock-smaller">
+          Menor
+        </label>
+      </div>
+    </div>
+  </form>
+
+
+  <div class="content-cards">
+    <div style="width: 100%;" *ngIf="products$ | async as products; ">
+      <ng-container *ngFor="let product of products.content">
+        <app-card-product [product]="product"></app-card-product>
+      </ng-container>
+    </div>
+  </div>
+</div>
+

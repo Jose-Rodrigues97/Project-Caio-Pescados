@@ -1,4 +1,4 @@
-import { ImageModel } from "src/app/models/image/image-model";
+import { ImageModel } from "../../themes/models/image-model";
 import { AddressModel } from "src/app/models/address/address-model";
 import { TelephoneModel } from "src/app/models/telephone/telephone-model";
 
