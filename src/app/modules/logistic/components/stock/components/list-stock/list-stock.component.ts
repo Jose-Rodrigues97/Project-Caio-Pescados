@@ -13,14 +13,7 @@ import { CompanyService } from 'src/app/modules/companies/services/company.servi
 export class ListStockComponent {
   formGroup!: FormGroup;
   companies$!: Observable<CompaniesModel>;
-  buttons = [
-    {
-      name: 'CRIAR EMPRESA',
-      link: 'company/companyDetail/',
-      class: 'btn-primary',
-      iconButton: faPlusCircle,
-      type: 'CREATE'
-    }] 
+
 
   constructor(private companyService: CompanyService,
     private formBuilder: FormBuilder) {

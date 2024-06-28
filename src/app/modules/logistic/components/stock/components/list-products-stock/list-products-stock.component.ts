@@ -6,6 +6,7 @@ import { ProductStockService } from '../../services/product-stock.service';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
+import { IconDefinition, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-list-products-stock',
@@ -17,7 +18,20 @@ export class ListProductsStockComponent {
   formGroup!: FormGroup;
   bsModalRef?: BsModalRef;
   companyId: string = '';
-
+  buttons = [{
+    name: 'CRIAR PRODUTO',
+    link: '/product/productDetail/',
+    class: 'btn-primary',
+    iconButton: faPlusCircle,
+    type: 'CREATE'
+  },
+  {
+    name: 'VOLTAR',
+    link: 'logistic/stockList',
+    class: 'btn-secondary',
+    iconButton: {} as IconDefinition,
+    type: 'RETURN'
+  }]
   constructor(private productStockService: ProductStockService,
     private modalService: BsModalService,
     private formBuilder: FormBuilder,
@@ -29,7 +43,7 @@ export class ListProductsStockComponent {
 
   ngOnInit() {
     this.getProductsByCompanyId();
-    
+
   }
 
   onSubmit(): void {

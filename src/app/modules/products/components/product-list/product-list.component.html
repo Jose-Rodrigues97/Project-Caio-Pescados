@@ -1,6 +1,5 @@
 <app-title-page pageName="Produtos" [buttons]=buttons></app-title-page>
 <div class="search">
-
   <form [formGroup]="formGroup">
     <div class="stylized-filter">
       <label for="name">Nome</label>
@@ -36,14 +35,38 @@
       </div>
     </div>
   </form>
-
-
-  <div class="content-cards">
-    <div style="width: 100%;" *ngIf="products$ | async as products; ">
-      <ng-container *ngFor="let product of products.content">
-        <app-card-product [product]="product"></app-card-product>
-      </ng-container>
+  <div class="content-general">
+    <div style="width: 100%;" *ngIf="products$ | async as products; else sppiner">
+      <div *ngIf="products.numberOfElements <= 5; else columnTwo" class="content-cards"
+        style="grid-template-rows: 1fr;">
+        <ng-container *ngFor="let product of products.content">
+          <app-card-product [product]="product"></app-card-product>
+        </ng-container>
+      </div>
+      <ng-template #columnTwo>
+        <div *ngIf="products.numberOfElements <= 10; else columnTree" class="content-cards"
+          style="grid-template-rows: 1fr 1fr;">
+          <ng-container *ngFor="let product of products.content">
+            <app-card-product [product]="product"></app-card-product>
+          </ng-container>
+        </div>
+        <ng-template #columnTree>
+          <div class="content-cards" style="grid-template-rows: 1fr 1fr 1fr;">
+            <ng-container *ngFor="let product of products.content">
+              <app-card-product [product]="product"></app-card-product>
+            </ng-container>
+          </div>
+        </ng-template>
+      </ng-template>
+      <app-pagination *ngIf="products.totalElements > 0" [last]="products.last" [size]="products.size"
+        [sort]="products.sort" [totalPages]="products.totalPages" [totalElements]="products.totalElements"
+        [numberOfElements]="products.numberOfElements" [number]="products.number" [empty]="products.empty"
+        [first]="products.first" [pageable]="products.pageable"></app-pagination>
     </div>
+    <ng-template #sppiner>
+      <div style="width:70%; text-align: center;">
+        <app-sppiner style="width: 100vw; height: 100vh;"></app-sppiner>
+      </div>
+    </ng-template>
   </div>
 </div>
-

@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import * as bootstrap from 'bootstrap';
 import { faMoneyBillWave, faDolly } from '@fortawesome/free-solid-svg-icons';
 import { ProductModel } from '../../models/product-model';
 
