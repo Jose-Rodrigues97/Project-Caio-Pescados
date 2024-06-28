@@ -1,0 +1,28 @@
+<app-title-page pageName="Itens do Estoque"   buttonName="criar produto" buttonLink="/products"></app-title-page>
+<div>
+    <div style="width: 70%;" *ngIf="productsStock$ | async as productsStock; else list">
+        <ng-container *ngFor="let productStock of productsStock.content">
+            <app-product-stock-card style="width: 70%;" [productStock]='productStock'></app-product-stock-card>
+        </ng-container>
+        <app-pagination [last]="productsStock.last" [size]="productsStock.size" [sort]="productsStock.sort"
+            [totalPages]="productsStock.totalPages" [totalElements]="productsStock.totalElements"
+            [numberOfElements]="productsStock.numberOfElements" [number]="productsStock.number" [empty]="productsStock.empty"
+            [first]="productsStock.first" [pageable]="productsStock.pageable"></app-pagination>
+    </div>
+    <ng-template #list>
+        <div style="width:70%; text-align: center;">
+            <app-sppiner style="width: 100vw; height: 100vh;"></app-sppiner>
+        </div>
+    </ng-template>
+    <div class="search">
+        <form [formGroup]="formGroup">
+            <input class="form-control" type="text" placeholder="Pesquise nome, CPF ou CNPJ" style="width: 100%;"
+                formControlName="text">
+        
+            <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                <button type="button" class="btn btn-secondary" (click)="onClean()">Limpar</button>
+                <button type="button" class="btn btn-primary" (click)="onSubmit()">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>

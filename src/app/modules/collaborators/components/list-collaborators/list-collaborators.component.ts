@@ -8,6 +8,10 @@ import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { UserModel } from '../../models/user-model';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { CollaboratorService } from '../../services/collaborator-service.service';
+import { CollaboratorsModel } from '../../models/collaborators-model';
+import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 
 @Component({
   selector: 'app-list-collaborators',
@@ -19,7 +23,7 @@ export class ListCollaboratorsComponent {
   buttons = [
     {
       name: 'CRIAR COLABORADOR',
-      link: 'company/collaboratorDetail/',
+      link: 'collaborator/collaboratorDetail/',
       class: 'btn-primary',
       iconButton: faPlusCircle,
       type: 'CREATE'
@@ -28,13 +32,17 @@ export class ListCollaboratorsComponent {
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;
   faShare = faShare;
-  collaborators$!: Observable<UserModel>;
-  constructor(private estateService: EstateService,
+  bsModalRef?: BsModalRef;
+  collaborators$!: Observable<CollaboratorsModel>;
+  constructor(private collaboratorService: CollaboratorService,
+    private estateService: EstateService,
     private citiesService: CityService,
+    private modalService: BsModalService,
     private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.getCollaborators();
     this.getEstates();
     this.formGroup = this.formBuilder.group({
       text: '',
@@ -62,9 +70,18 @@ export class ListCollaboratorsComponent {
     this.cities$ = this.citiesService.getCitiesByUF(this.formGroup.value.estate);
   };
 
+  getCollaborators() {
+    this.collaborators$ = this.collaboratorService.getUsersPagination();
+  }
+
   changeUF() {
     this.getCities();
     this.formGroup.value.city = "";
   }
 
+  handleModal(type: string, message: string) {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = type;
+    this.bsModalRef.content.message = message;
+  }
 }

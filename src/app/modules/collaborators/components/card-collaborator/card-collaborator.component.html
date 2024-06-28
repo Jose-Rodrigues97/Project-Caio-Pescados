@@ -1,22 +1,23 @@
 <div class="card-collaborator">
-    <img src="{{image}}" alt="">
+    <div *ngIf="collaboratorModel.image; else imageLogo">
+        <img src="{{collaboratorModel.image}}" alt="">
+    </div>
+    <ng-template #imageLogo>
+        <img src="../../../../../assets/download-removebg-preview.png" alt="">
+    </ng-template>
     <div>
-        <a [routerLink]="['/collaborator/collaboratorDetail', id]" style="text-transform: uppercase;">{{name}}</a>
-        <span>{{taxNumber}}</span>
-        <div *ngIf="isHeadquarters; else blockSubsidiary">
-            <span>Matriz</span>
-        </div>
-        <ng-template #blockSubsidiary>
-            <span>Filial</span>
-        </ng-template>
+        <a [routerLink]="['/collaborator/collaboratorDetail', collaboratorModel.userId]"
+            style="text-transform: uppercase;">{{collaboratorModel.name}} {{collaboratorModel.surname}}</a>
+        <span>{{collaboratorModel.taxNumber}}</span>
+        <span>{{collaboratorModel.email}}</span>
     </div>
     <div>
-        <span style="text-transform: uppercase;">{{state}}</span>
-        <span style="text-transform: uppercase;">{{city}}</span>
-        <span>{{address}}</span>
+        <span style="text-transform: uppercase;">{{collaboratorModel.telephones}}</span>
+        <span>{{collaboratorModel.address}}</span>
     </div>
-    <div>
-        <span>{{phone}}</span>
-        <span>{{email}}</span>
+    <div *ngIf="collaboratorModel.collaboratorExt">
+        <span style="text-transform: uppercase;">{{collaboratorModel.collaboratorExt.rg}}</span>
+        <span>{{collaboratorModel.collaboratorExt.birthday}}</span>
+        <span>{{collaboratorModel.collaboratorExt.office}}</span>
     </div>
 </div>

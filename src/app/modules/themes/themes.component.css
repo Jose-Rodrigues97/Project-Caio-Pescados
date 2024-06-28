@@ -6,8 +6,8 @@
 
 .sidebar {
     position: fixed;
-    top: 95px;
-    height: calc(100vh - 95px);
+    top: 80px;
+    height: calc(100vh - 80px);
     width: 250px;
 }
 
@@ -15,7 +15,7 @@
     position: absolute;
     left: 250px;
     width: calc(100% - 250px);
-    top: 95px
+    top: 80px
 }
 
 @media (max-width: 1400px) {

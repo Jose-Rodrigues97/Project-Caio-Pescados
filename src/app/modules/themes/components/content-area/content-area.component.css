@@ -1,6 +1,6 @@
 main {
     width: 100%;
-    min-height: calc(100vh - 95px);
+    min-height: calc(100vh - 80px);
     background-color: #DCDCDC;
     padding: 20px;
 }

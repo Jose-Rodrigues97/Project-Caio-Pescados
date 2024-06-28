@@ -9,6 +9,7 @@ import { LoginComponent } from './modules/authentication/components/login/login.
 import { CreateAccountComponent } from './modules/authentication/components/create-account/create-account.component';
 import { SuppliersComponent } from './modules/suppliers/suppliers.component';
 import { ProductsComponent } from './modules/products/products.component';
+import { AboutComponent } from './modules/about/about.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,11 @@ const routes: Routes = [
   {
     path: 'product',
     component: ProductsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
     canActivate: [AuthGuard]
   }
 ];

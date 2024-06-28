@@ -5,7 +5,11 @@ import { CityModel } from 'src/app/models/city-model';
 import { EstateModel } from 'src/app/models/estate-model';
 import { CityService } from 'src/app/services/city/city.service';
 import { EstateService } from 'src/app/services/estate/estate.service';
-import { IconDefinition, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faPlusCircle, faShare } from '@fortawesome/free-solid-svg-icons';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { CustomersModel } from '../../models/customers-model';
+import { CustomerService } from '../../services/customer.service';
+import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 
 @Component({
   selector: 'app-list-customers',
@@ -19,30 +23,26 @@ export class ListCustomersComponent {
       name: 'CRIAR CLIENTE',
       link: '/customer/customerDetail/',
       class: 'btn-primary',
-      iconButton: {} as IconDefinition,
+      iconButton: faPlusCircle,
       type: 'CREATE'
     }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;
+  faShare = faShare;
+  customers$!: Observable<CustomersModel>;
+  bsModalRef?: BsModalRef;
 
-  companies = [
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-    { id: 1, image: "../../assets/Caio_Pescados-removebg-preview.png", name: "Mar e Peixe", isHeadquarters: true, phone: 5198435151, email: "marpeixe@gmail.com", state: "RS", city: "Rio Grande", taxNumber: 65181611616161, address: "Rua Qualquer" },
-    { id: 2, image: "", name: "Caio Pescado", isHeadquarters: false, phone: 75757425425, email: "caio@gmail.com", state: "RS", city: "Alvorada", taxNumber: 676575467575747, address: "Rua Frederico Dhill" },
-  ]
 
-  constructor(private estateService: EstateService,
+  constructor(private customerService: CustomerService,
+    private estateService: EstateService,
     private citiesService: CityService,
+    private modalService: BsModalService,
     private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.getCustomers();
     this.getEstates();
     this.formGroup = this.formBuilder.group({
       text: '',
@@ -51,8 +51,12 @@ export class ListCustomersComponent {
     })
   }
 
-  onSubmit(): void {
+  onSubmit() {
 
+  }
+
+  getCustomers() {
+    this.customers$ = this.customerService.getCustomers();
   }
 
   onClean() {
@@ -60,19 +64,28 @@ export class ListCustomersComponent {
     this.cities$ = new Observable<[]>();
   }
 
+  changeUF() {
+    this.getCities();
+    this.formGroup.value.city = "";
+  }
+
   getEstates() {
     this.estateService.getUFs().subscribe((estates: EstateModel[]) => {
       this.estates = estates;
-    });
+    },
+      error => {
+        this.handleModal('danger', error);
+      }
+    );
   }
 
   getCities() {
     this.cities$ = this.citiesService.getCitiesByUF(this.formGroup.value.estate);
   };
 
-
-  changeUF() {
-    this.getCities();
-    this.formGroup.value.city = "";
+  handleModal(type: string, message: string) {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = type;
+    this.bsModalRef.content.message = message;
   }
 }

@@ -62,4 +62,4 @@ export class CompanyService {
     }
     return throwError(errorMessage);
   };
-}
+} 

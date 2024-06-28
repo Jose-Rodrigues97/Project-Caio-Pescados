@@ -5,7 +5,7 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ProductService } from '../../service/product.service';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
-import { ProductModel } from '../../models/ProductModel';
+import { ProductModel } from '../../models/product-model';
 import { ErrorModel } from 'src/app/models/error/error-model';
 
 @Component({
@@ -20,18 +20,17 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
   submitted: boolean = false;
   buttons = [
     {
-      name: 'VOLTAR',
-      link: 'product/productList',
-      class: 'btn-secondary',
-      iconButton: {} as IconDefinition,
-      type: 'RETURN'
-    },
-    {
       name: 'SALVAR',
       link: '',
       class: 'btn-primary',
       iconButton: {} as IconDefinition,
       type: 'SAVE'
+    }, {
+      name: 'VOLTAR',
+      link: 'product/productList',
+      class: 'btn-secondary',
+      iconButton: {} as IconDefinition,
+      type: 'RETURN'
     }]
 
   constructor(
@@ -44,14 +43,13 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
     this.productId = Number(s.path);
     this.formGroup = this.formBuilder.group({
       id: this.productId,
-      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       description: '',
-      aquaType: '',
-      price: ''
+      aquaType: ''
     });
   }
   ngOnInit() {
-    if (this.formGroup.get('id')?.value !== '') {
+    if (this.productId !== 0) {
       this.getProductById(this.formGroup.get('id')?.value);
       this.buttons.push({
         name: 'EXCLUIR',
@@ -102,7 +100,6 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
         productModel.name = this.formGroup.get('name')?.value;
         productModel.description = this.formGroup.get('description')?.value;
         productModel.aquaType = this.formGroup.get('aquaType')?.value;
-        productModel.price = this.formGroup.get('price')?.value;
         if (this.productId == 0) {
           this.productService.createProduct(productModel).subscribe(() => {
             this.buttons.push({
@@ -140,7 +137,6 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
       this.formGroup.get('name')?.setValue(productModel.name);
       this.formGroup.get('description')?.setValue(productModel.description);
       this.formGroup.get('aquaType')?.setValue(productModel.aquaType);
-      this.formGroup.get('price')?.setValue(productModel.price);
     },
       error => {
         let erro: ErrorModel;
@@ -157,9 +153,6 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
   }
   get aquaType() {
     return this.formGroup.get("aquaType")!;
-  }
-  get price() {
-    return this.formGroup.get("price")!;
   }
 
   handleModal(type: string, message: string) {

@@ -1,4 +1,5 @@
-<app-title-page pageName="Detalhes do Colaborador" (clickButton)="onClickButton()" [buttons]=buttons></app-title-page>
+<app-title-page pageName="Detalhes do Colaborador" (clickButton)="onClickButton($event)"
+    [buttons]=buttons></app-title-page>
 <section class="main-content">
     <form [formGroup]="formGroup">
         <div class="group-content">
@@ -7,25 +8,35 @@
                 <div class="group-input">
                     <label for="name" style="font-size: 15px; margin-bottom: 0px;">Nome</label>
                     <input id="name" class="form-control" type="text" style="width: 100%;" formControlName="name">
+                    <div *ngIf="name.invalid && submitted" class="invalid-feedback">
+                        <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
+                        <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 2 caracteres.
+                        </p>
+                    </div>
                 </div>
                 <div class="group-input">
                     <label for="surname" style="font-size: 15px; margin-bottom: 0px;">Sobrenome</label>
-                    <input id="surname" class="form-control" type="text" style="width: 100%;"
-                        formControlName="surname">
+                    <input id="surname" class="form-control" type="text" style="width: 100%;" formControlName="surname">
                 </div>
                 <div class="group-input">
                     <label for="rg" style="font-size: 15px; margin-bottom: 0px;">RG</label>
-                    <input id="rg" class="form-control" type="text" style="width: 100%;"
-                        formControlName="rg">
+                    <input id="rg" class="form-control" type="text" style="width: 100%;" formControlName="rg">
                 </div>
                 <div class="group-input">
-                    <label for="cpf" style="font-size: 15px; margin-bottom: 0px;">CPF</label>
-                    <input id="cpf" class="form-control" type="text" style="width: 100%;" formControlName="cpf">
+                    <label for="taxNumber" style="font-size: 15px; margin-bottom: 0px;">CPF</label>
+                    <input id="taxNumber" class="form-control" type="text" style="width: 100%;"
+                        formControlName="taxNumber">
+                    <div *ngIf="taxNumber.invalid && submitted" class="invalid-feedback">
+                        <p *ngIf="taxNumber.errors?.['required']">CPF obrigatório.</p>
+                        <p *ngIf="taxNumber.errors?.['minlength'] || taxNumber.errors?.['maxlength']">CPF deve conter
+                            11 caracteres.
+                        </p>
+                    </div>
                 </div>
                 <div class="group-input">
-                    <label for="date-birth" style="font-size: 15px; margin-bottom: 0px;">Data de Nascimento</label>
-                    <input id="date-birth" class="form-control" type="date" style="width: 100%;"
-                        formControlName="dateBirth">
+                    <label for="birthday" style="font-size: 15px; margin-bottom: 0px;">Data de Nascimento</label>
+                    <input id="birthday" class="form-control" type="date" style="width: 100%;"
+                        formControlName="birthday">
                 </div>
             </div>
         </div>
@@ -33,8 +44,8 @@
             <span class="group-title">Endereço</span>
             <div class="group-info">
                 <div class="group-input">
-                    <label for="street" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
-                    <input id="street" class="form-control" type="text" style="width: 100%;" formControlName="street">
+                    <label for="address" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
+                    <input id="address" class="form-control" type="text" style="width: 100%;" formControlName="address">
                 </div>
                 <div class="group-input">
                     <label for="city" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
@@ -88,22 +99,19 @@
                 </div>
                 <div class="group-input">
                     <label for="office" style="font-size: 15px; margin-bottom: 0px;">Cargo</label>
-                    <input id="office" class="form-control" type="text" style="width: 100%;"
-                        formControlName="office">
+                    <input id="office" class="form-control" type="text" style="width: 100%;" formControlName="office">
                 </div>
                 <div class="group-input">
                     <label for="salary" style="font-size: 15px; margin-bottom: 0px;">Salário</label>
-                    <input id="salary" class="form-control" type="number" style="width: 100%;"
-                        formControlName="salary">
+                    <input id="salary" class="form-control" type="number" style="width: 100%;" formControlName="salary">
                 </div>
                 <div class="group-input">
                     <label for="turn" style="font-size: 15px; margin-bottom: 0px;">Turno</label>
-                    <input id="turn" class="form-control" type="text" style="width: 100%;"
-                        formControlName="turn">
+                    <input id="turn" class="form-control" type="text" style="width: 100%;" formControlName="turn">
                 </div>
             </div>
         </div>
-        <div class="group-content">
+        <div *ngIf="isViewEmployeeWorkScheduleDashboard" class="group-content">
             <span class="group-title">Expediente</span>
             <div class="group-info">
                 <div class="group-input-opening-hours">
@@ -112,9 +120,8 @@
                         <input id="sunday" class="form-check-input" type="checkbox" formControlName="sunday">
                         <div style="display: flex; align-items: center; gap: 5px">
                             Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="sundayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
-                                formControlName="sundayEnd">
+                                formControlName="sundayStart"> às <input id="Total-collaborators" class="form-control"
+                                type="time" style="width: 100%;" style="width: 25%;" formControlName="sundayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
@@ -122,9 +129,8 @@
                         <input id="monday" class="form-check-input" type="checkbox" formControlName="monday">
                         <div style="display: flex; align-items: center; gap: 5px">
                             Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="mondayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
-                                formControlName="mondayEnd">
+                                formControlName="mondayStart"> às <input id="Total-collaborators" class="form-control"
+                                type="time" style="width: 100%;" style="width: 25%;" formControlName="mondayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
@@ -132,9 +138,8 @@
                         <input id="tuesday" class="form-check-input" type="checkbox" formControlName="tuesday">
                         <div style="display: flex; align-items: center; gap: 5px">
                             Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="tuesdayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
-                                formControlName="tuesdayEnd">
+                                formControlName="tuesdayStart"> às <input id="Total-collaborators" class="form-control"
+                                type="time" style="width: 100%;" style="width: 25%;" formControlName="tuesdayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
@@ -152,9 +157,8 @@
                         <input id="thursday" class="form-check-input" type="checkbox" formControlName="thursday">
                         <div style="display: flex; align-items: center; gap: 5px">
                             Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="thursdayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
-                                formControlName="thursdayEnd">
+                                formControlName="thursdayStart"> às <input id="Total-collaborators" class="form-control"
+                                type="time" style="width: 100%;" style="width: 25%;" formControlName="thursdayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
@@ -162,9 +166,8 @@
                         <input id="friday" class="form-check-input" type="checkbox" formControlName="friday">
                         <div style="display: flex; align-items: center; gap: 5px">
                             Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="fridayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
-                                formControlName="fridayEnd">
+                                formControlName="fridayStart"> às <input id="Total-collaborators" class="form-control"
+                                type="time" style="width: 100%;" style="width: 25%;" formControlName="fridayEnd">
                         </div>
                     </div>
                     <div class="opening-time">
@@ -172,9 +175,8 @@
                         <input id="saturday" class="form-check-input" type="checkbox" formControlName="saturday">
                         <div style="display: flex; align-items: center; gap: 5px">
                             Das <input id="Total-collaborators" class="form-control" type="time" style="width: 25%;"
-                                formControlName="saturdayStart"> às <input id="Total-collaborators"
-                                class="form-control" type="time" style="width: 100%;" style="width: 25%;"
-                                formControlName="saturdayEnd">
+                                formControlName="saturdayStart"> às <input id="Total-collaborators" class="form-control"
+                                type="time" style="width: 100%;" style="width: 25%;" formControlName="saturdayEnd">
                         </div>
                     </div>
                 </div>

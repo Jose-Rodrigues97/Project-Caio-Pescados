@@ -25,7 +25,7 @@ export class ListCompaniesComponent {
       class: 'btn-primary',
       iconButton: faPlusCircle,
       type: 'CREATE'
-    }]
+    }] 
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;
@@ -76,7 +76,6 @@ export class ListCompaniesComponent {
   getCities() {
     this.cities$ = this.citiesService.getCitiesByUF(this.formGroup.value.estate);
   };
-
 
   changeUF() {
     this.getCities();

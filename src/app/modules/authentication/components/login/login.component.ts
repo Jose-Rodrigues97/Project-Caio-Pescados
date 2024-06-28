@@ -21,14 +21,14 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private modalService: BsModalService) {
     this.formGroup = this.formBuilder.group({
-      login: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      taxNumber: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
       password: new FormControl('', [Validators.required]),
       check: false
     });
   }
 
-  get login() {
-    return this.formGroup.get("login")!;
+  get taxNumber() {
+    return this.formGroup.get("taxNumber")!;
   }
 
   get password() {
@@ -36,7 +36,7 @@ export class LoginComponent {
   }
 
   ngOnSubmit() {
-    if (this.formGroup.get('login')?.valid) {
+    if (this.formGroup.get('taxNumber')?.valid) {
       if (this.formGroup.get('password')?.valid) {
         if (!this.formGroup.get('check')?.value) {
           this.handleModal('info', 'Realize a checagem.');

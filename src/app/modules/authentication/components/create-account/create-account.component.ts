@@ -24,7 +24,7 @@ export class CreateAccountComponent {
     this.formGroup = this.formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      login: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      taxNumber: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       confirmPassword: new FormControl('', [Validators.required]),
     });
@@ -45,8 +45,8 @@ export class CreateAccountComponent {
     return this.formGroup.get("email")!;
   }
 
-  get login() {
-    return this.formGroup.get("login")!;
+  get taxNumber() {
+    return this.formGroup.get("taxNumber")!;
   }
 
   get password() {
@@ -64,7 +64,7 @@ export class CreateAccountComponent {
 
           let createUser = {} as CreateAccountModel;
           createUser.email = this.formGroup.get("email")?.value;
-          createUser.login = this.formGroup.get("login")?.value;
+          createUser.taxNumber = this.formGroup.get("taxNumber")?.value;
           createUser.name = this.formGroup.get("name")?.value;
           createUser.password = this.formGroup.get("password")?.value;
           createUser.role = 'USER';

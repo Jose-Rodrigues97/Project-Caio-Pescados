@@ -10,7 +10,7 @@
             formControlName="name" required (change)="onChangeName($event.target)">
           <div *ngIf="name.invalid && submitted" class="invalid-feedback">
             <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
-            <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 5 caracteres.</p>
+            <p *ngIf="name.errors?.['minlength']">Nome deve conter pelo menos 2 caracteres.</p>
           </div>
         </div>
         <div class="group-input">
@@ -22,11 +22,6 @@
             </label>
           <input id="aquaType" class="form-control" type="text" style="width: 100%;"
             formControlName="aquaType">
-        </div>
-        <div class="group-input">
-          <label for="price" style="font-size: 15px; margin-bottom: 0px;">Preço</label>
-          <input id="price" class="form-control" type="text" style="width: 100%;"
-            formControlName="price">
         </div>
       </div>
     </div>

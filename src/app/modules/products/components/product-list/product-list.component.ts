@@ -4,7 +4,7 @@ import { IconDefinition, faPlusCircle, faShare } from "@fortawesome/free-solid-s
 import { BsModalRef } from "ngx-bootstrap/modal";
 import { Observable } from "rxjs";
 import { ProductService } from "../../service/product.service";
-import { ProductsModel } from "../../models/ProductsModel";
+import { ProductsModel } from "../../models/products-model";
 
 
 @Component({
@@ -16,10 +16,10 @@ import { ProductsModel } from "../../models/ProductsModel";
 export class ProductListComponent {
   buttons = [
     {
-      name: 'CRIAR FORNECEDOR',
+      name: 'NOVO PRODUTO',
       link: 'product/productDetail/',
       class: 'btn-primary',
-      iconButton: {} as IconDefinition,
+      iconButton: faPlusCircle,
       type: 'CREATE'
     }]
 
@@ -32,6 +32,14 @@ export class ProductListComponent {
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder) {
+      this.formGroup = this.formBuilder.group({
+        name: '',
+        hasStock: '',
+        price: '',
+        typePrice: '',
+        stock: '',
+        typeStock: ''
+      });
   }
 
   ngOnInit() {
@@ -46,9 +54,7 @@ export class ProductListComponent {
   }
 
   getProducts() {
-
     this.products$ = this.productService.getProducts();
-
   }
 
   onClean() {

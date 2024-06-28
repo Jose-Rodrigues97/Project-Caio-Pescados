@@ -1,14 +1,19 @@
 <app-title-page pageName="Colaboradores" [buttons]=buttons></app-title-page>
 <div>
-    <div style="width: 70%;">
-        <!-- <ng-container *ngFor="let company of companies">
-            <app-card-collaborator style="width: 70%;" [id]="company.id" [name]="company.name"
-                [isHeadquarters]="company.isHeadquarters" [taxNumber]="company.taxNumber" [address]="company.address"
-                [phone]="company.phone" [email]="company.email" [state]="company.state" [city]="company.city"
-                [image]="company.image"></app-card-collaborator>
-        </ng-container> -->
-        <app-pagination></app-pagination>
+    <div style="width: 70%;" *ngIf="collaborators$ | async as collaborators; else list">
+        <ng-container *ngFor="let collaborator of collaborators.content">
+            <app-card-collaborator style="width: 70%;" [collaboratorModel]="collaborator"></app-card-collaborator>
+        </ng-container>
+        <app-pagination [last]="collaborators.last" [size]="collaborators.size" [sort]="collaborators.sort"
+            [totalPages]="collaborators.totalPages" [totalElements]="collaborators.totalElements"
+            [numberOfElements]="collaborators.numberOfElements" [number]="collaborators.number" [empty]="collaborators.empty"
+            [first]="collaborators.first" [pageable]="collaborators.pageable"></app-pagination>
     </div>
+    <ng-template #list>
+        <div style="width:70%; text-align: center;">
+            <app-sppiner style="width: 100vw; height: 100vh;"></app-sppiner>
+        </div>
+    </ng-template>
     <div class="search">
         <form [formGroup]="formGroup">
             <input class="form-control" type="text" placeholder="Pesquise nome ou CNPJ" style="width: 100%;"

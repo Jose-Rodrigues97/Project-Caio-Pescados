@@ -1,0 +1,18 @@
+<div class="card-product">
+    <img *ngIf="productStock.company.image; else noImage" src="{{productStock.company}}" alt="">
+    <ng-template #noImage>
+        <img src="../../../../../../../assets/peixe-removebg-preview.png" alt="" style="height: 100%; width: 76%;">
+    </ng-template>
+    <div>
+        <a [routerLink]="['/logistic/stockProductDetail', productStock.stockId]"
+            style="text-transform: uppercase;">{{productStock.product.name}}</a>
+        <span>{{productStock.product.description}}</span>
+    </div>
+    <div>
+        <span>Preço: {{productStock.price}}R$</span>
+        <span>Disponível {{productStock.quantity}}KG</span>
+    </div>
+    <div>
+        <span>Tipo de água: {{productStock.product.aquaType}}</span>
+    </div>
+</div>

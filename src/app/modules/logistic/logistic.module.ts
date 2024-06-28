@@ -1,25 +1,37 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShippingCompanyComponent } from './components/shipping-company/shipping-company.component';
-import { StockComponent } from './components/stock/stock.component';
-import { ShippingCompanyCardComponent } from './components/shipping-company/components/shipping-company-card/shipping-company-card.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
+import { LogisticRoutingModule } from './logistic-routing.module';
 import { ThemesModule } from '../themes/themes.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { LogisticComponent } from './logistic.component';
 import { StockCardComponent } from './components/stock/components/stock-card/stock-card.component';
-
-
+import { ListStockComponent } from './components/stock/components/list-stock/list-stock.component';
+import { StockProductDetailComponent } from './components/stock/components/stock-product-detail/stock-product-detail.component';
+import { ListProductsStockComponent } from './components/stock/components/list-products-stock/list-products-stock.component';
+import { ProductStockCardComponent } from './components/stock/components/product-stock-card/product-stock-card.component';
 
 @NgModule({
   declarations: [
-    ShippingCompanyComponent,
-    StockComponent,
-    ShippingCompanyCardComponent,
-    StockCardComponent
+    LogisticComponent,
+    ListStockComponent,
+    StockCardComponent,
+    StockProductDetailComponent,
+    ListProductsStockComponent,
+    ProductStockCardComponent
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     ThemesModule,
-    ReactiveFormsModule
+    FontAwesomeModule,
+    RouterModule,
+    LogisticRoutingModule,
+    
   ]
 })
 export class LogisticModule { }

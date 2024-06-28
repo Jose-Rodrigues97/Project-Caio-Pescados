@@ -10,11 +10,11 @@ import { CustomersModule } from './modules/customers/customers.module';
 import { SuppliersModule } from './modules/suppliers/suppliers.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { ThemesModule } from './modules/themes/themes.module';
-import { LogisticModule } from './modules/logistic/logistic.module';
 import { AccountingModule } from './modules/accounting/accounting.module';
 import { CollaboratorsModule } from './modules/collaborators/collaborators.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ProductsModule } from './modules/products/products.module';
+import { LogisticModule } from './modules/logistic/logistic.module';
 
 @NgModule({
   declarations: [

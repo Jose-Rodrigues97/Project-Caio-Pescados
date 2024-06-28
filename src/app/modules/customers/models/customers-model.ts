@@ -1,9 +1,9 @@
 import { PageableModel } from "../../themes/models/pageable-model";
 import { SortModel } from "../../themes/models/sort-model";
-import { ProductModel } from "./ProductModel";
+import { CustomerModel } from "./customer-model";
 
-export interface ProductsModel {
-  content: ProductModel[];
+export interface CustomersModel {
+  content: CustomerModel[];
   empty: boolean;
   first: boolean;
   last: boolean;

@@ -1,14 +1,14 @@
-<div class="count-pagination">
+<div *ngIf="totalElements > 0" class="count-pagination">
     <div class="page-link pagination count" style="color: black;">
-        <span> 1 a 10 de 20</span>
+        <span> 1 a {{numberOfElements}} de {{totalElements}}</span>
     </div>
     <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item disabled"><a class="page-link" style="color: black;" href="#">Anterior</a></li>
-            <li class="page-item active"><a class="page-link" style="color: black;" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" style="color: black;" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" style="color: black;" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" style="color: black;" href="#">Próximo</a></li>
+        <ul id="ul" class="pagination">
+            <li (click)="onChangePage($event)" class="page-item"><a id="previous" class="page-link disabled" style="color: black; cursor: pointer;">Anterior</a></li>
+            <li (click)="onChangePage($event)" class="page-item"><a class="page-link active" style="color: black; cursor: pointer;" >1</a></li>
+            <li (click)="onChangePage($event)" class="page-item"><a class="page-link" style="color: black; cursor: pointer;" >2</a></li>
+            <li (click)="onChangePage($event)" class="page-item"><a class="page-link" style="color: black; cursor: pointer;" >3</a></li>
+            <li (click)="onChangePage($event)" class="page-item"><a id="next" class="page-link" style="color: black; cursor: pointer;" >Próximo</a></li>
         </ul>
     </nav>
 </div>

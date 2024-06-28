@@ -3,6 +3,10 @@
   padding: 20px;
 }
 
+p {
+  margin: 0px;
+}
+
 .group-content {
   position: relative;
   padding: 10px;
@@ -29,9 +33,4 @@
 
 .group-input {
   display: block;
-}
-
-.validation-error{
-  color: red;
-  font-size: 14px;
 }

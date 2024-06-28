@@ -71,7 +71,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       submenus: [{
         submenus: [], id: 100, class: "", icon: faDolly,
         name: "Estoque",
-        link: "/stock",
+        link: "/logistic",
         visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
       }, {
         submenus: [], id: 101, class: "", icon: faTruck,
@@ -110,6 +110,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   constructor(
   ) { }
+
   ngAfterViewInit(): void {
     let activeMenu = document.getElementById(this.menuId);
     activeMenu?.classList.add('active');

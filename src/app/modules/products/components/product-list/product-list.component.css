@@ -1,23 +1,23 @@
 .content-cards {
     display: flex;
-    --grid-template-columns: 19.4% 19.4% 19.4% 19.4% 19.4%;
-    --grid-template-rows: 1fr 1fr;
-    --gap: 30px 10px;
+    grid-template-columns: 19.4% 19.4% 19.4% 19.4% 19.4%;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 30px 10px;
     justify-content: center;
 
     margin-top: 10px;
     width: 200px;
     height: 100px;
     flex-direction:row;
-    background-color: blue;
 }
 
 .search {
     justify-content: center;
-    --display: flex;
+    display: flex;
     margin-bottom: 30px;
     align-items: center;
     flex-direction: column;
+
 }
 
 form {

@@ -1,22 +1,28 @@
 <div class="card-customer">
-    <img src="{{image}}" alt="">
-    <div>
-        <a [routerLink]="['/customer/customerDetail', id]" style="text-transform: uppercase;">{{name}}</a>
-        <span>{{taxNumber}}</span>
-        <div *ngIf="isHeadquarters; else blockSubsidiary">
-            <span>Matriz</span>
+    <div *ngIf="customer.image; else imageLogo">
+        <img src="{{customer.image}}" alt="">
+    </div>
+    <ng-template #imageLogo>
+        <div *ngIf="customer.typePerson == 'Pessoa Jurídica'; else imageLogoBuyer">
+            <img src="../../../../../assets/iconcompany.png" alt="">
         </div>
-        <ng-template #blockSubsidiary>
-            <span>Filial</span>
+        <ng-template #imageLogoBuyer>
+            <img src="../../../../../assets/download-removebg-preview.png" alt="">
         </ng-template>
+        
+    </ng-template>
+    <div>
+        <a [routerLink]="['/customer/customerDetail', customer.buyerId]"
+            style="text-transform: uppercase;">{{customer.name}}</a>
+        <span>{{customer.taxRecord}}</span>
+    </div>
+    <div *ngIf="customer.address">
+        <span style="text-transform: uppercase;">{{customer.address.estate}}</span>
+        <span style="text-transform: uppercase;">{{customer.address.city}}</span>
+        <span>{{customer.address.address}}</span>
     </div>
     <div>
-        <span style="text-transform: uppercase;">{{state}}</span>
-        <span style="text-transform: uppercase;">{{city}}</span>
-        <span>{{address}}</span>
-    </div>
-    <div>
-        <span>{{phone}}</span>
-        <span>{{email}}</span>
+        <span>{{customer.telephones}}</span>
+        <span>{{customer.typePerson}}</span>
     </div>
 </div>

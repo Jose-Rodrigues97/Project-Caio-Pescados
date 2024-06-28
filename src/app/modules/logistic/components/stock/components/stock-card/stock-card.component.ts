@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { Companyv2Model } from 'src/app/modules/companies/models/company-card-model';
 
 @Component({
   selector: 'app-stock-card',
@@ -6,13 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./stock-card.component.css']
 })
 export class StockCardComponent {
-  @Input() name!: string;
-  @Input() isHeadquarters!: boolean;
-  @Input() taxNumber!: number;
-  @Input() address!: string;
-  @Input() phone!: number;
-  @Input() email!: string;
-  @Input() state!: string;
-  @Input() city!: string;
-  @Input() image!: string;
+  @Input() company!: Companyv2Model;
+  faBuilding = faBuilding;
 }

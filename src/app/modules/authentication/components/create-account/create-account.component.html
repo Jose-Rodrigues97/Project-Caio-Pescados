@@ -2,7 +2,7 @@
     <section class="form-register">
         <form class="row g-2" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
             <div class="col-md-12">
-                <label for="name" class="form-label">Nome Completo</label>
+                <label for="name" class="form-label">Nome</label>
                 <input type="text" class="form-control" id="name" formControlName="name">
                 <div *ngIf="name.invalid && formDir.submitted" class="validation-error">
                     <p *ngIf="name.errors?.['required']">Nome obrigatório.</p>
@@ -20,11 +20,11 @@
                 </div>
             </div>
             <div class="col-12">
-                <label for="login" class="form-label">Login</label>
-                <input type="text" class="form-control" id="login" formControlName="login">
-                <div *ngIf="login.invalid && formDir.submitted" class="validation-error">
-                    <p *ngIf="login.errors?.['required']">Login obrigatório.</p>
-                    <p *ngIf="login.errors?.['minlength']">Login deve conter pelo menos 3 caracteres.
+                <label for="taxNumber" class="form-label">CPF</label>
+                <input type="text" class="form-control" id="taxNumber" formControlName="taxNumber">
+                <div *ngIf="taxNumber.invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="taxNumber.errors?.['required']">CPF obrigatório.</p>
+                    <p *ngIf="taxNumber.errors?.['minlength'] || taxNumber.errors?.['maxlength']">CPF deve conter 11 caracteres.
                     </p>
                 </div>
             </div>

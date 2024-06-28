@@ -15,8 +15,8 @@
                     </div>
                 </div>
                 <div class="group-input">
-                    <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
-                    <input id="tax-number" class="form-control is-invalid" type="text" style="width: 100%;"
+                    <label for="taxNumber" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
+                    <input id="taxNumber" class="form-control is-invalid" type="text" style="width: 100%;"
                         formControlName="taxNumber" required (change)="onChangeTaxNumber($event.target)">
                     <div *ngIf="taxNumber.invalid && submitted" class="invalid-feedback">
                         <p *ngIf="taxNumber.errors?.['required']">CNPJ obrigatório.</p>

@@ -4,11 +4,11 @@
     <div class="ctn-form">
         <form style="width: 100%;" [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
             <div class="mb-3">
-                <label for="login" class="form-label">Login</label>
-                <input type="login" class="form-control" id="login" formControlName="login">
-                <div *ngIf="login.invalid && formDir.submitted" class="validation-error">
-                    <p *ngIf="login.errors?.['required']">Login obrigatório.</p>
-                    <p *ngIf="login.errors?.['minLength']">Login deve conter pelo menos 3 caracteres.</p>
+                <label for="taxNumber" class="form-label">CPF</label>
+                <input type="taxNumber" class="form-control" id="taxNumber" formControlName="taxNumber">
+                <div *ngIf="taxNumber.invalid && formDir.submitted" class="validation-error">
+                    <p *ngIf="taxNumber.errors?.['required']">CPF obrigatório.</p>
+                    <p *ngIf="taxNumber.errors?.['minlength'] || taxNumber.errors?.['maxlength']">CPF deve conter 11 caracteres.
                 </div>
             </div>
             <div class="mb-3">

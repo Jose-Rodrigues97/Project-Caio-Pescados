@@ -9,7 +9,7 @@ import { TelephoneModel } from '../../../../models/telephone/telephone-model';
 import { CompanyExtModel } from '../../models/company-ext-model';
 import { AddressModel } from '../../../../models/address/address-model';
 import { ErrorModel } from 'src/app/models/error/error-model';
-import { properties } from '../../module property/properties';
+import { properties } from '../../properties/properties';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { DatePipe } from '@angular/common';
 import { ImageService } from 'src/app/modules/themes/components/upload/services/image.service';
@@ -114,7 +114,7 @@ export class CompanyDetailComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.onChangeName(document.getElementById('name'));
-    this.onChangeTaxNumber(document.getElementById('tax-number'));
+    this.onChangeTaxNumber(document.getElementById('taxNumber'));
   }
 
   get name() {
