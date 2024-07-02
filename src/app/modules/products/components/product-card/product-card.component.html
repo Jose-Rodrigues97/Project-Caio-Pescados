@@ -1,7 +1,14 @@
-<a href="" style="text-decoration: none; color: black; position: relative;">
+<a [routerLink]="['/product/productDetail', product.productId]"
+    style="text-decoration: none; color: black; position: relative;">
     <div class="card-product">
-        <img src="" alt="">
-        <span style="font-size: 20px; height: 10%;"><b></b></span>
+        <div class="image">
+            <img *ngIf="product.name == ''; else noImage" src="../../../../../../../assets/peixe-removebg-preview.png"
+                alt="">
+            <ng-template #noImage>
+                <img src="../../../../../../../assets/product.png">
+            </ng-template>
+        </div>
+        <span style="text-transform: capitalize; font-size: 20px; height: 10%;"><b>{{product.name}}</b></span>
         <div style="padding: 0 10px; height: 20%;">
             <div class="infos-card">
                 <div style="text-align: center; display: flex; gap: 5px;">
@@ -23,7 +30,7 @@
             </div>
         </div>
         <p [attr.data-bs-toggle]="" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
-            [attr.data-bs-title]=""></p>
+            [attr.data-bs-title]="">{{product.description}}</p>
     </div>
     <div class="new-card">
         Novo

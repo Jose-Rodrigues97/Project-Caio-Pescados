@@ -38,12 +38,10 @@ export class ListProductsStockComponent {
     private router: Router) {
     const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
     this.companyId = String(s.path)
-
   }
 
   ngOnInit() {
     this.getProductsByCompanyId();
-
   }
 
   onSubmit(): void {

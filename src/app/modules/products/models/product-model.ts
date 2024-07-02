@@ -3,4 +3,4 @@ export interface ProductModel {
     name: string
     description: string
     aquaType: string
-}
+} 

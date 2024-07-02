@@ -1,7 +1,9 @@
 <div class="card-product">
     <img *ngIf="productStock.company.image; else noImage" src="{{productStock.company}}" alt="">
     <ng-template #noImage>
-        <img src="../../../../../../../assets/peixe-removebg-preview.png" alt="" style="height: 100%; width: 76%;">
+        <div class="style-image">
+            <img src="../../../../../../../assets/peixe-removebg-preview.png" alt="" >
+        </div>
     </ng-template>
     <div>
         <a [routerLink]="['/logistic/stockProductDetail', productStock.stockId]"

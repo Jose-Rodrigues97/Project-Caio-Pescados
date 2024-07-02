@@ -11,16 +11,23 @@
     flex-direction: column;
 }
 
+.image {
+    width: 100%;
+    background-color: #C0C0C0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 1px rgb(0, 0, 0);
+}
+
 .card-product:hover {
     border: solid 3px #1E90FF;
 }
 
 img {
-    width: 100%;
-    height: 30%;
-    object-fit: cover;
-    border-bottom: solid 1px rgb(156, 155, 155);
-    background-color: black;
+    height: 89px;
+    width: 89px;
 }
 
 p {
@@ -31,8 +38,9 @@ p {
     cursor: help;
     padding: 10px;
     overflow: hidden;
-    height: 120px;
-    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .infos-card {

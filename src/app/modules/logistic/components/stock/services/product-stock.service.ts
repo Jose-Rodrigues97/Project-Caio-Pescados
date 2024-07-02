@@ -4,6 +4,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProductStockModel } from '../models/product-stock-model';
 import { ProductsStockModel } from '../models/products-stock-model';
+import { StockModel } from '../models/stock-model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,21 +24,21 @@ export class ProductStockService {
         catchError(this.handleError))
   }
 
-  createCompany(productStockModel: ProductStockModel): Observable<ProductStockModel> {
+  createStock(productStockModel: StockModel): Observable<ProductStockModel> {
     return this.httpClient.post<ProductStockModel>(this.URL, JSON.stringify(productStockModel), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  updateCompany(productStockId: string, productStockModel: ProductStockModel): Observable<ProductStockModel> {
+  updateStock(productStockId: string, productStockModel: ProductStockModel): Observable<ProductStockModel> {
     return this.httpClient.put<ProductStockModel>(this.URL + '/' + productStockId, JSON.stringify(productStockModel), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  deleteCompany(companyId: string) {
+  deleteStock(companyId: string) {
     return this.httpClient.delete<any>(this.URL + '/' + companyId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)

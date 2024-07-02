@@ -7,6 +7,11 @@ import { ProductService } from '../../service/product.service';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 import { ProductModel } from '../../models/product-model';
 import { ErrorModel } from 'src/app/models/error/error-model';
+import { CompaniesModel } from 'src/app/modules/companies/models/companies-model';
+import { Observable } from 'rxjs';
+import { CompanyService } from 'src/app/modules/companies/services/company.service';
+import { ProductStockService } from 'src/app/modules/logistic/components/stock/services/product-stock.service';
+import { StockModel } from 'src/app/modules/logistic/components/stock/models/stock-model';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,6 +23,7 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
   bsModalRef?: BsModalRef;
   formGroup!: FormGroup;
   submitted: boolean = false;
+  companies$!: Observable<CompaniesModel>;
   buttons = [
     {
       name: 'SALVAR',
@@ -37,7 +43,9 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private modalService: BsModalService,
-    private router: Router
+    private router: Router,
+    private companyService: CompanyService,
+    private productStockService: ProductStockService,
   ) {
     const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
     this.productId = Number(s.path);
@@ -45,12 +53,14 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
       id: this.productId,
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       description: '',
-      aquaType: ''
+      aquaType: '',
+      stock: ''
     });
   }
   ngOnInit() {
+    this.getCompanies();
     if (this.productId !== 0) {
-      this.getProductById(this.formGroup.get('id')?.value);
+      this.getProductById(this.productId);
       this.buttons.push({
         name: 'EXCLUIR',
         link: '/product/productList',
@@ -64,6 +74,7 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked(): void {
     this.onChangeName(document.getElementById('name'));
   }
+
   onChangeName(target: any) {
     if (target) {
       if (this.name.errors) {
@@ -75,12 +86,17 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
       }
     }
   }
+
   onClickButton(type: string) {
     if (type == 'DELETE') {
       this.onDeleteProduct();
     } else {
       this.ngOnSubmit();
     }
+  }
+
+  getCompanies() {
+    this.companies$ = this.companyService.getCompanies();
   }
 
   onDeleteProduct() {
@@ -92,6 +108,7 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
         this.handleModal('danger', error);
       });
   }
+
   ngOnSubmit() {
     try {
       this.submitted = true;
@@ -124,6 +141,17 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
               this.handleModal('danger', error);
             });
         }
+        if (this.formGroup.get('stock')?.value) {
+          let stockModel = {} as StockModel;
+          stockModel.productId = this.productId;
+          for (let index = 0; index < this.formGroup.get('stock')?.value.length; index++) {
+            stockModel.companyId = this.formGroup.get('stock')?.value[index]
+            this.productStockService.createStock(stockModel).subscribe(() => { },
+              error => {
+                this.handleModal('danger', error);
+              });
+          }
+        }
       } else {
         this.handleModal('danger', 'Formulário inválido.');
       }
@@ -148,9 +176,11 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
   get name() {
     return this.formGroup.get("name")!;
   }
+
   get description() {
     return this.formGroup.get("description")!;
   }
+
   get aquaType() {
     return this.formGroup.get("aquaType")!;
   }

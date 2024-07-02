@@ -24,7 +24,7 @@ export class ProductService {
   }
 
   getProductById(id: number): Observable<ProductModel> {
-    return this.httpClient.get<ProductModel>(this.URL + '/' + id)
+    return this.httpClient.get<ProductModel>(this.URL + '/' + id, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       )

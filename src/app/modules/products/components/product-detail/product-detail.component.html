@@ -19,9 +19,18 @@
         </div>
         <div class="group-input">
           <label for="aquaType" style="font-size: 15px; margin-bottom: 0px;">Tipo de água
-            </label>
-          <input id="aquaType" class="form-control" type="text" style="width: 100%;"
-            formControlName="aquaType">
+          </label>
+          <input id="aquaType" class="form-control" type="text" style="width: 100%;" formControlName="aquaType">
+        </div>
+        <div class="group-input">
+          <label for="inputStock" style="font-size: 15px; margin-bottom: 0px;">Estoque</label>
+          <div style="width: 100%;" *ngIf="companies$ | async as companies;">
+            <select id="inputStock" class="form-select" formControlName="stock" multiple aria-label="multiple select example">
+              <ng-container *ngFor="let company of companies.content">
+                <option [ngValue]="company.companyId">{{company.corporateName}}</option>
+              </ng-container>
+            </select>
+          </div>
         </div>
       </div>
     </div>
