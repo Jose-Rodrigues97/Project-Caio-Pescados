@@ -9,7 +9,7 @@ import { StockModel } from '../models/stock-model';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductStockService {
+export class StockService {
   private readonly URL = `${environment.URL}stock`;
   httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -18,8 +18,14 @@ export class ProductStockService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProductsByCompanyId(companyId: string): Observable<ProductsStockModel> {
-    return this.httpClient.get<ProductsStockModel>(this.URL + '/' + companyId, { headers: this.httpHeaders })
+  getStockByCompanyId(companyId: string): Observable<ProductsStockModel> {
+    return this.httpClient.get<ProductsStockModel>(this.URL + '/company/' + companyId, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError))
+  }
+
+  getStockByProductId(productId: number): Observable<ProductStockModel[]> {
+    return this.httpClient.get<ProductStockModel[]>(this.URL + '/product/' + productId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError))
   }

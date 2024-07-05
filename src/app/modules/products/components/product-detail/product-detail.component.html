@@ -25,7 +25,7 @@
         <div class="group-input">
           <label for="inputStock" style="font-size: 15px; margin-bottom: 0px;">Estoque</label>
           <div style="width: 100%;" *ngIf="companies$ | async as companies;">
-            <select id="inputStock" class="form-select" formControlName="stock" multiple aria-label="multiple select example">
+            <select id="inputStock" class="form-select" multiple formControlName="stock">
               <ng-container *ngFor="let company of companies.content">
                 <option [ngValue]="company.companyId">{{company.corporateName}}</option>
               </ng-container>

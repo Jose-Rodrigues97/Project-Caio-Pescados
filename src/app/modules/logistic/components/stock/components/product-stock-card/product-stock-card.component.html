@@ -11,8 +11,8 @@
         <span>{{productStock.product.description}}</span>
     </div>
     <div>
-        <span>Preço: {{productStock.price}}R$</span>
-        <span>Disponível {{productStock.quantity}}KG</span>
+        <span>Preço: <b *ngIf="productStock.price; else noPrice">{{productStock.price}}</b><ng-template #noPrice><b>0</b></ng-template>R$</span>
+        <span>Disponível: <b *ngIf="productStock.quantity; else noQuantity">{{productStock.quantity}}</b><ng-template #noQuantity><b>0</b></ng-template>KG</span>
     </div>
     <div>
         <span>Tipo de água: {{productStock.product.aquaType}}</span>

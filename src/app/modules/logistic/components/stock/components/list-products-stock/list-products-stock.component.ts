@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ProductsStockModel } from '../../models/products-stock-model';
-import { ProductStockService } from '../../services/product-stock.service';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
 import { IconDefinition, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { StockService } from '../../services/stock.service';
 
 @Component({
   selector: 'app-list-products-stock',
@@ -32,9 +32,8 @@ export class ListProductsStockComponent {
     iconButton: {} as IconDefinition,
     type: 'RETURN'
   }]
-  constructor(private productStockService: ProductStockService,
+  constructor(private stockService: StockService,
     private modalService: BsModalService,
-    private formBuilder: FormBuilder,
     private router: Router) {
     const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
     this.companyId = String(s.path)
@@ -49,7 +48,7 @@ export class ListProductsStockComponent {
   }
 
   getProductsByCompanyId() {
-    this.productsStock$ = this.productStockService.getProductsByCompanyId(this.companyId);
+    this.productsStock$ = this.stockService.getStockByCompanyId(this.companyId);
   }
 
   onClean() {

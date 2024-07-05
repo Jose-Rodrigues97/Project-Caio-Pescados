@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -10,15 +10,15 @@ import { ErrorModel } from 'src/app/models/error/error-model';
 import { CompaniesModel } from 'src/app/modules/companies/models/companies-model';
 import { Observable } from 'rxjs';
 import { CompanyService } from 'src/app/modules/companies/services/company.service';
-import { ProductStockService } from 'src/app/modules/logistic/components/stock/services/product-stock.service';
 import { StockModel } from 'src/app/modules/logistic/components/stock/models/stock-model';
+import { StockService } from 'src/app/modules/logistic/components/stock/services/stock.service';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit, AfterViewChecked {
+export class ProductDetailComponent implements OnInit, AfterViewChecked, OnDestroy {
   @Input() productId: number = 0;
   bsModalRef?: BsModalRef;
   formGroup!: FormGroup;
@@ -45,7 +45,7 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
     private modalService: BsModalService,
     private router: Router,
     private companyService: CompanyService,
-    private productStockService: ProductStockService,
+    private stockService: StockService,
   ) {
     const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
     this.productId = Number(s.path);
@@ -57,7 +57,16 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
       stock: ''
     });
   }
-  ngOnInit() {
+
+  ngOnDestroy(): void {
+    document.getElementById('newTag')?.remove();
+  }
+
+  ngOnInit(): void {
+    var stocks = document.getElementById('inputStock');
+    if (!stocks) {
+      setTimeout(this.createScript, 100);
+    }
     this.getCompanies();
     if (this.productId !== 0) {
       this.getProductById(this.productId);
@@ -68,7 +77,17 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
         iconButton: {} as IconDefinition,
         type: 'DELETE'
       });
+      this.stockService.getStockByProductId(this.productId);
     }
+  }
+
+  createScript() {
+    const newTag = document.createElement("script");
+    newTag.id = 'newTag'
+    const newContent = document.createTextNode("new MultiSelectTag('inputStock', {rounded: true, shadow: false, placeholder: 'Pesquisar', tagColor: {textColor: '#327b2c', borderColor: '#92e681', bgColor: '#eaffe6'}})");
+    newTag.appendChild(newContent);
+    document.body.appendChild(newTag);
+    document.getElementById('inputStock')!.style.display = 'none';
   }
 
   ngAfterViewChecked(): void {
@@ -127,6 +146,19 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
               type: 'DELETE'
             })
             this.productId = productModel.productId;
+            let select = document.querySelector('select');
+            let stockModel = {} as StockModel;
+            for (let index = 0; index < select!.children.length; index++) {
+              var option = (<HTMLOptionElement>select!.children[index])
+              if (option.selected) {
+                stockModel.productId = this.productId;
+                stockModel.companyId = String(option.value.substring(option.value.indexOf("'") + 1, option.value.length - 1));
+                this.stockService.createStock(stockModel).subscribe(() => { },
+                  error => {
+                    this.handleModal('danger', error);
+                  });
+              }
+            }
             this.handleModal('success', 'Produto criado com sucesso.');
           },
             error => {
@@ -135,22 +167,24 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked {
         }
         else {
           this.productService.updateProduct(this.productId, productModel).subscribe(() => {
+            let select = document.querySelector('select');
+            let stockModel = {} as StockModel;
+            for (let index = 0; index < select!.children.length; index++) {
+              var option = (<HTMLOptionElement>select!.children[index])
+              if (option.selected) {
+                stockModel.productId = this.productId;
+                stockModel.companyId = String(option.value.substring(option.value.indexOf("'") + 1, option.value.length - 1));
+                this.stockService.createStock(stockModel).subscribe(() => { },
+                  error => {
+                    this.handleModal('danger', error);
+                  });
+              }
+            }
             this.handleModal('success', 'Produto atualizado com sucesso.');
           },
             error => {
               this.handleModal('danger', error);
             });
-        }
-        if (this.formGroup.get('stock')?.value) {
-          let stockModel = {} as StockModel;
-          stockModel.productId = this.productId;
-          for (let index = 0; index < this.formGroup.get('stock')?.value.length; index++) {
-            stockModel.companyId = this.formGroup.get('stock')?.value[index]
-            this.productStockService.createStock(stockModel).subscribe(() => { },
-              error => {
-                this.handleModal('danger', error);
-              });
-          }
         }
       } else {
         this.handleModal('danger', 'Formulário inválido.');
