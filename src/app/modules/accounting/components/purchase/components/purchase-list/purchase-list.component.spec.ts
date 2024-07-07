@@ -1,16 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ListPurchaseComponent } from './purchase-list.component';
 
-import { PurchaseComponent } from './purchase.component';
+
 
 describe('PurchaseComponent', () => {
-  let component: PurchaseComponent;
-  let fixture: ComponentFixture<PurchaseComponent>;
+  let component: ListPurchaseComponent;
+  let fixture: ComponentFixture<ListPurchaseComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PurchaseComponent]
+      declarations: [ListPurchaseComponent]
     });
-    fixture = TestBed.createComponent(PurchaseComponent);
+    fixture = TestBed.createComponent(ListPurchaseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -19,3 +20,6 @@ describe('PurchaseComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+

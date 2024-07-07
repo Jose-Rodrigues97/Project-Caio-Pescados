@@ -17,3 +17,5 @@ export class CardPurchaseComponent {
   @Input() city!: string;
   @Input() image!: string;
 }
+
+

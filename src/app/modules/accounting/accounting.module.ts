@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MetricsComponent } from './components/metrics/metrics.component';
-import { PurchaseComponent } from './components/purchase/purchase.component';
+import { ListPurchaseComponent } from './components/purchase/components/purchase-list/purchase-list.component';
 import { SaleComponent } from './components/sale/sale.component';
 import { CardPurchaseComponent } from './components/purchase/components/card-purchase/card-purchase.component';
 import { CardSaleComponent } from './components/sale/components/card-sale/card-sale.component';
@@ -16,7 +16,7 @@ import { AccountingRoutesRoutingModule } from './accounting-routing.module';
 @NgModule({
   declarations: [
     MetricsComponent,
-    PurchaseComponent,
+    ListPurchaseComponent,
     CardPurchaseComponent,
     PurchaseDetailComponent,
     CardSaleComponent,

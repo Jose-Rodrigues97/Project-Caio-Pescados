@@ -52,7 +52,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       submenus: [{
         submenus: [], id: 102, class: "", icon: faShoppingCart,
         name: "Compras",
-        link: "/purchase",
+        link: "/purchase/purchaseList",
         visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
       }, {
         submenus: [], id: 103, class: "", icon: faMoneyBillWave,

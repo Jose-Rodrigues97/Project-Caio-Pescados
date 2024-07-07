@@ -52,8 +52,7 @@ export class SupplierDetailComponent implements OnInit, AfterViewChecked {
       taxNumber: new FormControl('', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]),
       stateRegistration: '',
       branchActivity: '',
-      street: '',
-      numberStreet: '',
+      address: '',
       city: '',
       estate: '',
       country: '',
@@ -144,14 +143,21 @@ export class SupplierDetailComponent implements OnInit, AfterViewChecked {
         supplierModel.stateRegistration = this.formGroup.get('stateRegistration')?.value;
         supplierModel.branchActivity = this.formGroup.get('branchActivity')?.value;
 
-        let supplierAddressModel = {} as AddressModel;
-        supplierAddressModel.address = this.formGroup.get('address')?.value;
-        supplierAddressModel.cep = this.formGroup.get('zipCode')?.value;
-        supplierAddressModel.city = this.formGroup.get('city')?.value;
-        supplierAddressModel.complement = this.formGroup.get('complement')?.value;
-        supplierAddressModel.country = this.formGroup.get('country')?.value;
-        supplierAddressModel.estate = this.formGroup.get('estate')?.value;
-        supplierModel.address = supplierAddressModel;
+
+        if (this.formGroup.get('address')) {
+          let supplierAddressModel = {} as AddressModel;
+          supplierAddressModel.addressId = this.formGroup.get('addressId')?.value;
+          supplierAddressModel.address = this.formGroup.get('address')?.value;
+          supplierAddressModel.cep = this.formGroup.get('zipCode')?.value;
+          supplierAddressModel.city = this.formGroup.get('city')?.value;
+          supplierAddressModel.complement = this.formGroup.get('complement')?.value;
+          supplierAddressModel.country = this.formGroup.get('country')?.value;
+          supplierAddressModel.estate = this.formGroup.get('estate')?.value;
+          supplierAddressModel.objectType = this.formGroup.get('addresObjectType')?.value;
+          supplierAddressModel.objectId = this.formGroup.get('addresObjectId')?.value;
+          console.log(supplierAddressModel);
+          supplierModel.address = supplierAddressModel;
+        }
 
         let telephonesModel = [] as TelephoneModel[];
         if (this.formGroup.get('homePhone')?.value) {
@@ -161,6 +167,7 @@ export class SupplierDetailComponent implements OnInit, AfterViewChecked {
           telephoneModel.type = 'HOME';
           telephonesModel.push(telephoneModel);
         }
+
         if (this.formGroup.get('cellPhone')?.value) {
           let telephoneModel = {} as TelephoneModel;
           telephoneModel.number = this.formGroup.get('cellPhone')?.value;
@@ -185,6 +192,7 @@ export class SupplierDetailComponent implements OnInit, AfterViewChecked {
               this.handleModal('danger', error);
             });
         }
+
         else {
           this.supplierService.updateSupplier(this.supplierId, supplierModel).subscribe(() => {
             this.handleModal('success', 'Fornecedor atualizado com sucesso.');
@@ -244,11 +252,8 @@ export class SupplierDetailComponent implements OnInit, AfterViewChecked {
   get branchActivity() {
     return this.formGroup.get("branchActivity")!;
   }
-  get street() {
-    return this.formGroup.get("street")!;
-  }
-  get numberStreet() {
-    return this.formGroup.get("numberStreet")!;
+  get address() {
+    return this.formGroup.get("address")!;
   }
   get city() {
     return this.formGroup.get("city")!;

@@ -37,6 +37,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'purchase',
+    component: CustomersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'supplier',
     component: SuppliersComponent,
     canActivate: [AuthGuard]

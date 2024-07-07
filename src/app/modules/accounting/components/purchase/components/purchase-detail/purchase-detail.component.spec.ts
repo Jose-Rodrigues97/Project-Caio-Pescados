@@ -19,3 +19,6 @@ describe('PurchaseDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+

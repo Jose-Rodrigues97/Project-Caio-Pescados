@@ -1,0 +1,20 @@
+//struct para o list com o pagination do backend para ser exibido no front. usado no service
+
+import { PageableModel } from "src/app/modules/themes/models/pageable-model";
+import { PurchaseModel } from "./purchase-model";
+import { SortModel } from "src/app/modules/themes/models/sort-model";
+
+
+export interface PurchasesModel {
+  content: PurchaseModel[];
+  empty: boolean;
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  pageable: PageableModel;
+  size: number;
+  sort: SortModel;
+  totalElements: number;
+  totalPages: number;
+}

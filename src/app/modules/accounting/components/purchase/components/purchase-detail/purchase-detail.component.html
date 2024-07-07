@@ -1,126 +1,128 @@
-<app-title-page pageName="Detalhes da Compra" (clickButton)="onClickButton()" [buttons]=buttons></app-title-page>
+<app-title-page pageName="Detalhes da Compra" (clickButton)="onClickButton($event)" [buttons]=buttons></app-title-page>
 <section class="main-content">
-    <form [formGroup]="formGroup">
-        <div class="group-content">
-            <span class="group-title">Fornecedor</span>
-            <div class="group-info">
-                <div class="group-input">
-                    <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Fornecedor</label>
-                    <select id="inputState" class="form-select" required formControlName="estate">
-                        <ng-container *ngFor="let supplier of suppliers">
-                            <option [ngValue]="supplier.id">{{supplier.name}}</option>
-                        </ng-container>
-                    </select>
-                </div>
-                <div class="group-input">
-                    <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
-                    <input id="tax-number" class="form-control" type="text" style="width: 100%;"
-                        formControlName="taxNumber">
-                </div>
+  <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm" method="POST">
+    <div class="group-content">
+      <span class="group-title">Fornecedor</span>
+      <div class="group-info">
+        <div class="group-input">
+          <label for="supplier" style="font-size: 15px; margin-bottom: 0px;">Razão Social</label>
+          <div *ngIf="suppliers$ | async as suppliers; else list">
+            <select id="supplierd" class="form-select" required formControlName="supplier">
+              <ng-container *ngFor="let supplier of suppliers.content">
+                <option [ngValue]="supplier.supplierId">{{supplier.name}}</option>
+              </ng-container>
+            </select>
+          </div>
+
+          <ng-template #list>
+            <div>
+              <app-sppiner style="width: 100vw; height: 100vh;"></app-sppiner>
             </div>
+          </ng-template>
+
         </div>
-        <div class="group-content">
-            <span class="group-title">Situação do Pedido</span>
-            <div class="group-info">
-                <div class="group-input">
-                    <label for="zip-code" style="font-size: 15px; margin-bottom: 0px;">Valor Total</label>
-                    <input id="zip-code" class="form-control" type="text" style="width: 100%;"
-                        formControlName="zipCode">
-                </div>
-                <div class="group-input">
-                    <label for="complemento" style="font-size: 15px; margin-bottom: 0px;">Status</label>
-                    <input id="complemento" class="form-control" type="text" style="width: 100%;"
-                        formControlName="complement">
-                </div>
-            </div>
+        <div class="group-input">
+          <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
+          <input id="tax-number" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
         </div>
-        <div class="group-content">
-            <span class="group-title">Endereço de Entrega</span>
-            <div class="group-info">
-                <div class="group-input">
-                    <label for="street" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
-                    <input id="street" class="form-control" type="text" style="width: 100%;" formControlName="street">
-                </div>
-                <div class="group-input">
-                    <label for="city" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
-                    <input id="city" class="form-control" type="text" style="width: 100%;" formControlName="city">
-                </div>
-                <div class="group-input">
-                    <label for="estate" style="font-size: 15px; margin-bottom: 0px;">Estado</label>
-                    <input id="estate" class="form-control" type="text" style="width: 100%;" formControlName="estate">
-                </div>
-                <div class="group-input">
-                    <label for="country" style="font-size: 15px; margin-bottom: 0px;">País</label>
-                    <input id="country" class="form-control" type="text" style="width: 100%;" formControlName="country">
-                </div>
-                <div class="group-input">
-                    <label for="zip-code" style="font-size: 15px; margin-bottom: 0px;">CEP</label>
-                    <input id="zip-code" class="form-control" type="text" style="width: 100%;"
-                        formControlName="zipCode">
-                </div>
-                <div class="group-input">
-                    <label for="complemento" style="font-size: 15px; margin-bottom: 0px;">Complemento</label>
-                    <input id="complemento" class="form-control" type="text" style="width: 100%;"
-                        formControlName="complement">
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="group-content">
+      <span class="group-title">Situação do Pedido</span>
+      <div class="group-info">
+        <div class="group-input">
+          <label for="zip-code" style="font-size: 15px; margin-bottom: 0px;">Valor Total</label>
+          <input id="zip-code" class="form-control" type="text" style="width: 100%;" formControlName="zipCode">
         </div>
-        <div class="group-content">
-            <span class="group-title">Itens</span>
-            <div class="group-info">
-                <div class="group-input">
-                    <label for="item" style="font-size: 15px; margin-bottom: 0px;">Item</label>
-                    <input id="item" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
-                </div>
-                <div class="group-input">
-                    <label for="amount" style="font-size: 15px; margin-bottom: 0px;">Quantidade</label>
-                    <input id="amount" class="form-control" type="text" style="width: 100%;"
-                        formControlName="taxNumber">
-                </div>
-                <div class="group-input">
-                    <label for="value" style="font-size: 15px; margin-bottom: 0px;">Valor</label>
-                    <input id="value" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
-                </div>
-            </div>
+        <div class="group-input">
+          <label for="complemento" style="font-size: 15px; margin-bottom: 0px;">Status</label>
+          <input id="complemento" class="form-control" type="text" style="width: 100%;" formControlName="complement">
         </div>
-        <div class="group-content">
-            <span class="group-title">Transporte</span>
-            <div class="group-info">
-                <div class="group-input">
-                    <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Transportadora</label>
-                    <select id="inputState" class="form-select" required formControlName="estate">
-                        <ng-container *ngFor="let shippingCompany of shippingCompanys">
-                            <option [ngValue]="shippingCompany.id">{{shippingCompany.name}}</option>
-                        </ng-container>
-                    </select>
-                </div>
-                <div class="group-input">
-                    <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
-                    <input id="tax-number" class="form-control" type="text" style="width: 100%;"
-                        formControlName="taxNumber">
-                </div>
-                <div class="group-input">
-                    <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Meio de Transporte</label>
-                    <select id="inputState" class="form-select" required formControlName="estate">
-                        <ng-container *ngFor="let transport of transports">
-                            <option [ngValue]="transport.id">{{transport.name}}</option>
-                        </ng-container>
-                    </select>
-                </div>
-                <div class="group-input">
-                    <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">Peso da Carga</label>
-                    <input id="tax-number" class="form-control" type="text" style="width: 100%;"
-                        formControlName="taxNumber">
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="group-content">
+      <span class="group-title">Endereço de Entrega</span>
+      <div class="group-info">
+        <div class="group-input">
+          <label for="street" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
+          <input id="street" class="form-control" type="text" style="width: 100%;" formControlName="street">
         </div>
-        <div class="group-content">
-            <span class="group-title">Observações</span>
-            <div class="group-info" style="display: block;">
-                <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">Comentário</label>
-                <textarea id="tax-number" class="form-control" style="width: 100%;"
-                    formControlName="taxNumber"></textarea>
-            </div>
+        <div class="group-input">
+          <label for="city" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
+          <input id="city" class="form-control" type="text" style="width: 100%;" formControlName="city">
         </div>
-    </form>
+        <div class="group-input">
+          <label for="estate" style="font-size: 15px; margin-bottom: 0px;">Estado</label>
+          <input id="estate" class="form-control" type="text" style="width: 100%;" formControlName="estate">
+        </div>
+        <div class="group-input">
+          <label for="country" style="font-size: 15px; margin-bottom: 0px;">País</label>
+          <input id="country" class="form-control" type="text" style="width: 100%;" formControlName="country">
+        </div>
+        <div class="group-input">
+          <label for="zip-code" style="font-size: 15px; margin-bottom: 0px;">CEP</label>
+          <input id="zip-code" class="form-control" type="text" style="width: 100%;" formControlName="zipCode">
+        </div>
+        <div class="group-input">
+          <label for="complemento" style="font-size: 15px; margin-bottom: 0px;">Complemento</label>
+          <input id="complemento" class="form-control" type="text" style="width: 100%;" formControlName="complement">
+        </div>
+      </div>
+    </div>
+    <div class="group-content">
+      <span class="group-title">Itens</span>
+      <div class="group-info">
+        <div class="group-input">
+          <label for="item" style="font-size: 15px; margin-bottom: 0px;">Item</label>
+          <input id="item" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+        </div>
+        <div class="group-input">
+          <label for="amount" style="font-size: 15px; margin-bottom: 0px;">Quantidade</label>
+          <input id="amount" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+        </div>
+        <div class="group-input">
+          <label for="value" style="font-size: 15px; margin-bottom: 0px;">Valor</label>
+          <input id="value" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+        </div>
+      </div>
+    </div>
+    <div class="group-content">
+      <span class="group-title">Transporte</span>
+      <div class="group-info">
+        <div class="group-input">
+          <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Transportadora</label>
+          <select id="inputState" class="form-select" required formControlName="estate">
+            <ng-container *ngFor="let shippingCompany of shippingCompanys">
+              <option [ngValue]="shippingCompany.id">{{shippingCompany.name}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="group-input">
+          <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
+          <input id="tax-number" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+        </div>
+        <div class="group-input">
+          <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Meio de Transporte</label>
+          <select id="inputState" class="form-select" required formControlName="estate">
+            <ng-container *ngFor="let transport of transports">
+              <option [ngValue]="transport.id">{{transport.name}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="group-input">
+          <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">Peso da Carga</label>
+          <input id="tax-number" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+        </div>
+      </div>
+    </div>
+    <div class="group-content">
+      <span class="group-title">Observações</span>
+      <div class="group-info" style="display: block;">
+        <label for="comment" style="font-size: 15px; margin-bottom: 0px;">Comentário</label>
+        <textarea id="comment" class="form-control" style="width: 100%;" formControlName="comment"></textarea>
+      </div>
+    </div>
+  </form>
 </section>
+
+
