@@ -1,0 +1,17 @@
+<div class="popup">
+    <header>
+        <h4>REDEFINIR SENHA</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="onClose()"></button>
+    </header>
+    <main>
+        <p>
+            Caso tenha esquecido a senha ou sua conta esteja bloqueada, digite abaixo o seu email, clique em
+            Enviar e receba as instruções para troca de senha.
+        </p>
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" placeholder="exemplo@gmail.com" class="form-control" id="email" formControlName="email">
+        <div style="display: flex; justify-content: end;">
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px; text-align: left;">Enviar</button>
+        </div>
+    </main>
+</div>

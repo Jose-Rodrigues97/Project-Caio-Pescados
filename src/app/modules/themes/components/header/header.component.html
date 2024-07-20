@@ -3,19 +3,27 @@
         <p>Caio Pescados</p>
         <img src="../../assets/Caio_Pescados-removebg-preview.png" alt="">
         <div class="info-user">
-            <div>
-                <a routerLink='/configuration' routerLinkActive="selected" (click)="onChangeActive()" href="#">
+            <div class="menu">
+                <a routerLink='/configuration/configuration' routerLinkActive="selected" (click)="onChangeActive()"
+                    href="#">
                     <fa-icon [icon]="faCogs" style="font-size: 30px;"></fa-icon>
                 </a>
             </div>
-            <div style="border-left: 0px;">
+            <div class="menu" style="border-left: 0px;">
                 <a routerLink="/login" (click)="onExitAccount()">
                     <fa-icon [icon]="faPowerOff" style="font-size: 30px;"></fa-icon>
                 </a>
             </div>
-            <div style="border-left: 0px; gap: 15px;">
-                <label for="">Caio Bom Reis</label>
-                <fa-icon [icon]="faUserCircle" style="font-size: 60px;"></fa-icon>
+            <div class="menu-user">
+                <div *ngIf="image; else awaiting" style="border-left: 0px; margin-right: 10px;">
+                    <img style="font-size: 55px;" src="image" alt="">
+                </div>
+                <ng-template #awaiting style="border-left: 0px; gap: 15px;">
+                    <fa-icon [icon]="faUserCircle"
+                        style="font-size: 55px; margin-right: 10px; display: flex;"></fa-icon>
+                </ng-template>
+                <label style="min-width: 153px; font-size: 18px;">{{name}}</label>
+                <fa-icon [icon]="faArrowTurnDown"></fa-icon>
             </div>
         </div>
     </nav>

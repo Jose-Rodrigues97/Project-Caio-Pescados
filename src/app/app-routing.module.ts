@@ -10,6 +10,7 @@ import { CreateAccountComponent } from './modules/authentication/components/crea
 import { SuppliersComponent } from './modules/suppliers/suppliers.component';
 import { ProductsComponent } from './modules/products/products.component';
 import { AboutComponent } from './modules/about/about.component';
+import { ConfigurationComponent } from './modules/configuration/configuration.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,16 @@ const routes: Routes = [
   {
     path: '',
     component: CompaniesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'configuration',
+    component: ConfigurationComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -50,11 +61,6 @@ const routes: Routes = [
     path: 'product',
     component: ProductsComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'about',
-    component: AboutComponent,
-    canActivate: [AuthGuard]
   }
 ];
 
@@ -62,4 +68,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

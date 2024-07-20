@@ -24,11 +24,13 @@ export class StockService {
         catchError(this.handleError))
   }
 
-  getStockByProductId(productId: number): Observable<ProductStockModel[]> {
-    return this.httpClient.get<ProductStockModel[]>(this.URL + '/product/' + productId, { headers: this.httpHeaders })
+  getStockById(stockId: number): Observable<ProductStockModel> {
+    return this.httpClient.get<ProductStockModel>(this.URL + '/' + stockId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError))
   }
+
+  
 
   createStock(productStockModel: StockModel): Observable<ProductStockModel> {
     return this.httpClient.post<ProductStockModel>(this.URL, JSON.stringify(productStockModel), { headers: this.httpHeaders })
@@ -37,15 +39,15 @@ export class StockService {
       );
   }
 
-  updateStock(productStockId: string, productStockModel: ProductStockModel): Observable<ProductStockModel> {
+  updateStock(productStockId: number, productStockModel: ProductStockModel): Observable<ProductStockModel> {
     return this.httpClient.put<ProductStockModel>(this.URL + '/' + productStockId, JSON.stringify(productStockModel), { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  deleteStock(companyId: string) {
-    return this.httpClient.delete<any>(this.URL + '/' + companyId, { headers: this.httpHeaders })
+  deleteStock(stockId: number) {
+    return this.httpClient.delete<any>(this.URL + '/' + stockId, { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );

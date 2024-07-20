@@ -63,10 +63,6 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked, OnDestr
   }
 
   ngOnInit(): void {
-    var stocks = document.getElementById('inputStock');
-    if (!stocks) {
-      setTimeout(this.createScript, 100);
-    }
     this.getCompanies();
     if (this.productId !== 0) {
       this.getProductById(this.productId);
@@ -77,7 +73,11 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked, OnDestr
         iconButton: {} as IconDefinition,
         type: 'DELETE'
       });
-      this.stockService.getStockByProductId(this.productId);
+      this.getProductById(this.productId);
+    }
+    var stocks = document.getElementById('inputStock');
+    if (!stocks) {
+      setTimeout(this.createScript, 100);
     }
   }
 
@@ -120,8 +120,8 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked, OnDestr
 
   onDeleteProduct() {
     this.productService.deleteProduct(this.productId).subscribe(() => {
-      this.router.navigateByUrl('/product/productList');
       this.handleModal('success', 'Produto excluído com sucesso.');
+      this.router.navigateByUrl('/product/productList');
     },
       error => {
         this.handleModal('danger', error);
@@ -137,7 +137,7 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked, OnDestr
         productModel.description = this.formGroup.get('description')?.value;
         productModel.aquaType = this.formGroup.get('aquaType')?.value;
         if (this.productId == 0) {
-          this.productService.createProduct(productModel).subscribe(() => {
+          this.productService.createProduct(productModel).subscribe((createProductModel: ProductModel) => {
             this.buttons.push({
               name: 'EXCLUIR',
               link: '/product/productList',
@@ -145,8 +145,8 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked, OnDestr
               iconButton: {} as IconDefinition,
               type: 'DELETE'
             })
-            this.productId = productModel.productId;
-            let select = document.querySelector('select');
+            this.productId = createProductModel.productId;
+            let select = document.getElementById('inputStock');
             let stockModel = {} as StockModel;
             for (let index = 0; index < select!.children.length; index++) {
               var option = (<HTMLOptionElement>select!.children[index])
@@ -167,7 +167,7 @@ export class ProductDetailComponent implements OnInit, AfterViewChecked, OnDestr
         }
         else {
           this.productService.updateProduct(this.productId, productModel).subscribe(() => {
-            let select = document.querySelector('select');
+            let select = document.getElementById('inputStock');
             let stockModel = {} as StockModel;
             for (let index = 0; index < select!.children.length; index++) {
               var option = (<HTMLOptionElement>select!.children[index])

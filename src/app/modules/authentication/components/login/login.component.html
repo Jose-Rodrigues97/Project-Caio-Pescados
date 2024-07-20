@@ -27,5 +27,5 @@
             </div>
         </form>
         <a [routerLink]="['/createAccount']" style="text-decoration: none; color: black;">Não possui conta? Clique aqui!</a>
-        <a [routerLink]="['/']" style="text-decoration: none; color: black;">Esqueceu a senha?</a>    
+        <a [routerLink]="['/']" style="text-decoration: none; color: black;" (click)="handlePopup('REDEFINIR SENHA')">Esqueceu a senha?</a>    
     </div>

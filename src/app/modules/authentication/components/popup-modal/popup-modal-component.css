@@ -1,0 +1,23 @@
+.popup {
+    border: 2px solid;
+    border-radius: 7px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 20px;
+    border-bottom: 2px solid;
+    padding: 10px;
+    background-color: #6bb6ff;
+    border-radius:6px 6px 0 0;
+}
+
+main {
+    padding: 10px;
+}
+
+H4{
+    margin: 0px;
+}

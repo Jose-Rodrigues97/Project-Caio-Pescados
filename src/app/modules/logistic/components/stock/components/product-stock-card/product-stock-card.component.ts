@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { ProductStockModel } from '../../models/product-stock-model';
 

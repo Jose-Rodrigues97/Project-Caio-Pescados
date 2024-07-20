@@ -1,1 +1,37 @@
-<p>stock-detail works!</p>
+<app-title-page pageName="Detalhes do Produto no Depósito" (clickButton)="onClickButton($event)"
+    [buttons]=buttons></app-title-page>
+<section class="main-content">
+    <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
+        <div class="group-content">
+            <span class="group-title">Dados Cadastrais</span>
+            <div class="group-info">
+                <div class="group-input">
+                    <label for="name" class="form-label" style="font-size: 15px; margin-bottom: 0px;">Nome</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="nameHelp" style="width: 100%;"
+                        formControlName="name" readonly>
+                </div>
+                <div class="group-input">
+                    <label for="aquaType" style="font-size: 15px; margin-bottom: 0px;">Tipo de água</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="nameHelp" style="width: 100%;"
+                        formControlName="aquaType" readonly>
+                </div>
+                <div class="group-input">
+                    <label for="price" class="form-label" style="font-size: 15px; margin-bottom: 0px;">Valor</label>
+                    <input currencyMask type="number" class="form-control" id="price" style="width: 100%;" formControlName="price">
+                </div>
+                <div class="group-input">
+                    <label for="quantity" class="form-label"
+                        style="font-size: 15px; margin-bottom: 0px;">Quantidade</label>
+                    <input type="number" class="form-control" id="quantity" style="width: 100%;"
+                        formControlName="quantity">
+                </div>
+                <div class="group-input">
+                    <label for="description" class="form-label"
+                        style="font-size: 15px; margin-bottom: 0px;">Descrição</label>
+                    <textarea type="text" class="form-control" id="description" style="width: 100%;"
+                        formControlName="description" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

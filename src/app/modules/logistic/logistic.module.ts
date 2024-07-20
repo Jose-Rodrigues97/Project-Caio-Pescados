@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -12,6 +12,7 @@ import { ListStockComponent } from './components/stock/components/list-stock/lis
 import { StockProductDetailComponent } from './components/stock/components/stock-product-detail/stock-product-detail.component';
 import { ListProductsStockComponent } from './components/stock/components/list-products-stock/list-products-stock.component';
 import { ProductStockCardComponent } from './components/stock/components/product-stock-card/product-stock-card.component';
+
 
 @NgModule({
   declarations: [
@@ -30,8 +31,7 @@ import { ProductStockCardComponent } from './components/stock/components/product
     ThemesModule,
     FontAwesomeModule,
     RouterModule,
-    LogisticRoutingModule,
-    
+    LogisticRoutingModule
   ]
 })
 export class LogisticModule { }

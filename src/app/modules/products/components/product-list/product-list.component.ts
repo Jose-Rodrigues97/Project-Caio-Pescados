@@ -16,7 +16,7 @@ import { ProductsModel } from "../../models/products-model";
 export class ProductListComponent {
   buttons = [
     {
-      name: 'NOVO PRODUTO',
+      name: 'CRIAR PRODUTO',
       link: 'product/productDetail/',
       class: 'btn-primary',
       iconButton: faPlusCircle,
@@ -49,7 +49,7 @@ export class ProductListComponent {
     })
   }
 
-  onSubmit(): void {
+  ngOnSubmit(): void {
 
   }
 

@@ -14,13 +14,19 @@
           </div>
         </div>
         <div class="group-input">
-          <label for="description" class="form-label" style="font-size: 15px; margin-bottom: 0px;">Descrição</label>
-          <input type="text" class="form-control" id="description" style="width: 100%;" formControlName="description">
+          <label for="aquaType" style="font-size: 15px; margin-bottom: 0px;">Tipo de água</label>
+          <select id="aquaType" class="form-select" formControlName="aquaType">
+            <option ngValue='Água Salina '>Água Salina </option>
+            <option ngValue='Água Doce'>Água Doce</option>
+            <option ngValue='Água Salobra'>Água Salobra</option>
+            <option ngValue='Água Superficial'>Água Superficial</option>
+            <option ngValue='Água Subterrânea'>Água Subterrânea</option>
+          </select>
         </div>
         <div class="group-input">
-          <label for="aquaType" style="font-size: 15px; margin-bottom: 0px;">Tipo de água
-          </label>
-          <input id="aquaType" class="form-control" type="text" style="width: 100%;" formControlName="aquaType">
+          <label for="description" class="form-label" style="font-size: 15px; margin-bottom: 0px;">Descrição</label>
+          <textarea type="text" class="form-control" id="description" style="width: 100%;"
+            formControlName="description"></textarea>
         </div>
         <div class="group-input">
           <label for="inputStock" style="font-size: 15px; margin-bottom: 0px;">Estoque</label>

@@ -61,7 +61,6 @@ export class CreateAccountComponent {
     try {
       if (this.formGroup.valid) {
         if (this.formGroup.get("password")?.value == this.formGroup.get("confirmPassword")?.value) {
-
           let createUser = {} as CreateAccountModel;
           createUser.email = this.formGroup.get("email")?.value;
           createUser.taxNumber = this.formGroup.get("taxNumber")?.value;
@@ -75,7 +74,7 @@ export class CreateAccountComponent {
             error => {
               let erro: ErrorModel;
               erro = error;
-              this.handleModal('danger', erro.message);
+              this.handleModal('danger', erro.error);
             });
         } else {
           this.handleModal('info', 'As senhas não coincidem.');

@@ -1,6 +1,6 @@
 <app-title-page pageName="Produtos" [buttons]=buttons></app-title-page>
 <div class="search">
-  <form [formGroup]="formGroup">
+  <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm">
     <div class="stylized-filter">
       <label for="name">Nome</label>
       <input id="name" class="form-control" type="text" placeholder="Pesquise nome" style="width: 100%;"

@@ -27,24 +27,13 @@ export class PaginationComponent implements AfterViewChecked {
       var itemDisabled = document.getElementById('next');
       itemDisabled?.classList.add('disabled');
     }
-    
-    var li = document.createElement('<li (click)="onChangePage($event)" class="page-item"><a class="page-link" style="color: black; cursor: pointer;" >4</a></li>');
-    var ul = document.getElementById('ul');
-    ul?.appendChild(li);
+
+    // var li = document.createElement('<li (click)="onChangePage($event)" class="page-item"><a class="page-link" style="color: black; cursor: pointer;" >4</a></li>');
+    // var ul = document.getElementById('ul');
+    // ul?.appendChild(li);
   }
 
   ngOnInit() {
- 
-    console.log(this.empty);
-    console.log(this.first);
-    console.log(this.last);
-    console.log(this.number);
-    console.log(this.numberOfElements);
-    console.log(this.pageable);
-    console.log(this.size);
-    console.log(this.sort);
-    console.log(this.totalElements);
-    console.log(this.totalPages);
   }
 
   onChangePage(event: Event) {
