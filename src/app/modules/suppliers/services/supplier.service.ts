@@ -52,6 +52,14 @@ export class SupplierService {
       )
   }
 
+  getSupplierByTaxNumber(taxNumber: string): Observable<SupplierModel> {
+    console.log(this.URL);
+    return this.httpClient.get<SupplierModel>(this.URL + '/taxNumber/' + taxNumber, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

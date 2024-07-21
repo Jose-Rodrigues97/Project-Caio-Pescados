@@ -6,24 +6,19 @@
       <div class="group-info">
         <div class="group-input">
           <label for="supplier" style="font-size: 15px; margin-bottom: 0px;">Razão Social</label>
-          <div *ngIf="suppliers$ | async as suppliers; else list">
-            <select id="supplierd" class="form-select" required formControlName="supplier">
+          <div *ngIf="suppliers$ | async as suppliers">
+            <select id="supplierid" class="form-select" required formControlName="supplier"
+              (change)="onChangeRazaoSocial($event.target)">
               <ng-container *ngFor="let supplier of suppliers.content">
                 <option [ngValue]="supplier.supplierId">{{supplier.name}}</option>
               </ng-container>
             </select>
           </div>
-
-          <ng-template #list>
-            <div>
-              <app-sppiner style="width: 100vw; height: 100vh;"></app-sppiner>
-            </div>
-          </ng-template>
-
         </div>
         <div class="group-input">
           <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
-          <input id="tax-number" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+          <input id="tax-number" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber"
+            (change)="onChangeTaxNumber($event.target)">
         </div>
       </div>
     </div>
@@ -31,12 +26,14 @@
       <span class="group-title">Situação do Pedido</span>
       <div class="group-info">
         <div class="group-input">
-          <label for="zip-code" style="font-size: 15px; margin-bottom: 0px;">Valor Total</label>
-          <input id="zip-code" class="form-control" type="text" style="width: 100%;" formControlName="zipCode">
+          <label for="valorTotal" style="font-size: 15px; margin-bottom: 0px;">Valor Total</label>
+          <input id="valorTotal" class="form-control" type="text" style="width: 100%;" formControlName="valorTotal"
+            readonly placeholder="valorTotal">
         </div>
         <div class="group-input">
-          <label for="complemento" style="font-size: 15px; margin-bottom: 0px;">Status</label>
-          <input id="complemento" class="form-control" type="text" style="width: 100%;" formControlName="complement">
+          <label for="status" style="font-size: 15px; margin-bottom: 0px;">StatusAq</label>
+          <input id="satus" class="form-control" type="text" style="width: 100%;" formControlName="status" readonly
+            placeholder="status">
         </div>
       </div>
     </div>
@@ -44,8 +41,8 @@
       <span class="group-title">Endereço de Entrega</span>
       <div class="group-info">
         <div class="group-input">
-          <label for="street" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
-          <input id="street" class="form-control" type="text" style="width: 100%;" formControlName="street">
+          <label for="address" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
+          <input id="address" class="form-control" type="text" style="width: 100%;" formControlName="address">
         </div>
         <div class="group-input">
           <label for="city" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
@@ -72,46 +69,67 @@
     <div class="group-content">
       <span class="group-title">Itens</span>
       <div class="group-info">
+
         <div class="group-input">
-          <label for="item" style="font-size: 15px; margin-bottom: 0px;">Item</label>
-          <input id="item" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+          <div style="width: 100%;" *ngIf="stocks$ | async as stocks">
+            <label for="stock" style="font-size: 15px; margin-bottom: 0px;">Estoque</label>
+            <select id="stockId" class="form-select" formControlName="stock">
+              <ng-container *ngFor="let stock of stocks.content">
+                <option [ngValue]="stock.stockId">{{stock.company}}</option>
+              </ng-container>
+            </select>
+          </div>
         </div>
+
+        <div class="group-input">
+          <label for="shopping-cart" style="font-size: 15px; margin-bottom: 0px;">Produto</label>
+          <div style="width: 100%;" *ngIf="products$ | async as products">
+            <select id="product" class="form-select" required formControlName="product"
+              (change)="onChangeProduct($event.target)">
+              <ng-container *ngFor="let product of products.content">
+                <option [ngValue]="product.productId">{{product.name}}</option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+
         <div class="group-input">
           <label for="amount" style="font-size: 15px; margin-bottom: 0px;">Quantidade</label>
-          <input id="amount" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+          <input id="amount" class="form-control" type="text" style="width: 100%;" formControlName="amount">
         </div>
         <div class="group-input">
           <label for="value" style="font-size: 15px; margin-bottom: 0px;">Valor</label>
-          <input id="value" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+          <input id="value" class="form-control" type="text" style="width: 100%;" formControlName="value">
         </div>
       </div>
     </div>
-    <div class="group-content">
+    <div *ngIf=" false" class="group-content">
       <span class="group-title">Transporte</span>
       <div class="group-info">
         <div class="group-input">
-          <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Transportadora</label>
-          <select id="inputState" class="form-select" required formControlName="estate">
+          <label for="transport" style="font-size: 15px; margin-bottom: 0px;">Transportadora</label>
+          <select id="transport" class="form-select" required formControlName="transport">
             <ng-container *ngFor="let shippingCompany of shippingCompanys">
               <option [ngValue]="shippingCompany.id">{{shippingCompany.name}}</option>
             </ng-container>
           </select>
         </div>
         <div class="group-input">
-          <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
-          <input id="tax-number" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+          <label for="tax-number-trans" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
+          <input id="tax-number-trans" class="form-control" type="text" style="width: 100%;"
+            formControlName="taxNumberTrans">
         </div>
         <div class="group-input">
-          <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Meio de Transporte</label>
-          <select id="inputState" class="form-select" required formControlName="estate">
+          <label for="transport-vehicle" style="font-size: 15px; margin-bottom: 0px;">Meio de Transporte</label>
+          <select id="transport-vehicle" class="form-select" required formControlName="transportVehicle">
             <ng-container *ngFor="let transport of transports">
               <option [ngValue]="transport.id">{{transport.name}}</option>
             </ng-container>
           </select>
         </div>
         <div class="group-input">
-          <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">Peso da Carga</label>
-          <input id="tax-number" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+          <label for="height" style="font-size: 15px; margin-bottom: 0px;">Peso da Carga</label>
+          <input id="height" class="form-control" type="text" style="width: 100%;" formControlName="height">
         </div>
       </div>
     </div>
@@ -124,5 +142,3 @@
     </div>
   </form>
 </section>
-
-

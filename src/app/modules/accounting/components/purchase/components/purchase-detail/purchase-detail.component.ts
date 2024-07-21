@@ -8,10 +8,15 @@ import { SupplierService } from 'src/app/modules/suppliers/services/supplier.ser
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
 import { PurchaseService } from '../../services/purchase.service';
-import { ErrorModel } from 'src/app/models/error/error-model';
 import { Observable } from 'rxjs';
 import { SuppliersModel } from 'src/app/modules/suppliers/models/suppliers-model';
 import { PurchaseModel } from '../../models/purchase-model';
+import { StockService } from 'src/app/modules/logistic/components/stock/services/stock.service';
+import { ProductService } from 'src/app/modules/products/service/product.service';
+import { ProductsModel } from 'src/app/modules/products/models/products-model';
+import { ProductStockModel } from 'src/app/modules/logistic/components/stock/models/product-stock-model';
+import { SupplierModel } from 'src/app/modules/suppliers/models/supplier-model';
+import { ProductsStockModel } from 'src/app/modules/logistic/components/stock/models/products-stock-model';
 
 @Component({
   selector: 'app-purchase-detail',
@@ -38,6 +43,8 @@ export class PurchaseDetailComponent {
       type: 'SAVE'
     }]
   suppliers$!: Observable<SuppliersModel>
+  stocks$!: Observable<ProductsStockModel>
+  products$!: Observable<ProductsModel>
   bsModalRef?: BsModalRef;
   transports = {} as TransportModel[];
   shippingCompanys = {} as ShippingCompanyModel[];
@@ -48,7 +55,9 @@ export class PurchaseDetailComponent {
     private formBuilder: FormBuilder,
     private purchaseService: PurchaseService,
     private supplierService: SupplierService,
+    private productService: ProductService,
     private modalService: BsModalService,
+    private stockService: StockService,
     private router: Router
   ) {
     const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
@@ -57,11 +66,8 @@ export class PurchaseDetailComponent {
       id: this.purchaseId,
       supplier: '',
       taxNumber: '',
-      valorTotal: '',
-      item: '',
-      amount: '',
-      value: '',
-      status: '',
+      valorTotal: '0,00R$',
+      status: 'teste',
       address: '',
       city: '',
       estate: '',
@@ -69,7 +75,15 @@ export class PurchaseDetailComponent {
       zipCode: '',
       complement: '',
       creationDate: '',
-      comment: ''
+      stock: '',
+      product: '',
+      amount: '',
+      value: '',
+      transport: '',
+      taxNumberTrans: '',
+      transportVehicle: '',
+      height: '',
+      comment: '',
     })
   }
 
@@ -85,24 +99,41 @@ export class PurchaseDetailComponent {
       });
     } else {
       this.getSuppliers();
+      this.getStocks();
     }
 
   }
 
   ngAfterViewChecked(): void {
-    // this.onChangeTaxNumber(document.getElementById('taxNumber'));
+    // this.onChangeRazaoSocial(document.getElementById('supplierid'));
+    // this.onChangeTaxNumber(document.getElementById('tax-number'));
   }
 
-  onChangeSupplier(target: any) {
-    // if (target) {
-    //   if (this.supplier.errors) {
-    //     (<HTMLInputElement>target).classList.remove('is-valid');
-    //     (<HTMLInputElement>target).classList.add('is-invalid');
-    //   } else {
-    //     (<HTMLInputElement>target).classList.add('is-valid');
-    //     (<HTMLInputElement>target).classList.remove('is-invalid');
-    //   }
-    // }
+  onChangeRazaoSocial(target: any) {
+    if (target) {
+      let supplierId = (<HTMLInputElement>target).value;
+      supplierId = String(supplierId.substring(supplierId.indexOf(":") + 2, supplierId.length));
+      this.supplierService.getSupplierById(supplierId)
+        .subscribe((supplier: SupplierModel) => {
+          this.formGroup.get('taxNumber')?.setValue(supplier.taxNumber);
+        })
+    }
+  }
+
+  onChangeTaxNumber(target: any) {
+    if (target) {
+      let taxNumber = (<HTMLInputElement>target).value;
+      taxNumber = String(taxNumber.substring(taxNumber.indexOf(":") + 1, taxNumber.length));
+      this.supplierService.getSupplierByTaxNumber(taxNumber).subscribe((supplier: SupplierModel) => {
+        this.formGroup.get('supplier')?.setValue(supplier.supplierId);
+      });
+    }
+  }
+
+  onChangeProduct(target: any) {
+  }
+
+  onChangeStock(target: any) {
   }
 
   onClickButton(type: string) {
@@ -118,9 +149,8 @@ export class PurchaseDetailComponent {
       this.formGroup.get('supplier')?.setValue(purchase.supplier);
       this.formGroup.get('taxNumber')?.setValue(purchase.taxNumber);
       this.formGroup.get('valorTotal')?.setValue(purchase.valorTotal);
-      this.formGroup.get('item')?.setValue(purchase.item);
+      this.formGroup.get('item')?.setValue(purchase.items);
       this.formGroup.get('amount')?.setValue(purchase.amount);
-      this.formGroup.get('value')?.setValue(purchase.value);
       if (purchase.address) {
         this.formGroup.get('address')?.setValue(purchase.address.address);
         this.formGroup.get('city')?.setValue(purchase.address.city);
@@ -163,12 +193,19 @@ export class PurchaseDetailComponent {
     this.bsModalRef.content.message = message;
   }
 
-  supplier() {
-    return this.formGroup.get("supplier")!;
-  }
+
 
   getSuppliers() {
     this.suppliers$ = this.supplierService.getSuppliers();
+  }
+
+  getStocks() {
+    console.log('entrou no getStock');
+    this.stocks$ = this.stockService.getStocks();
+  }
+
+  getProducts(stockId: number) {
+    this.products$ = this.productService.getProducts();
   }
 
 }
