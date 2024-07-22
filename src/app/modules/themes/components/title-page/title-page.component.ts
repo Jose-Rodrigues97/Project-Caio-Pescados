@@ -18,12 +18,13 @@ export class TitlePageComponent {
   @Input() buttons!: ButtonModel[];
   @Output() clickButton: EventEmitter<string> = new EventEmitter();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   onClickButton(button: ButtonModel) {
     if (button.type == 'RETURN' || button.type == 'CREATE') {
       this.router.navigateByUrl(button.link);
-    } else{
+    } else {
       this.clickButton.emit(button.type);
       return;
     }

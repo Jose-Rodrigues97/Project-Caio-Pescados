@@ -1,0 +1,36 @@
+.main-content {
+    background-color: white;
+    padding: 20px;
+  }
+  
+  p {
+    margin: 0px;
+  }
+  
+  .group-content {
+    position: relative;
+    padding: 10px;
+    margin: 20px 0px;
+  }
+  
+  .group-title {
+    font-size: 22px;
+    position: absolute;
+    top: -9px;
+    left: 17px;
+    background: white;
+    padding: 0px 5px;
+  }
+  
+  .group-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    border: 1px solid #DCDCDC;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .group-input {
+    display: block;
+  }

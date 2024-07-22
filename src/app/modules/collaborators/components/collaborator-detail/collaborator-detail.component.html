@@ -107,7 +107,11 @@
                 </div>
                 <div class="group-input">
                     <label for="turn" style="font-size: 15px; margin-bottom: 0px;">Turno</label>
-                    <input id="turn" class="form-control" type="text" style="width: 100%;" formControlName="turn">
+                    <select id="turn" class="form-select" formControlName="turn">
+                        <option ngValue='Manhã'>Manhã</option>
+                        <option ngValue='Tarde'>Tarde</option>
+                        <option ngValue='Noite'>Noite</option>
+                    </select>
                 </div>
             </div>
         </div>

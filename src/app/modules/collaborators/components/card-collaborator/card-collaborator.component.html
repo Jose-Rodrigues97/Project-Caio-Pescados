@@ -15,9 +15,24 @@
         <span style="text-transform: uppercase;">{{collaboratorModel.telephones}}</span>
         <span>{{collaboratorModel.address}}</span>
     </div>
-    <div *ngIf="collaboratorModel.collaboratorExt">
-        <span style="text-transform: uppercase;">{{collaboratorModel.collaboratorExt.rg}}</span>
-        <span>{{collaboratorModel.collaboratorExt.birthday}}</span>
-        <span>{{collaboratorModel.collaboratorExt.office}}</span>
+    <div *ngIf="collaboratorModel.userExtensionModel">
+        <div style="display: flex;">RG:
+            <span *ngIf="collaboratorModel.userExtensionModel.rg; else noRG">
+                {{collaboratorModel.userExtensionModel.rg}}
+            </span>
+            <ng-template #noRG>-</ng-template>
+        </div>
+        <div style="display: flex;">Turno:
+            <span *ngIf="collaboratorModel.userExtensionModel.turn; else noTurn">
+                {{collaboratorModel.userExtensionModel.turn}}
+            </span>
+            <ng-template #noTurn>-</ng-template>
+        </div>
+        <div style="display: flex;">Cargo:
+            <span *ngIf="collaboratorModel.userExtensionModel.office; else noOffice">
+                {{collaboratorModel.userExtensionModel.office}}
+            </span>
+            <ng-template #noOffice>-</ng-template>
+        </div>
     </div>
 </div>

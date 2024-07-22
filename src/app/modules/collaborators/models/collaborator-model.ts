@@ -13,5 +13,5 @@ export interface CollaboratorModel {
     telephones: TelephoneModel[];
     address: AddressModel;
     image: ImageModel;
-    collaboratorExt: CollaboratorExtensionModel
+    userExtensionModel: CollaboratorExtensionModel
 }

@@ -175,12 +175,13 @@ export class CollaboratorDetailComponent implements OnInit, AfterViewChecked {
       this.submitted = true;
       if (this.formGroup.valid) {
         let collaboratorModel = {} as CollaboratorModel;
+        collaboratorModel.role = 'USER';
         collaboratorModel.name = this.formGroup.get('name')?.value;
         collaboratorModel.surname = this.formGroup.get('surname')?.value;
         collaboratorModel.email = this.formGroup.get('email')?.value;
         collaboratorModel.taxNumber = this.formGroup.get('taxNumber')?.value;
-        collaboratorModel.role = 'USER';
         let collaboratorExtensionModel = {} as CollaboratorExtensionModel;
+        collaboratorModel.userExtensionModel = collaboratorExtensionModel;
         collaboratorExtensionModel.birthday = this.formGroup.get('birthday')?.value;
         collaboratorExtensionModel.office = this.formGroup.get('office')?.value;
         collaboratorExtensionModel.salary = this.formGroup.get('salary')?.value;
@@ -223,11 +224,9 @@ export class CollaboratorDetailComponent implements OnInit, AfterViewChecked {
               type: 'DELETE'
             })
             this.id = collaboratorModel.userId;
-            console.log(this.id)
             this.handleModal('success', 'Colaborador criado com sucesso.');
           },
             error => {
-              console.log(error )
               this.handleModal('danger', error);
             });
         }
@@ -249,7 +248,6 @@ export class CollaboratorDetailComponent implements OnInit, AfterViewChecked {
           } else {
             this.imageService.createImage(formData);
           }
-          console.log(formData);
         }
       } else {
         this.handleModal('danger', 'Formulário inválido.');
@@ -265,6 +263,13 @@ export class CollaboratorDetailComponent implements OnInit, AfterViewChecked {
       this.formGroup.get('surname')?.setValue(collaborator.surname);
       this.formGroup.get('taxNumber')?.setValue(collaborator.taxNumber);
       this.formGroup.get('email')?.setValue(collaborator.email);
+      if(collaborator.userExtensionModel){
+        this.formGroup.get('birthday')?.setValue(collaborator.userExtensionModel.birthday);
+        this.formGroup.get('office')?.setValue(collaborator.userExtensionModel.office);
+        this.formGroup.get('salary')?.setValue(collaborator.userExtensionModel.salary);
+        this.formGroup.get('turn')?.setValue(collaborator.userExtensionModel.turn);
+        this.formGroup.get('rg')?.setValue(collaborator.userExtensionModel.rg);
+      }
       if (collaborator.address) {
         this.formGroup.get('addressId')?.setValue(collaborator.address.addressId);
         this.formGroup.get('address')?.setValue(collaborator.address.address);

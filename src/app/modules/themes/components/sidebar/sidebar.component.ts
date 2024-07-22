@@ -26,6 +26,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   @Input() menuId!: string;
   @Input() submMenuId!: string;
+  @Input() permission!: string;
   previousMenuId = '';
   previousSubMenuId = '';
 
@@ -34,77 +35,77 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       submenus: [], id: 1, class: "", icon: faHome,
       name: "Empresas",
       link: "/company/companiesList",
-      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      visibleProfiles: ["User", "Admin"]
     },
     {
       submenus: [], id: 2, class: "", icon: faUserPlus,
       name: "Colaboradores",
       link: "/collaborator/collaboratorsList",
-      visibleProfiles: ["Time", "Atleta"]
+      visibleProfiles: ["User", "Admin"]
     },
     {
       submenus: [], id: 3, class: "", icon: faUsers,
       name: "Clientes",
       link: "/customer/customersList",
-      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      visibleProfiles: ["User", "Admin"]
     },
     {
       submenus: [{
         submenus: [], id: 102, class: "", icon: faShoppingCart,
         name: "Compras",
         link: "/purchase/purchaseList",
-        visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+        visibleProfiles: ["User", "Admin"]
       }, {
         submenus: [], id: 103, class: "", icon: faMoneyBillWave,
         name: "Vendas",
-        link: "/sale", visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+        visibleProfiles: ["User", "Admin"]
       }, {
         submenus: [], id: 104, class: "", icon: faChartBar,
         name: "Métricas", link: "/metrics",
-        visibleProfiles: ["Estabelecimento"]
+        visibleProfiles: ["User", "Admin"]
       }], id: 11, class: "", icon: faCalculator,
       name: "Contabilidade",
       link: "/accounting",
-      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      visibleProfiles: ["User", "Admin"]
     },
     {
       submenus: [{
         submenus: [], id: 100, class: "", icon: faDolly,
         name: "Estoque",
         link: "/logistic",
-        visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+        visibleProfiles: ["User", "Admin"]
       }, {
         submenus: [], id: 101, class: "", icon: faTruck,
         name: "Transportadora",
         link: "/shippingCompany",
-        visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+        visibleProfiles: ["User", "Admin"]
       }], id: 12, class: "", icon: faGlobeAmericas,
       name: "Logística", link: "/logistics",
-      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      visibleProfiles: ["User", "Admin"]
     },
     {
       submenus: [], id: 6, class: "", icon: faStore,
       name: "Produtos",
       link: "/product/productList",
-      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      visibleProfiles: ["User", "Admin"]
     },
     {
       submenus: [], id: 7, class: "", icon: faCity,
       name: "Fornecedores",
       link: "/supplier/supplierList",
-      visibleProfiles: ["Time", "Atleta"]
+      visibleProfiles: ["User", "Admin"]
     },
     {
       submenus: [], id: 9, class: "", icon: faAddressCard,
       name: "Sobre",
-      link: "/about",
-      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      link: "/about/about",
+      visibleProfiles: ["User", "Admin"]
     },
     {
       submenus: [], id: 10, class: "", icon: faCogs,
       name: "Configurações",
-      link: "/configuration",
-      visibleProfiles: ["Estabelecimento", "Federação", "Time", "Atleta"]
+      link: "/configuration/configuration",
+      visibleProfiles: ["User", "Admin"]
     },
   ]
 
@@ -121,7 +122,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
   }
 
   onChangeActive(menu: string) {

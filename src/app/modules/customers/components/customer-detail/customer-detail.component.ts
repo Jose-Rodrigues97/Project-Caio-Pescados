@@ -5,8 +5,6 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { properties } from '../../properties/properties';
 import { CustomerService } from '../../services/customer.service';
-import { ImageService } from 'src/app/modules/themes/components/upload/services/image.service';
-import { DatePipe } from '@angular/common';
 import { CustomerModel } from '../../models/customer-model';
 import { ErrorModel } from 'src/app/models/error/error-model';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';

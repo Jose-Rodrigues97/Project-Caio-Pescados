@@ -10,8 +10,7 @@ import { ConfigurationRoutingModule } from './configuration-routing.module';
 import { PermissionsComponent } from './components/permissions/permissions.component';
 import { ThemeComponent } from './components/theme/theme.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
-
+import { ListConfigurationsComponent } from './components/list-configurations/list-configurations.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     CardConfigurationComponent,
     PermissionsComponent,
     ThemeComponent,
-    ProfileComponent
+    ProfileComponent,
+    ListConfigurationsComponent
   ],
   imports: [
     CommonModule,

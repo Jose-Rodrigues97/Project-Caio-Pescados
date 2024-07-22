@@ -15,6 +15,7 @@ import { CollaboratorsModule } from './modules/collaborators/collaborators.modul
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ProductsModule } from './modules/products/products.module';
 import { LogisticModule } from './modules/logistic/logistic.module';
+import { IConfig, NgxMaskDirective } from 'ngx-mask';
 
 @NgModule({
   declarations: [

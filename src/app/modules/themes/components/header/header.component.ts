@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { faUserCircle, faPowerOff, faCogs } from '@fortawesome/free-solid-svg-icons';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { Component, Input } from '@angular/core';
+import { faUserCircle, faPowerOff, faCogs, faArrowTurnDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +10,11 @@ export class HeaderComponent {
   faUserCircle = faUserCircle;
   faPowerOff = faPowerOff;
   faCogs = faCogs;
+  faArrowTurnDown = faArrowTurnDown;
+  @Input() name!: String;
+  @Input() image!: Blob;
 
-  constructor(private modalService: BsModalService,
-    private router: Router) { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
   onChangeActive() {

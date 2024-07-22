@@ -1,0 +1,18 @@
+.about{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: linear-gradient(#1E90FF, #DCDCDC);
+}
+
+.carousel-detail{
+    height: 500px;
+}
+
+img{
+    object-fit: cover;
+    object-position: center;
+    height: 500px;
+    width: 100%;
+}

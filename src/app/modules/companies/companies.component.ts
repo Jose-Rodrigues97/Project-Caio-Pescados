@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./companies.component.css']
 })
 export class CompaniesComponent {
-  menuId: string = '1'; 
 }

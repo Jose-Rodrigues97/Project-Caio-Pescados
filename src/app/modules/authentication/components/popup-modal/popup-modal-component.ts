@@ -2,13 +2,11 @@ import { Component, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'app-alert-modal-component',
-  templateUrl: './alert-modal.component.html',
-  styleUrls: ['./alert-modal.component.css']
+  selector: 'app-popup-modal-component',
+  templateUrl: './popup-modal-component.html',
+  styleUrls: ['./popup-modal-component.css']
 })
-export class AlertModalComponent {
-  @Input() message!: string;
-  @Input() type!: string;
+export class PopupModalComponent {
   svg!: string;
 
   constructor(public bsModalRef: BsModalRef) {

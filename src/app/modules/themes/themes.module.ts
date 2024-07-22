@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { InternalErrorComponent } from './components/internal-error/internal-error.component';
 import { AlertModalComponent } from './components/alert-modal-component/alert-modal.component';
 import { SppinerComponent } from './components/sppiner/sppiner.component';
+import { PopupModalComponent } from '../authentication/components/popup-modal/popup-modal-component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SppinerComponent } from './components/sppiner/sppiner.component';
     PageNotFoundComponent,
     InternalErrorComponent,
     AlertModalComponent,
-    SppinerComponent
+    SppinerComponent,
+    PopupModalComponent
   ],
   imports: [
     CommonModule,

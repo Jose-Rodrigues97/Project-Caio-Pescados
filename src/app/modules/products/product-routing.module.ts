@@ -5,7 +5,6 @@ import { ProductsComponent } from './products.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
-
 const productsRoutes: Routes = [
   {
     path: 'product',
@@ -17,7 +16,7 @@ const productsRoutes: Routes = [
       { path: '**', component: PageNotFoundComponent }
     ]
   }
-];
+]; 
 
 @NgModule({
   imports: [RouterModule.forRoot(productsRoutes)],

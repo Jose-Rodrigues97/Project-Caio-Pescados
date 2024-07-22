@@ -5,20 +5,21 @@ import { ThemeComponent } from './components/theme/theme.component';
 import { ConfigurationComponent } from './configuration.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PermissionsComponent } from './components/permissions/permissions.component';
-import { ThemesComponent } from '../themes/themes.component';
+import { PageNotFoundComponent } from '../themes/components/page-not-found/page-not-found.component';
+import { ListConfigurationsComponent } from './components/list-configurations/list-configurations.component';
 
 const configurationRoutes: Routes = [
   {
-    path: '',
-    component: ThemesComponent,
+    path: 'configuration',
+    component: ConfigurationComponent,
     children: [
       { path: '', redirectTo: 'configuration', pathMatch: 'full' },
-      { path: 'configuration', component: ConfigurationComponent },
+      { path: 'configuration', component: ListConfigurationsComponent },
       { path: 'profile/:id', component: ProfileComponent },
       { path: 'permissions/:id', component: PermissionsComponent },
       { path: 'theme/:id', component: ThemeComponent },
-      // { path: '**', component: CompaniesComponent }
-    ]
+      { path: '**', component: PageNotFoundComponent }
+    ] 
   }
 ];
 

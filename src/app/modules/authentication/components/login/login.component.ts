@@ -4,7 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 import { AccountService } from '../../services/account.service';
 import { Router } from '@angular/router';
-import { TokenModel } from '../../models/token-model';
+import { PopupModalComponent } from 'src/app/modules/authentication/components/popup-modal/popup-modal-component';
 
 @Component({
   selector: 'app-login',
@@ -61,5 +61,10 @@ export class LoginComponent {
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = type;
     this.bsModalRef.content.message = message;
+  }
+
+  handlePopup(title: string) {
+    this.bsModalRef = this.modalService.show(PopupModalComponent);
+    this.bsModalRef.content.title = title;
   }
 }

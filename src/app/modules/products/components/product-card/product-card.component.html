@@ -32,7 +32,7 @@
         <p [attr.data-bs-toggle]="" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
             [attr.data-bs-title]="">{{product.description}}</p>
     </div>
-    <div class="new-card">
+    <div *ngIf="cardNew" class="new-card">
         Novo
     </div>
 </a>
