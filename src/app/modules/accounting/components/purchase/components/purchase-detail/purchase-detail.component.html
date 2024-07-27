@@ -3,7 +3,7 @@
   <form [formGroup]="formGroup" (ngSubmit)="ngOnSubmit()" #formDir="ngForm" method="POST">
     <div class="group-content">
       <span class="group-title">Fornecedor</span>
-      <div class="group-info">
+      <div class="group-info"> 
         <div class="group-input">
           <label for="supplier" style="font-size: 15px; margin-bottom: 0px;">Razão Social</label>
           <div *ngIf="suppliers$ | async as suppliers">

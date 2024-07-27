@@ -5,17 +5,20 @@
             <span class="group-title">Cliente</span>
             <div class="group-info">
                 <div class="group-input">
-                    <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Cliente</label>
-                    <select id="inputState" class="form-select" required formControlName="estate">
-                        <ng-container *ngFor="let supplier of suppliers">
-                            <option [ngValue]="supplier.supplierId">{{supplier.name}}</option>
-                        </ng-container>
-                    </select>
+                    <label for="client" style="font-size: 15px; margin-bottom: 0px;">Razão Social</label>
+                    <div *ngIf="clients$ | async as clients">
+                        <select id="client" class="form-select" required formControlName="client"
+                            (change)="onChangeRazaoSocial($event.target)">
+                            <ng-container *ngFor="let client of clients.content">
+                                <option [ngValue]="client.buyerId">{{client.name}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
                 </div>
                 <div class="group-input">
-                    <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">CNPJ</label>
+                    <label for="tax-number" style="font-size: 15px; margin-bottom: 0px;">Registro Fiscal</label>
                     <input id="tax-number" class="form-control" type="text" style="width: 100%;"
-                        formControlName="taxNumber">
+                        formControlName="taxNumber" (change)="onChangeTaxNumber($event.target)">
                 </div>
             </div>
         </div>
@@ -23,14 +26,14 @@
             <span class="group-title">Situação do Pedido</span>
             <div class="group-info">
                 <div class="group-input">
-                    <label for="zip-code" style="font-size: 15px; margin-bottom: 0px;">Valor Total</label>
-                    <input id="zip-code" class="form-control" type="text" style="width: 100%;"
-                        formControlName="zipCode">
+                    <label for="valorTotal" style="font-size: 15px; margin-bottom: 0px;">Valor Total</label>
+                    <input id="valorTotal" class="form-control" type="text" style="width: 100%;"
+                        formControlName="valorTotal" readonly placeholder="0R$">
                 </div>
                 <div class="group-input">
-                    <label for="complemento" style="font-size: 15px; margin-bottom: 0px;">Status</label>
-                    <input id="complemento" class="form-control" type="text" style="width: 100%;"
-                        formControlName="complement">
+                    <label for="status" style="font-size: 15px; margin-bottom: 0px;">Status</label>
+                    <input id="satus" class="form-control" type="text" style="width: 100%;" formControlName="status"
+                        readonly placeholder="status">
                 </div>
             </div>
         </div>
@@ -38,8 +41,8 @@
             <span class="group-title">Endereço de Entrega</span>
             <div class="group-info">
                 <div class="group-input">
-                    <label for="street" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
-                    <input id="street" class="form-control" type="text" style="width: 100%;" formControlName="street">
+                    <label for="address" style="font-size: 15px; margin-bottom: 0px;">Rua</label>
+                    <input id="address" class="form-control" type="text" style="width: 100%;" formControlName="address">
                 </div>
                 <div class="group-input">
                     <label for="city" style="font-size: 15px; margin-bottom: 0px;">Cidade</label>
@@ -67,19 +70,74 @@
         </div>
         <div class="group-content">
             <span class="group-title">Itens</span>
-            <div class="group-info">
-                <div class="group-input">
-                    <label for="item" style="font-size: 15px; margin-bottom: 0px;">Item</label>
-                    <input id="item" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+            <div class="group-info div-table-item">
+                <div class="group-input" style="width: 50%;">
+                    <label for="company" style="font-size: 15px; margin-bottom: 0px;">Estoque</label>
+                    <div style="width: 100%;" *ngIf="companies$ | async as companies">
+                        <select id="company" class="form-select" formControlName="company"
+                            (change)="onChangeStock($event.target)">
+                            <ng-container *ngFor="let company of companies.content">
+                                <option [ngValue]="company.companyId">{{company.corporateName}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
                 </div>
-                <div class="group-input">
-                    <label for="amount" style="font-size: 15px; margin-bottom: 0px;">Quantidade</label>
-                    <input id="amount" class="form-control" type="text" style="width: 100%;"
-                        formControlName="taxNumber">
+                <div class="group-input" style="width: 38%;">
+                    <label for="shopping-cart" style="font-size: 15px; margin-bottom: 0px;">Produto</label>
+                    <div style="width: 100%;" *ngIf="stocks$ | async as stocks">
+                        <select id="product" class="form-select" required formControlName="product">
+                            <ng-container *ngFor="let stock of stocks.content">
+                                <option [ngValue]="stock.stockId">{{stock.product.name}}</option>
+                            </ng-container>
+                        </select>
+                    </div>
                 </div>
-                <div class="group-input">
-                    <label for="value" style="font-size: 15px; margin-bottom: 0px;">Valor</label>
-                    <input id="value" class="form-control" type="text" style="width: 100%;" formControlName="taxNumber">
+                <div style="width: 8%; text-align: end; padding: 12px 6px; display: flex;">
+                    <button type="button" class="btn btn-primary" (click)="onInsert()">Inserir</button>
+                </div>
+                <div style="width: 100%;">
+                    <table mat-table [dataSource]="ELEMENT_DATA" class="mat-elevation-z8">
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef> No. </th>
+                            <td mat-cell *matCellDef="let items"> {{items.position}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="Produto">
+                            <th mat-header-cell *matHeaderCellDef> Nome </th>
+                            <td mat-cell *matCellDef="let items"> {{items.itemId}} </td>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="Estoque">
+                            <th mat-header-cell *matHeaderCellDef> Estoque </th>
+                            <td mat-cell *matCellDef="let items"> {{items.stockId}} </td>
+                        </ng-container>
+
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="Quantidade">
+                            <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+
+                            <td mat-cell *matCellDef="let items"> <input id="amount" class="form-control" type="text"
+                                    style="width: 100%;" formControlName="amount"></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Valor">
+                            <th mat-header-cell *matHeaderCellDef> Valor </th>
+                            <td mat-cell *matCellDef="let items"> <input id="value" class="form-control" type="text"
+                                    style="width: 100%;" formControlName="value"> </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Valor total">
+                            <th mat-header-cell *matHeaderCellDef> Valor Total </th>
+                            <td mat-cell *matCellDef="let items"> {{items.valorTotal}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
                 </div>
             </div>
         </div>

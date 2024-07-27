@@ -17,7 +17,7 @@ export class SaleListComponent {
   buttons = [
     {
       name: 'CRIAR PEDIDO DE VENDA',
-      link: '/saleDetail/',
+      link: 'purchase/saleDetail/',
       class: 'btn-primary',
       iconButton: faPlusCircle,
       type: 'CREATE'
