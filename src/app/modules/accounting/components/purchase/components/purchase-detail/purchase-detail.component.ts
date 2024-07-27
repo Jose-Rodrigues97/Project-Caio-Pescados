@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertModalComponent } from 'src/app/modules/themes/components/alert-modal-component/alert-modal.component';
 import { TransportModel } from 'src/app/modules/accounting/models/transport-model';
@@ -8,15 +8,19 @@ import { SupplierService } from 'src/app/modules/suppliers/services/supplier.ser
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PRIMARY_OUTLET, Router, UrlSegment } from '@angular/router';
 import { PurchaseService } from '../../services/purchase.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { SuppliersModel } from 'src/app/modules/suppliers/models/suppliers-model';
 import { PurchaseModel } from '../../models/purchase-model';
 import { StockService } from 'src/app/modules/logistic/components/stock/services/stock.service';
 import { ProductService } from 'src/app/modules/products/service/product.service';
 import { ProductsModel } from 'src/app/modules/products/models/products-model';
-import { ProductStockModel } from 'src/app/modules/logistic/components/stock/models/product-stock-model';
 import { SupplierModel } from 'src/app/modules/suppliers/models/supplier-model';
 import { ProductsStockModel } from 'src/app/modules/logistic/components/stock/models/products-stock-model';
+import { CompaniesModel } from 'src/app/modules/companies/models/companies-model';
+import { CompanyService } from 'src/app/modules/companies/services/company.service';
+import { PurchaseItemsModel } from '../../models/purchase-items-model';
+import { MatTable } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-purchase-detail',
@@ -24,32 +28,36 @@ import { ProductsStockModel } from 'src/app/modules/logistic/components/stock/mo
   styleUrls: ['./purchase-detail.component.css']
 })
 export class PurchaseDetailComponent {
-  @Input() purchaseId: number = 0;
+  @Input() purchaseId!: number;
   formGroup!: FormGroup;
   submitted: boolean = false;
   buttons = [
     {
       name: 'VOLTAR',
-      link: '/purchase',
+      link: '/purchase/purchaseList',
       class: 'btn-secondary',
       iconButton: {} as IconDefinition,
       type: 'RETURN'
     },
     {
       name: 'SALVAR',
-      link: '/purchase/',
+      link: '',
       class: 'btn-primary',
       iconButton: {} as IconDefinition,
       type: 'SAVE'
     }]
+  companies$!: Observable<CompaniesModel>
   suppliers$!: Observable<SuppliersModel>
   stocks$!: Observable<ProductsStockModel>
   products$!: Observable<ProductsModel>
   bsModalRef?: BsModalRef;
   transports = {} as TransportModel[];
   shippingCompanys = {} as ShippingCompanyModel[];
+  ELEMENT_DATA: PurchaseItemsModel[]=[];
   faPlus = faPlusCircle;
   faShare = faShare;
+  displayedColumns: string[] = ['position', 'Produto', 'Estoque', 'Quantidade', 'Valor', 'Valor total'];
+  @ViewChild(MatTable) table!: MatTable<any>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,6 +66,7 @@ export class PurchaseDetailComponent {
     private productService: ProductService,
     private modalService: BsModalService,
     private stockService: StockService,
+    private companyService: CompanyService,
     private router: Router
   ) {
     const s: UrlSegment = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments[2];
@@ -87,6 +96,7 @@ export class PurchaseDetailComponent {
     })
   }
 
+
   ngOnInit() {
     if (this.formGroup.get('id')?.value !== 0) {
       this.getPurchaseById(this.formGroup.get('id')?.value);
@@ -99,14 +109,10 @@ export class PurchaseDetailComponent {
       });
     } else {
       this.getSuppliers();
-      this.getStocks();
+      this.getCompanies();
+      //this.getStocks();
     }
 
-  }
-
-  ngAfterViewChecked(): void {
-    // this.onChangeRazaoSocial(document.getElementById('supplierid'));
-    // this.onChangeTaxNumber(document.getElementById('tax-number'));
   }
 
   onChangeRazaoSocial(target: any) {
@@ -130,19 +136,12 @@ export class PurchaseDetailComponent {
     }
   }
 
-  onChangeProduct(target: any) {
-  }
-
   onChangeStock(target: any) {
+    let companyId = (<HTMLInputElement>target).value;
+    companyId = String(companyId.substring(companyId.indexOf(":") + 1, companyId.length));
+    this.getStocksByCompanyId(companyId);
   }
 
-  onClickButton(type: string) {
-    if (type == 'DELETE') {
-      this.onDeletePurchase();
-    } else {
-      this.ngOnSubmit();
-    }
-  }
 
   getPurchaseById(purchaseId: number) {
     this.purchaseService.getPurchaseById(purchaseId).subscribe((purchase: PurchaseModel) => {
@@ -164,16 +163,6 @@ export class PurchaseDetailComponent {
     })
   };
 
-  onDeletePurchase() {
-    this.purchaseService.deletePurchase(this.purchaseId).subscribe(() => {
-      this.router.navigateByUrl('/purchase/purchaseList');
-      this.handleModal('success', 'Pedido excluído com sucesso.');
-    },
-      error => {
-        this.handleModal('danger', error);
-      });
-  }
-
   ngOnSubmit() {
     if (this.formGroup.get('id')?.value !== 0) {
       this.getPurchaseById(this.formGroup.get('id')?.value);
@@ -187,27 +176,51 @@ export class PurchaseDetailComponent {
     }
   }
 
+  getSuppliers() {
+    this.suppliers$ = this.supplierService.getSuppliers();
+  }
+
+  getStocksByCompanyId(companyId: string) {
+    let stockId: number = 0;
+    this.stocks$ = this.stockService.getStockByCompanyId(companyId);
+  }
+
+  getCompanies() {
+    this.companies$ = this.companyService.getCompanies();
+  }
+
+  onInsert() {
+    let purchaseItem!: PurchaseItemsModel;
+    purchaseItem.itemId = this.formGroup.get('product')?.value;
+    purchaseItem.quantity = this.formGroup.get('amount')?.value;
+    purchaseItem.stockId = this.formGroup.get('stock')?.value;
+    purchaseItem.value = this.formGroup.get('value')?.value;
+    this.ELEMENT_DATA.push(purchaseItem);
+    this.table.renderRows();
+
+  }
+
+  onDeletePurchase() {
+    this.purchaseService.deletePurchase(this.purchaseId).subscribe(() => {
+      this.router.navigateByUrl('/purchase/purchaseList');
+      this.handleModal('success', 'Pedido excluído com sucesso.');
+    },
+      error => {
+        this.handleModal('danger', error);
+      });
+  }
+  onClickButton(type: string) {
+    if (type == 'DELETE') {
+      this.onDeletePurchase();
+    } else {
+      this.ngOnSubmit();
+    }
+  }
   handleModal(type: string, message: string) {
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = type;
     this.bsModalRef.content.message = message;
   }
-
-
-
-  getSuppliers() {
-    this.suppliers$ = this.supplierService.getSuppliers();
-  }
-
-  getStocks() {
-    console.log('entrou no getStock');
-    this.stocks$ = this.stockService.getStocks();
-  }
-
-  getProducts(stockId: number) {
-    this.products$ = this.productService.getProducts();
-  }
-
 }
 
 

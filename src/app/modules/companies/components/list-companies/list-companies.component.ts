@@ -25,7 +25,7 @@ export class ListCompaniesComponent {
       class: 'btn-primary',
       iconButton: faPlusCircle,
       type: 'CREATE'
-    }] 
+    }]
   estates = {} as EstateModel[];
   cities$!: Observable<CityModel[]>;
   formGroup!: FormGroup;

@@ -44,7 +44,7 @@ export class LoginComponent {
           this.accountService.login(this.formGroup.value).pipe().subscribe((response) => {
             window.localStorage.setItem('Token', response.token);
             this.router.navigate(['company']);
-            this.handleModal('success', 'Bem-vindo.');
+            //this.handleModal('success', 'Bem-vindo.');
           },
             error => {
               this.handleModal('danger', error.error);

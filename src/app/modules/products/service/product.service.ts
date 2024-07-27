@@ -50,6 +50,13 @@ export class ProductService {
       )
   }
 
+  getProductsByStockId(stockId:number){
+    return this.httpClient.get<any>(this.URL + '/{stockId}' + stockId, { headers: this.httpHeaders })
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
