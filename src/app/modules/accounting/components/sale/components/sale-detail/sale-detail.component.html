@@ -8,7 +8,7 @@
                     <label for="inputState" style="font-size: 15px; margin-bottom: 0px;">Cliente</label>
                     <select id="inputState" class="form-select" required formControlName="estate">
                         <ng-container *ngFor="let supplier of suppliers">
-                            <option [ngValue]="supplier.id">{{supplier.name}}</option>
+                            <option [ngValue]="supplier.supplierId">{{supplier.name}}</option>
                         </ng-container>
                     </select>
                 </div>

@@ -19,7 +19,6 @@ import { AlertModalComponent } from 'src/app/modules/themes/components/alert-mod
   styleUrls: ['./list-collaborators.component.css']
 })
 export class ListCollaboratorsComponent {
-  faPlus = faPlusCircle;
   buttons = [
     {
       name: 'CRIAR COLABORADOR',

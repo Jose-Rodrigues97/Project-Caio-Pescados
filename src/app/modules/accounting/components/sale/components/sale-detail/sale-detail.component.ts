@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ClientModel } from '../../models/client-model';
 import { ShippingCompanyModel } from 'src/app/modules/accounting/models/shipping-company-model';
 import { TransportModel } from 'src/app/modules/accounting/models/transport-model';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { SupplierModel } from 'src/app/modules/suppliers/models/supplier-model';
 
 @Component({
   selector: 'app-sale-detail',
@@ -29,7 +29,7 @@ export class SaleDetailComponent {
       type: 'SAVE'
     }]
 
-    suppliers = {} as ClientModel[];
+    suppliers = {} as SupplierModel[];
     transports = {} as TransportModel[];
     shippingCompanys = {} as ShippingCompanyModel[];
 

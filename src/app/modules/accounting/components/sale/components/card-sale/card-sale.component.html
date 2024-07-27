@@ -1,22 +1,16 @@
 <div class="card-company">
-    <img src="{{image}}" alt="">
+    <img src="../../../../../../../assets/saleicon.png" alt="">
     <div>
-        <a [routerLink]="['/saleDetail', id]" style="text-transform: uppercase;">{{name}}</a>
-        <span>{{taxNumber}}</span>
-        <div *ngIf="isHeadquarters; else blockSubsidiary">
-            <span>Matriz</span>
-        </div>
-        <ng-template #blockSubsidiary>
-            <span>Filial</span>
-        </ng-template>
+        <a [routerLink]="['/saleDetail', sale.salesOrderId]" style="text-transform: uppercase;">{{sale.name}}</a>
+        <span>{{sale.code}}</span>
     </div>
     <div>
-        <span style="text-transform: uppercase;">{{state}}</span>
-        <span style="text-transform: uppercase;">{{city}}</span>
-        <span>{{address}}</span>
+        <span style="text-transform: uppercase;">{{sale.buyer.name}}</span>
+        <span style="text-transform: uppercase;">{{sale.buyer.taxRecord}}</span>
+        <span>{{sale.buyer.typePerson}}</span>
     </div>
     <div>
-        <span>{{phone}}</span>
-        <span>{{email}}</span>
+        <span>{{sale.total}}</span>
+        <span>{{sale.status}}</span>
     </div>
 </div>

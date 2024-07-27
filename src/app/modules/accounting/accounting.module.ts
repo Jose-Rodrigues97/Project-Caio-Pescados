@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MetricsComponent } from './components/metrics/metrics.component';
 import { ListPurchaseComponent } from './components/purchase/components/purchase-list/purchase-list.component';
-import { SaleComponent } from './components/sale/sale.component';
 import { CardPurchaseComponent } from './components/purchase/components/card-purchase/card-purchase.component';
 import { CardSaleComponent } from './components/sale/components/card-sale/card-sale.component';
 import { ThemesModule } from '../themes/themes.module';
@@ -12,6 +11,7 @@ import { PurchaseDetailComponent } from './components/purchase/components/purcha
 import { SaleDetailComponent } from './components/sale/components/sale-detail/sale-detail.component';
 import { RouterModule } from '@angular/router';
 import { AccountingRoutesRoutingModule } from './accounting-routing.module';
+import { SaleListComponent } from './components/sale/components/sale-list/sale-list.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { AccountingRoutesRoutingModule } from './accounting-routing.module';
     CardPurchaseComponent,
     PurchaseDetailComponent,
     CardSaleComponent,
-    SaleComponent,
-    SaleDetailComponent
+    SaleDetailComponent,
+    SaleListComponent
   ],
   imports: [
     CommonModule,

@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ThemesComponent } from '../themes/themes.component';
 import { ListPurchaseComponent } from './components/purchase/components/purchase-list/purchase-list.component';
 import { PurchaseDetailComponent } from './components/purchase/components/purchase-detail/purchase-detail.component';
-import { SaleComponent } from './components/sale/sale.component';
 import { SaleDetailComponent } from './components/sale/components/sale-detail/sale-detail.component';
+import { SaleListComponent } from './components/sale/components/sale-list/sale-list.component';
 
 const accountingRoutes: Routes = [
   {
@@ -14,15 +14,7 @@ const accountingRoutes: Routes = [
       { path: '', redirectTo: 'purchaseList', pathMatch: 'full' },
       { path: 'purchaseList', component: ListPurchaseComponent },
       { path: 'purchaseDetail/:purchaseid', component: PurchaseDetailComponent },
-      { path: 'sale', component: SaleComponent },
-      { path: 'saleDetail/:id', component: SaleDetailComponent },
-      { path: 'metrics', component: ListPurchaseComponent }
-    ]
-  },{
-    path: '',
-    component: ThemesComponent,
-    children: [
-      { path: 'sale', component: SaleComponent },
+      { path: 'saleList', component: SaleListComponent },
       { path: 'saleDetail/:id', component: SaleDetailComponent },
       { path: 'metrics', component: ListPurchaseComponent }
     ]
