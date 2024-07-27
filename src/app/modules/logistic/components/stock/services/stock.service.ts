@@ -30,7 +30,7 @@ export class StockService {
         catchError(this.handleError))
   }
 
-  
+
 
   createStock(productStockModel: StockModel): Observable<ProductStockModel> {
     return this.httpClient.post<ProductStockModel>(this.URL, JSON.stringify(productStockModel), { headers: this.httpHeaders })
@@ -54,7 +54,7 @@ export class StockService {
   }
 
   getStocks(){
-    return this.httpClient.get<any>(this.URL + '/stocks/', { headers: this.httpHeaders })
+    return this.httpClient.get<any>(this.URL + '/stocks', { headers: this.httpHeaders })
       .pipe(
         catchError(this.handleError)
       );

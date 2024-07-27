@@ -12,6 +12,7 @@ import { SaleDetailComponent } from './components/sale/components/sale-detail/sa
 import { RouterModule } from '@angular/router';
 import { AccountingRoutesRoutingModule } from './accounting-routing.module';
 import { SaleListComponent } from './components/sale/components/sale-list/sale-list.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SaleListComponent } from './components/sale/components/sale-list/sale-l
     ReactiveFormsModule,
     FontAwesomeModule,
     RouterModule,
-    AccountingRoutesRoutingModule
+    AccountingRoutesRoutingModule,
+    MatTableModule
   ]
 })
 export class AccountingModule { }

@@ -43,3 +43,8 @@
     align-items: center;
     width: 100%;
 }
+
+.div-table-item{
+  display: flex;
+  flex-wrap: wrap;
+}
